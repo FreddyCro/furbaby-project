@@ -1,8 +1,17 @@
 <?php
-echo "Hello World!!!";
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+include_once './config/database.php';
 
 try {
-  $pdo = new PDO("mysql:host=localhost;port=8306;dbname=some_db", "some_user", "some_password");
+  // $pdo = new PDO("mysql:host=localhost;port=8306;dbname=some_db", "some_user", "some_password");
+
+  $database = new Database();
+  $db = $database->getConnection();
 
   echo "Connected to database";
 

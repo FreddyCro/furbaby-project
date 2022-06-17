@@ -7,10 +7,10 @@ FROM php:5.5-apache
 
 # Copy PHP configuration
 # Edit docker/php.ini and customize it to your needs
-COPY docker/php.ini /usr/local/etc/php/php.ini
+COPY server/docker/php.ini /usr/local/etc/php/php.ini
 
 # Copy custom command docker-php-pecl-install
-COPY docker/docker-php-pecl-install /usr/local/bin/
+COPY server/docker/docker-php-pecl-install /usr/local/bin/
 
 # Install PHP extensions
 RUN docker-php-ext-install mysql
@@ -35,4 +35,4 @@ RUN docker-php-ext-install pdo_mysql
 #RUN service apache2 restart
 
 # Set the workdir
-WORKDIR /var/www/docker-lamp-php-5
+WORKDIR /var/www
