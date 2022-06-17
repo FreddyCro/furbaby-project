@@ -1,8 +1,8 @@
 <?php
 class Database
 {
-  private $host = "10.17.249.238";
-  private $port = "8366";
+  private $host = "localhost";
+  private $port = "3306";
   private $database_name = "furkid";
   private $username = "test";
   private $password = "test";

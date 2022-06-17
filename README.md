@@ -7,6 +7,7 @@
 1. docekr env
 2. server/src/config/database.php
 3. server/src/api/*
+4. index.html
 
 ### 設定 docker env
 
@@ -27,12 +28,12 @@ MYSQL_PASSWORD=
 設定 database 的變數。
 
 ```php
-private $host = "10.17.249.238";
-private $port = "8366";
-private $database_name = "furkid";
-private $username = "test";
-private $password = "test";
-public $table_name = "furkid_questions";
+private $host = [apache host];
+private $port = [apache port / 同 docker env 裡的 MYSQL_PORT];
+private $database_name = [db name / 同 docker env 裡的 MYSQL_DATABASE];
+private $username = [mysql username / 同 docker env 裡的 MYSQL_USER];
+private $password = [mysql password / 同 docker env 裡的 MYSQL_PASSWORD];
+public $table_name = [table name];
 ```
 
 #### server/src/api/*
@@ -44,12 +45,20 @@ include_once '../../config/database.php';
 include_once '../../class/question.php';
 ```
 
+### 設定 index.html 裡面的 api host
+
+例如: `http://192.168.1.100:8080`
+
+```js
+const HOST = [your apache host];
+```
+
 ## Start
 
 ### 1. 啟動 docker
 
 ```shell
-docker up -d
+docker-compose up
 ```
 
 ### 2. 初始化資料庫
