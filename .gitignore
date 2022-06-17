@@ -2,5 +2,5 @@
 /client/.env
 /server/logs
 /logs
-env
+.env
 .DS_Store

@@ -25,5 +25,3 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
       - ${MYSQL_PORT}:3306
-    volumes:
-      - /var/lib/mysql/${MYSQL_DATABASE}:/var/lib/mysql/${MYSQL_DATABASE}
