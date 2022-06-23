@@ -67,4 +67,4 @@ GET `http://[host][port]/init-table.php`，產生 table 和新的題目資料。
 
 ### 3. 測試網頁功能
 
-網頁瀏覽 <http://[host>][port]/index.html，測試 click 功能是否能更新資料。
+網頁瀏覽 `http://[host][port]/index.html`，測試 click 功能是否能更新資料。
