@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+$minBreakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+);
+
+$maxBreakpoints: (
+  xs: #{$sm - 0.2px},
+  sm: #{$md - 0.2px},
+  md: #{$lg - 0.2px},
+);
+
+@mixin rwd-min($min) {
+  @media screen and (min-width: map-get($minBreakpoints, $min)) {
+    @content;
+  }
+}
+
+@mixin rwd-max($max) {
+  @media screen and (max-width: map-get($maxBreakpoints, $max)) {
+    @content;
+  }
+}
+
+@mixin rwd-min-max($min, $max) {
+  @media screen and (min-width: map-get($minBreakpoints, $min)) and (max-width: map-get($maxBreakpoints, $max)) {
+    @content;
+  }
+}
