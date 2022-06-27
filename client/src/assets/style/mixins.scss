@@ -29,3 +29,9 @@ $maxBreakpoints: (
     @content;
   }
 }
+
+@mixin support-webp {
+  @supports (aspect-ratio: 1 / 1) {
+    @content;
+  }
+}

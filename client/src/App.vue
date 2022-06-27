@@ -1,7 +1,8 @@
 <template lang="pug">
 #app
   img(alt="Vue logo" src="./assets/logo.png")
-  hello-world(msg="Welcome to Your Vue.js App")
+  div
+    router-link(to="/") back to home
 
   router-view
 </template>

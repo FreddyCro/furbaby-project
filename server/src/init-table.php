@@ -17,6 +17,9 @@ try {
     PRIMARY KEY (id)
   );");
 
+  // create furkid_ranking table
+  // TODO: create furkid_ranking table
+
   try {
     //code...
   } catch (\Throwable $th) {
@@ -39,11 +42,18 @@ try {
     }
   }
 
+  // insert data into furkid_ranking table
+  // TODO: insert furkid_ranking table
+
   // print data from furkid_questions table
   $data = $db->query('SELECT * FROM furkid_questions');
   foreach ($data as $row) {
     print_r($row);
   }
+
+  // print data from furkid_ranking table
+  // TODO: print data from furkid_ranking table
+
 } catch (PDOException $exception) {
   echo "Database could not be connected: " . $exception->getMessage();
 }

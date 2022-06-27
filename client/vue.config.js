@@ -1,5 +1,5 @@
 const path = require('path');
-const resolve (dir) => path.join(__dirname,  dir);
+const resolve = (dir) => path.join(__dirname, dir);
 
 module.exports = {
   productionSourceMap: false,
@@ -16,7 +16,7 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        prependData: `@import "@/assets/style/_mixins.scss";`,
+        additionalData: `@import "@/assets/style/mixins.scss"; @import "@/assets/style/variables.scss";`,
       },
     },
   },
