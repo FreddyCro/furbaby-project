@@ -1,11 +1,13 @@
 <template lang="pug">
 .fk-result
   h1 Result
-  p your point: {{ result.point }}
+  p your point: {{ getScore() }}
   p your ranking: {{ result.ranking }}
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Result',
   data: () => ({
@@ -14,6 +16,12 @@ export default {
       ranking: 0,
     },
   }),
+  methods: {
+    ...mapGetters({
+      getScore: 'getScore',
+    }),
+  },
+
   created() {
     // TODO: get result from vuex
     // TODO: get ranking from server

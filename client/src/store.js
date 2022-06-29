@@ -1,18 +1,46 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import questions from '@/assets/json/questions.json';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    questions,
+    type: undefined,
+    user: '',
+    cat: {
+      score: 0,
+    },
+    dog: {
+      score: 0,
+    },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    setUser(state, user) {
+      state.user = user;
+    },
+    setType(state, type) {
+      state.type = type;
+    },
+    updateScore(state, type) {
+      state[type].score++;
+    },
+  },
+  actions: {
+    setUser(context, user) {
+      context.commit('setUser', user);
+    },
+    setType(context, type) {
+      context.commit('setType', type);
+    },
+    updateScore(context, type) {
+      context.commit('updateScore', type);
+    },
+  },
   getters: {
-    getQuestion: (state) => ({type, idx}) =>
-      state.questions[type][idx],
+    getScore(state) {
+      if (!state.type) return 0;
+      return state[state.type].score;
+    },
   },
   modules: {},
 });

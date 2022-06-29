@@ -13,5 +13,8 @@ export default {
   components: {
     FkNameInput,
   },
+  created() {
+    this.$store.dispatch('setType', 'cat');
+  },
 };
 </script>
