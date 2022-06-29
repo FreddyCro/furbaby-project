@@ -7,7 +7,7 @@
     button(v-for="item in getQuestion()(config).options" :key="item.id") {{ item }}
 
   .next
-    router-link(to="/exam/cat/2") Next
+    router-link(to="/quiz/cat/2") Next
 
 </template>
 

@@ -1,5 +1,6 @@
 <template lang="pug">
 #app
+  fk-header
   img(alt="Vue logo" src="./assets/logo.png")
   div
     router-link(to="/") back to home
@@ -8,11 +9,13 @@
 </template>
 
 <script>
+import FkHeader from '@/components/fk-header.vue';
 import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   name: 'App',
   components: {
+    FkHeader,
     HelloWorld,
   },
 };
