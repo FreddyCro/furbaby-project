@@ -35,3 +35,11 @@ $maxBreakpoints: (
     @content;
   }
 }
+
+@mixin bg-2x($src, $ext) {
+  background-image: url(#{$src}@2x.#{$ext});
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background-image: url(#{$src}@2x.#{$ext});
+  }
+}
