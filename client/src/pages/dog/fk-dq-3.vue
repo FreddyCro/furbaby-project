@@ -7,16 +7,26 @@
     button(
       v-for="item in question.options"
       :key="item.idx"
-      @click="submitAnswer(item, type)"
+      @click="selectAnswer(singleStrategy(question.ans, item))"
     ) {{ str.ans[item] }}
 
-  .next
-    router-link(to="/result") result
-
+  //- submit and show answer
+  fk-ans-submit(
+    v-if="hasSelect"
+    :question="question"
+    :has-select="hasSelect"
+    :has-submitted="hasSubmitted"
+    :is-correct="isCorrect"
+    :submit-answer="submitAnswer"
+    :cate="cate"
+    :is-last="false"
+  )
+    .next
+      router-link(:to="`/quiz/${cate}/${question.idx + 1}`") Next
 </template>
 
 <script>
-import { submitAnswer } from '@/assets/js/mixins';
+import { submitAnswer, singleStrategy } from '@/assets/js/mixins';
 
 const str = {
   title: 'lorem ipsum dolor sit amet',
@@ -34,14 +44,15 @@ export default {
   name: 'DogQ3',
   data: () => ({
     str,
-    type: 'dog',
+    cate: 'dog',
     question: {
       idx: 3,
+      type: 'single',
       options: [1, 2, 3, 4],
       ans: 1,
     },
   }),
-  mixins: [submitAnswer],
+  mixins: [submitAnswer, singleStrategy],
   methods: {},
   created() {
     console.log(process.env.VUE_APP_API_ROOT);

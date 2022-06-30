@@ -1,8 +1,7 @@
 <template lang="pug">
 .dg-start
   h2 Start
-  fk-name-input
-  router-link(to="/quiz/dog/1") next
+  fk-name-input(cate="dog")
 </template>
 
 <script>
@@ -12,9 +11,6 @@ export default {
   name: 'DgStart',
   components: {
     FkNameInput,
-  },
-  created() {
-    this.$store.dispatch('setType', 'dog');
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-dog-q2
+.fk-dog-q6
   h3 Q{{ question.idx }} - {{ str.title }}
   .q {{ str.question}}
 
@@ -7,7 +7,7 @@
     button(
       v-for="item in question.options"
       :key="item.idx"
-      @click="selectAnswer(multiStrategy(question.ans, item))"
+      @click="selectAnswer(singleStrategy(question.ans, item))"
     ) {{ str.ans[item] }}
 
   //- submit and show answer
@@ -41,12 +41,12 @@ const str = {
 };
 
 export default {
-  name: 'DogQ2',
+  name: 'DogQ6',
   data: () => ({
     str,
     cate: 'dog',
     question: {
-      idx: 2,
+      idx: 6,
       type: 'single',
       options: [1, 2, 3, 4],
       ans: 1,

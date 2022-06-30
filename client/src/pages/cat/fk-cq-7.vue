@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-dog-q2
+.fk-cat-q7
   h3 Q{{ question.idx }} - {{ str.title }}
   .q {{ str.question}}
 
@@ -7,7 +7,7 @@
     button(
       v-for="item in question.options"
       :key="item.idx"
-      @click="selectAnswer(multiStrategy(question.ans, item))"
+      @click="selectAnswer(singleStrategy(question.ans, item))"
     ) {{ str.ans[item] }}
 
   //- submit and show answer
@@ -22,7 +22,7 @@
     :is-last="false"
   )
     .next
-      router-link(:to="`/quiz/${cate}/${question.idx + 1}`") Next
+      router-link(:to="`/quiz/cat/${question.idx + 1}`") Next
 </template>
 
 <script>
@@ -41,12 +41,12 @@ const str = {
 };
 
 export default {
-  name: 'DogQ2',
+  name: 'CatQ7',
   data: () => ({
     str,
-    cate: 'dog',
+    cate: 'cat',
     question: {
-      idx: 2,
+      idx: 7,
       type: 'single',
       options: [1, 2, 3, 4],
       ans: 1,

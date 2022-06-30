@@ -91,7 +91,7 @@ export default {
 
 <style lang="scss" scoped>
 .fk-l-intro {
-  @include bg-2x('/img/faker_bg', 'jpg');
+  /* @include bg-2x('/img/faker_bg', 'jpg'); */
 
   position: relative;
 
@@ -111,7 +111,7 @@ export default {
 }
 
 .fk-l-start {
-  @include bg-2x('/img/faker_bg', 'jpg');
+  /* @include bg-2x('/img/faker_bg', 'jpg'); */
 
   &__enter-btn {
     display: block;
@@ -121,6 +121,6 @@ export default {
 }
 
 .fk-l-suggest {
-  @include bg-2x('/img/faker_bg', 'jpg');
+  /* @include bg-2x('/img/faker_bg', 'jpg'); */
 }
 </style>

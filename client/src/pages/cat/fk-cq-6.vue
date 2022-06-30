@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-dog-q2
+.fk-cat-q6
   h3 Q{{ question.idx }} - {{ str.title }}
   .q {{ str.question}}
 
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { submitAnswer, singleStrategy } from '@/assets/js/mixins';
+import { submitAnswer, multiStrategy } from '@/assets/js/mixins';
 
 const str = {
   title: 'lorem ipsum dolor sit amet',
@@ -41,18 +41,18 @@ const str = {
 };
 
 export default {
-  name: 'DogQ2',
+  name: 'CatQ6',
   data: () => ({
     str,
-    cate: 'dog',
+    cate: 'cat',
     question: {
-      idx: 2,
-      type: 'single',
+      idx: 6,
+      type: 'multi',
       options: [1, 2, 3, 4],
-      ans: 1,
+      ans: [1],
     },
   }),
-  mixins: [submitAnswer, singleStrategy],
+  mixins: [submitAnswer, multiStrategy],
   methods: {},
   created() {
     console.log(process.env.VUE_APP_API_ROOT);

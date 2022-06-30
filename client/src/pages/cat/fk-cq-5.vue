@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-dog-q2
+.fk-cat-q5
   h3 Q{{ question.idx }} - {{ str.title }}
   .q {{ str.question}}
 
@@ -7,7 +7,7 @@
     button(
       v-for="item in question.options"
       :key="item.idx"
-      @click="selectAnswer(multiStrategy(question.ans, item))"
+      @click="selectAnswer(rangeStrategy(question.ans, item))"
     ) {{ str.ans[item] }}
 
   //- submit and show answer
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { submitAnswer, singleStrategy } from '@/assets/js/mixins';
+import { submitAnswer, rangeStrategy } from '@/assets/js/mixins';
 
 const str = {
   title: 'lorem ipsum dolor sit amet',
@@ -41,18 +41,17 @@ const str = {
 };
 
 export default {
-  name: 'DogQ2',
+  name: 'CatQ5',
   data: () => ({
     str,
-    cate: 'dog',
+    cate: 'cat',
     question: {
-      idx: 2,
-      type: 'single',
-      options: [1, 2, 3, 4],
+      idx: 5,
+      type: 'range',
       ans: 1,
     },
   }),
-  mixins: [submitAnswer, singleStrategy],
+  mixins: [submitAnswer, rangeStrategy],
   methods: {},
   created() {
     console.log(process.env.VUE_APP_API_ROOT);

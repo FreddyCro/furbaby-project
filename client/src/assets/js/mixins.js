@@ -1,20 +1,64 @@
+import FkAnsSubmit from '@/components/fk-ans/fk-ans-submit.vue';
+
 const submitAnswer = {
+  components: { FkAnsSubmit },
   data() {
     return {
+      hasSelect: false,
       hasSubmitted: false,
+      isCorrect: false,
     };
   },
   methods: {
-    submitAnswer(ans, type) {
+    selectAnswer(boolean) {
+      this.hasSelect = true;
+      this.isCorrect = boolean;
+    },
+    submitAnswer(cate) {
+      console.log(cate);
       if (this.hasSubmitted) return;
 
       this.hasSubmitted = true;
 
-      if (this.question.ans === ans) {
-        this.$store.dispatch('updateScore', type);
+      if (this.isCorrect) {
+        this.$store.dispatch('updateScore', cate);
       }
     },
   },
 };
 
-export { submitAnswer };
+const singleStrategy = {
+  methods: {
+    singleStrategy(correctAns, myAns) {
+      return correctAns === myAns;
+    },
+  },
+};
+
+const multiStrategy = {
+  methods: {
+    multiStrategy(correctAns, myAns) {
+      if (correctAns.length === myAns.length) {
+        for (let i = 0; i < correctAns.length; i++) {
+          if (correctAns[i] !== myAns[i]) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      return false;
+    },
+  },
+};
+
+const rangeStrategy = {
+  methods: {
+    rangeStrategy(correctAns, myAns) {
+      return correctAns === myAns;
+    },
+  },
+};
+
+export { submitAnswer, singleStrategy, multiStrategy, rangeStrategy };

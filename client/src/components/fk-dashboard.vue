@@ -1,8 +1,8 @@
 <template lang="pug">
 .fk-dashboard
   .fk-dashboard__text user: {{ $store.state.user }} |
-  .fk-dashboard__text type: {{ $store.state.type }} |
-  .fk-dashboard__text score: {{ $store.state.type ? $store.state[$store.state.type].score : 0 }}
+  .fk-dashboard__text cate: {{ $store.state.cate }} |
+  .fk-dashboard__text score: {{ $store.state.cate ? $store.state[$store.state.cate].score : 0 }}
 
 </template>
 

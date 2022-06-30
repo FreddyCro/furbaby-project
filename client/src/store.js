@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    type: undefined,
+    cate: undefined,
     user: '',
     cat: {
       score: 0,
@@ -18,28 +18,28 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user = user;
     },
-    setType(state, type) {
-      state.type = type;
+    setCategory(state, cate) {
+      state.cate = cate;
     },
-    updateScore(state, type) {
-      state[type].score++;
+    updateScore(state, cate) {
+      state[cate].score++;
     },
   },
   actions: {
     setUser(context, user) {
       context.commit('setUser', user);
     },
-    setType(context, type) {
-      context.commit('setType', type);
+    setCategory(context, cate) {
+      context.commit('setCategory', cate);
     },
-    updateScore(context, type) {
-      context.commit('updateScore', type);
+    updateScore(context, cate) {
+      context.commit('updateScore', cate);
     },
   },
   getters: {
     getScore(state) {
-      if (!state.type) return 0;
-      return state[state.type].score;
+      if (!state.cate) return 0;
+      return state[state.cate].score;
     },
   },
   modules: {},
