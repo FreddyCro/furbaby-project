@@ -1,8 +1,15 @@
 <template lang="pug">
 .fk-name-input
-  input(v-model="name")
+  input(
+    v-model="name"
+    type="text" 
+  )
+
   router-link(:to="`/quiz/${cate}/1`") 
-    button(@click="$store.dispatch('setCategory', cate);") next
+    button(
+      v-if="name.length > 0"
+      @click="$store.dispatch('setCategory', cate)"
+    ) START
 </template>
 
 <script>

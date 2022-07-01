@@ -1,11 +1,11 @@
 <template lang="pug">
 header.fk-header
-  router-link(to="/") back to home
+  button(@click="reset")
+    span logo
     fk-pic(
       src="/img/faker_icon.jpg"
       alt="Furkid Master"
     )
-
 </template>
 
 <script>
@@ -16,12 +16,27 @@ export default {
   components: {
     FkPic,
   },
+  methods: {
+    reset() {
+      // back to home
+      this.$router.push('/');
+
+      // reset all data
+      this.$store.dispatch('setCategory', undefined);
+      this.$store.dispatch('setUser', '');
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 .fk-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
+  background-color: lightyellow;
 }
 </style>

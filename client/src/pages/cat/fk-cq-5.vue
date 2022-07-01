@@ -7,7 +7,7 @@
     button(
       v-for="item in question.options"
       :key="item.idx"
-      @click="selectAnswer(rangeStrategy(question.ans, item))"
+      @click="selectAnswer(singleStrategy(question.ans, item))"
     ) {{ str.ans[item] }}
 
   //- submit and show answer
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { submitAnswer, rangeStrategy } from '@/assets/js/mixins';
+import { submitAnswer, singleStrategy } from '@/assets/js/mixins';
 
 const str = {
   title: 'lorem ipsum dolor sit amet',
@@ -51,7 +51,7 @@ export default {
       ans: 1,
     },
   }),
-  mixins: [submitAnswer, rangeStrategy],
+  mixins: [submitAnswer, singleStrategy],
   methods: {},
   created() {
     console.log(process.env.VUE_APP_API_ROOT);

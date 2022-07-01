@@ -1,7 +1,7 @@
 <template lang="pug">
 .fk-dashboard
-  .fk-dashboard__text user: {{ $store.state.user }} |
-  .fk-dashboard__text cate: {{ $store.state.cate }} |
+  .fk-dashboard__text user: {{ $store.state.user }}
+  .fk-dashboard__text category: {{ $store.state.cate }}
   .fk-dashboard__text score: {{ $store.state.cate ? $store.state[$store.state.cate].score : 0 }}
 
 </template>

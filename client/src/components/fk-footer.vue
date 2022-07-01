@@ -2,21 +2,24 @@
 .fk-footer
   .fk-u-container
     a(:href="str.dotcom.url")
+      span {{ str.dotcom.name }}
       fk-pic(
         src="/img/faker_icon.jpg"
-        :alt="str.dotcom.title"
+        :alt="str.dotcom.name"
       )
     
     a(:href="str.orange.url")
+      span {{ str.orange.name }}
       fk-pic(
         src="/img/faker_icon.jpg"
-        :alt="str.orange.title"
+        :alt="str.orange.name"
       )
       
     a(:href="str.royal.url")
+      span {{ str.royal.name }}
       fk-pic(
         src="/img/faker_icon.jpg"
-        :alt="str.royal.title"
+        :alt="str.royal.name"
       )
 </template>
 
@@ -24,19 +27,10 @@
 import FkPic from '@/components/fk-pic.vue';
 
 const str = {
-  dotcom: {
-    title: 'Dotcom',
-    desc: 'Dotcom is a company that makes a lot of money.',
-  },
-  orange: {
-    title: 'Orange',
-    desc: 'Orange is a company that makes a lot of money.',
-  },
-  royal: {
-    title: 'Royal',
-    desc: 'Royal is a company that makes a lot of money.',
-  },
-}
+  dotcom: { name: 'udn.com', url: '#' },
+  orange: { name: 'Orange', url: '#' },
+  royal: { name: 'Royal', url: '#' },
+};
 
 export default {
   name: 'FkFooter',
@@ -46,7 +40,7 @@ export default {
   data() {
     return {
       str,
-    }
+    };
   },
 };
 </script>
@@ -55,5 +49,6 @@ export default {
 .fk-footer {
   display: flex;
   justify-content: center;
+  background-color: lightyellow;
 }
 </style>

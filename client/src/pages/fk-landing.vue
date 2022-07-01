@@ -1,6 +1,6 @@
 <template lang="pug">
 .fk-l
-  .fk-l-intro
+  .fk-l-intro.fk-section
     .fk-container
       h1 {{ str.intro.title }}
       fk-pic(
@@ -13,7 +13,7 @@
           src="/img/faker_icon.jpg"
           alt="scroll down"
         )
-  .fk-l-start
+  .fk-l-start.fk-section
     .fk-container
       h2 {{ str.start.title }}
       p {{ str.start.desc }}
@@ -24,12 +24,11 @@
       )
 
       .fk-l-start__enter-btn-container
-        router-link(to="/quiz/dog")
-          .fk-l-start__enter-btn {{ str.start.dog }}
         router-link(to="/quiz/cat")
           .fk-l-start__enter-btn {{ str.start.cat }}
-
-  .fk-l-suggest
+        router-link(to="/quiz/dog")
+          .fk-l-start__enter-btn {{ str.start.dog }}
+  .fk-l-suggest.fk-section
     .fk-container
       fk-pic(
         src="/img/faker_avator.jpg"
@@ -50,30 +49,39 @@
         :alt="str.suggest.title"
       )
 
-      a(:href="str.suggest.btnUrl")
-        fk-btn-primary(:text="str.suggest.btnText")
-        
+      .fk-l-suggest__share
+        a(:href="str.suggest.royalBtnUrl")
+          fk-btn-primary(:text="str.suggest.royalBtnText")
+
+        a(:href="str.suggest.lineBtnUrl")
+          fk-btn-primary(:text="str.suggest.lineBtnText")
+
+  fk-footer
+  
 </template>
 
 <script>
 import FkPic from '@/components/fk-pic.vue';
-import FkBtnPrimary from '@/components/fk-btn-primary.vue';
+import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
+import FkFooter from '@/components/fk-footer.vue';
 
 const str = {
   intro: {
-    title: 'lorem ipsum dolor sit amet',
+    title: '毛寵達人大會考',
   },
   start: {
-    title: 'lorem ipsum dolor sit amet',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae nisi! Laboriosam architecto distinctio excepturi tempore sequi, quos sit et.',
-    cat: 'Cat start',
-    dog: 'Dog start',
+    title: '你有自信成為皇家級的飼主嗎？',
+    desc: '軟萌的幼貓、幼犬惹人憐愛，需要特殊營養為體質打底，隨著牠一天天成長，正確的轉糧與飼主照護觀念更為重要，找朋友一起挑戰你的毛寵達人級數吧！',
+    cat: '我是狗主人 GO',
+    dog: '我是貓主人 GO',
   },
   suggest: {
-    title: 'Lorem ipsum dolor sit amet.',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, sunt libero adipisci, ea veritatis consequuntur eligendi quae, minus vel soluta fugiat tenetur cum. Fugit beatae iure, ea sapiente porro dolor?',
-    btnText: 'Suggest',
-    btnUrl: '#',
+    title: '好飼主必知守則',
+    desc: '守護愛犬、愛貓的健康成長，除了飼主的細心觀察、照護，遵循獸醫師的專業建議，打造最適合牠們成長的環境。',
+    royalBtnText: '了解更多寵養攻略',
+    royalBtnUrl: '#',
+    lineBtnText: '寵養新知不漏接',
+    lineBtnUrl: '#',
   },
 };
 
@@ -82,6 +90,7 @@ export default {
   components: {
     FkPic,
     FkBtnPrimary,
+    FkFooter,
   },
   data: () => ({
     str,
@@ -92,8 +101,8 @@ export default {
 <style lang="scss" scoped>
 .fk-l-intro {
   /* @include bg-2x('/img/faker_bg', 'jpg'); */
-
   position: relative;
+  background-color: lightblue;
 
   &__scroll-down {
     position: absolute;
@@ -112,6 +121,7 @@ export default {
 
 .fk-l-start {
   /* @include bg-2x('/img/faker_bg', 'jpg'); */
+  background-color: lightgreen;
 
   &__enter-btn {
     display: block;
@@ -122,5 +132,6 @@ export default {
 
 .fk-l-suggest {
   /* @include bg-2x('/img/faker_bg', 'jpg'); */
+  background-color: lightpink;
 }
 </style>

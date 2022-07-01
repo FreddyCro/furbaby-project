@@ -1,59 +1,69 @@
 <template lang="pug">
-.fk-dog-q1
-  h3 Q{{ question.idx }} - {{ str.title }}
-  .q {{ str.question}}
+.fk-dq1.fk-page
+  .fk-container
+    h3 Q{{ question.idx }} - {{ str.title }}
 
-  .ans(v-if="!hasSubmitted")
-    button(
-      v-for="item in question.options"
-      :key="item.idx"
-      @click="selectAnswer(singleStrategy(question.ans, item))"
-    ) {{ str.ans[item] }}
+    .fk-dq1__option-container(v-if="!hasSubmitted")
+      .fk-dq1__option(
+        v-for="item, index in question.options"
+        :key="`dq-${question.idx}-${index}`"
+      )
+        span {{ str.ans[item] }}
+        input(
+          :id="`dq-input-${question.idx}-${index}`"
+          type="checkbox"
+          :value="item"
+          v-model="myAns"
+          @change="selectAnswer(multiStrategy(question.ans, myAns))"
+        )
 
-  //- submit and show answer
-  fk-ans-submit(
-    v-if="hasSelect"
-    :question="question"
-    :has-select="hasSelect"
-    :has-submitted="hasSubmitted"
-    :is-correct="isCorrect"
-    :submit-answer="submitAnswer"
-    :cate="cate"
-    :is-last="false"
-  )
-    .next
-      router-link(:to="`/quiz/${cate}/${question.idx + 1}`") Next
+    //- submit and show answer
+    fk-ans-submit(
+      v-if="hasSelect"
+      :question="question"
+      :has-select="hasSelect"
+      :has-submitted="hasSubmitted"
+      :is-correct="isCorrect"
+      :submit-answer="submitAnswer"
+      :cate="cate"
+      :is-last="false"
+    )
+      .next
+        fk-btn-primary(text="下一題")
 </template>
 
 <script>
-import { submitAnswer, singleStrategy } from '@/assets/js/mixins';
+import { submitAnswer, multiStrategy } from '@/assets/js/mixins';
+import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 
 const str = {
-  title: 'lorem ipsum dolor sit amet',
-  question:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit magnam, molestias exercitationem eius numquam, sunt velit beatae earum placeat corrupti nam laborum maxime aliquid. Officia reiciendis sed itaque deleniti voluptatem.',
+  title: '下列何者食物是狗狗的飲食地雷？(複選題)',
   ans: {
-    1: 'A',
-    2: 'B',
-    3: 'C',
-    4: 'D',
+    1: '牛奶',
+    2: '巧克力',
+    3: '堅果',
+    4: '煮熟肉塊',
+    5: '鳳梨',
   },
 };
 
 export default {
   name: 'DogQ1',
+  components: {
+    FkBtnPrimary,
+  },
   data: () => ({
     str,
     cate: 'dog',
+    myAns: [],
     question: {
       idx: 1,
-      type: 'single',
-      options: [1, 2, 3, 4],
-      ans: 1,
+      type: 'multiple',
+      options: [1, 2, 3, 4, 5],
+      ans: [1, 2, 3],
     },
   }),
-  mixins: [submitAnswer, singleStrategy],
-  methods: {},
+  mixins: [submitAnswer, multiStrategy],
   created() {
     console.log(process.env.VUE_APP_API_ROOT);
   },

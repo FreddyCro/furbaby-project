@@ -53,12 +53,4 @@ const multiStrategy = {
   },
 };
 
-const rangeStrategy = {
-  methods: {
-    rangeStrategy(correctAns, myAns) {
-      return correctAns === myAns;
-    },
-  },
-};
-
-export { submitAnswer, singleStrategy, multiStrategy, rangeStrategy };
+export { submitAnswer, singleStrategy, multiStrategy };
