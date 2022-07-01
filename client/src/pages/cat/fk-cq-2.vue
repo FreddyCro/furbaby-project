@@ -37,6 +37,7 @@ const str = {
     3: 'C',
     4: 'D',
   },
+  next: '下一題',
 };
 
 export default {

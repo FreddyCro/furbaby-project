@@ -1,8 +1,8 @@
 <template lang="pug">
 .fk-ans-submit(v-if="hasSelect")
-  button(@click="submitAnswer(cate)") Look Answer
+  button(v-if="!hasSubmitted" @click="submitAnswer(cate)") Look Answer
 
-  .fk-ans-submit__correct-result(v-if="hasSubmitted")
+  .fk-ans-submit__correct-result(v-else)
     slot
 </template>
 

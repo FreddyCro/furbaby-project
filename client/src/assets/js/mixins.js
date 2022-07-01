@@ -1,7 +1,10 @@
 import FkAnsSubmit from '@/components/fk-ans/fk-ans-submit.vue';
+import FkAnsCorrect from '@/components/fk-ans/fk-ans-correct.vue';
+import FkAnsDoctor from '@/components/fk-ans/fk-ans-doctor.vue';
+import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 
 const submitAnswer = {
-  components: { FkAnsSubmit },
+  components: { FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary },
   data() {
     return {
       hasSelect: false,

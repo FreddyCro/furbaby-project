@@ -29,7 +29,7 @@
       :is-last="false"
     )
       router-link(:to="`/quiz/${cate}/${question.idx + 1}`") 
-        fk-btn-primary(text="下一題")
+        fk-btn-primary(:text="str.next")
   </template>
 
 <script>
@@ -45,6 +45,7 @@ const str = {
     4: '煮熟肉塊',
     5: '鳳梨',
   },
+  next: '下一題',
 };
 
 export default {

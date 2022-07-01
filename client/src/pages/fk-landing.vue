@@ -24,10 +24,10 @@
       )
 
       .fk-l-start__enter-btn-container
-        router-link(to="/quiz/cat")
-          .fk-l-start__enter-btn {{ str.start.cat }}
         router-link(to="/quiz/dog")
           .fk-l-start__enter-btn {{ str.start.dog }}
+        router-link(to="/quiz/cat")
+          .fk-l-start__enter-btn {{ str.start.cat }}
   .fk-l-suggest.fk-section
     .fk-container
       fk-pic(
@@ -72,8 +72,8 @@ const str = {
   start: {
     title: '你有自信成為皇家級的飼主嗎？',
     desc: '軟萌的幼貓、幼犬惹人憐愛，需要特殊營養為體質打底，隨著牠一天天成長，正確的轉糧與飼主照護觀念更為重要，找朋友一起挑戰你的毛寵達人級數吧！',
-    cat: '我是狗主人 GO',
-    dog: '我是貓主人 GO',
+    dog: '我是狗主人 GO',
+    cat: '我是貓主人 GO',
   },
   suggest: {
     title: '好飼主必知守則',

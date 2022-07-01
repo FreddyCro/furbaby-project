@@ -22,8 +22,7 @@ export default {
       this.$router.push('/');
 
       // reset all data
-      this.$store.dispatch('setCategory', undefined);
-      this.$store.dispatch('setUser', '');
+      this.$store.dispatch('reset');
     },
   },
 };

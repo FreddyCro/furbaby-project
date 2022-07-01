@@ -24,6 +24,12 @@ export default new Vuex.Store({
     updateScore(state, cate) {
       state[cate].score++;
     },
+    resetState(state) {
+      state.cate = undefined;
+      state.user = '';
+      state.cat.score = 0;
+      state.dog.score = 0;
+    },
   },
   actions: {
     setUser(context, user) {
@@ -34,6 +40,9 @@ export default new Vuex.Store({
     },
     updateScore(context, cate) {
       context.commit('updateScore', cate);
+    },
+    resetState(context) {
+      context.commit('resetState');
     },
   },
   getters: {
