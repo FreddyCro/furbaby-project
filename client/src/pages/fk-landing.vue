@@ -64,26 +64,7 @@
 import FkPic from '@/components/fk-pic.vue';
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 import FkFooter from '@/components/fk-footer.vue';
-
-const str = {
-  intro: {
-    title: '毛寵達人大會考',
-  },
-  start: {
-    title: '你有自信成為皇家級的飼主嗎？',
-    desc: '軟萌的幼貓、幼犬惹人憐愛，需要特殊營養為體質打底，隨著牠一天天成長，正確的轉糧與飼主照護觀念更為重要，找朋友一起挑戰你的毛寵達人級數吧！',
-    dog: '我是狗主人 GO',
-    cat: '我是貓主人 GO',
-  },
-  suggest: {
-    title: '好飼主必知守則',
-    desc: '守護愛犬、愛貓的健康成長，除了飼主的細心觀察、照護，遵循獸醫師的專業建議，打造最適合牠們成長的環境。',
-    royalBtnText: '了解更多寵養攻略',
-    royalBtnUrl: '#',
-    lineBtnText: '寵養新知不漏接',
-    lineBtnUrl: '#',
-  },
-};
+import str from '@/assets/json/landing.json';
 
 export default {
   name: 'FkLanding',
@@ -102,7 +83,7 @@ export default {
 .fk-l-intro {
   /* @include bg-2x('/img/faker_bg', 'jpg'); */
   position: relative;
-  background-color: lightblue;
+  background-color: $gray-2;
 
   &__scroll-down {
     position: absolute;
@@ -121,7 +102,7 @@ export default {
 
 .fk-l-start {
   /* @include bg-2x('/img/faker_bg', 'jpg'); */
-  background-color: lightgreen;
+  background-color: $gray-3;
 
   &__enter-btn {
     display: block;
@@ -132,6 +113,6 @@ export default {
 
 .fk-l-suggest {
   /* @include bg-2x('/img/faker_bg', 'jpg'); */
-  background-color: lightpink;
+  background-color: $gray-4;
 }
 </style>

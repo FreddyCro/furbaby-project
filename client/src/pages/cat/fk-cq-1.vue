@@ -1,26 +1,25 @@
 <template lang="pug">
 .fk-cq1.fk-page
   .fk-container
-    h3 Q{{ question.idx }} - {{ str.title }}
+    h3 Q{{ data.idx }} - {{ data.title }}
 
     .fk-cq1__option-container(v-if="!hasSubmitted")
       .fk-cq1__option(
-        v-for="item, index in question.options"
-        :key="`cq-${question.idx}-${index}`"
+        v-for="item in Object.keys(data.options)"
+        :key="`cq-${data.idx}-${item}`"
       )
-        span {{ str.ans[item] }}
+        span {{ data.options[item] }}
         input(
-          :id="`cq-input-${question.idx}-${index}`"
+          :id="`cq-input-${data.idx}-${item}`"
           type="checkbox"
-          :value="item"
+          :value="+item"
           v-model="myAns"
-          @change="selectAnswer(multiStrategy(question.ans, myAns))"
+          @change="selectAnswer(multiStrategy(data.ans, myAns))"
         )
 
     //- submit and show answer
     fk-ans-submit(
       v-if="hasSelect"
-      :question="question"
       :has-select="hasSelect"
       :has-submitted="hasSubmitted"
       :is-correct="isCorrect"
@@ -28,44 +27,45 @@
       :cate="cate"
       :is-last="false"
     )
-      router-link(:to="`/quiz/${cate}/${question.idx + 1}`") 
-        fk-btn-primary(:text="str.next")
-  </template>
+      fk-ans-correct(
+        :question="data.title"
+        illustration="/img/faker_sm.jpg"
+      )
+        .fk-cq1__correct-ans-container 
+          .fk-cq1__correct-ans(v-for="item in data.ans" :key="item.id") {{  data.options[item] }}
+
+      fk-ans-doctor(
+        avator="/img/faker_avator.jpg"
+        :name="data.doc.name"
+        :title="data.doc.title"
+        :say-title="data.doc.say.title"
+        :say-content="data.doc.say.content"
+        :source="data.doc.source"
+      )
+
+      .fk-cq1__next-wrapper
+        router-link(:to="`/quiz/${cate}/${data.idx + 1}`")
+          fk-btn-primary(:text="data.next")
+</template>
 
 <script>
+/**
+ * @mixin submitAnswer
+ * data: [hasSelect, hasSubmitted, isCorrect]
+ * methods: [selectAnswer, submitAnswer]
+ * components: [FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary]
+ */
 import { submitAnswer, multiStrategy } from '@/assets/js/mixins';
-import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
-
-const str = {
-  title: '下列何者食物是狗狗的飲食地雷？(複選題)',
-  ans: {
-    1: '牛奶',
-    2: '巧克力',
-    3: '堅果',
-    4: '煮熟肉塊',
-    5: '鳳梨',
-  },
-  next: '下一題',
-};
+import quiz from '@/assets/json/quiz-cat.json';
 
 export default {
   name: 'CatQ1',
-  components: {
-    FkBtnPrimary,
-  },
   data: () => ({
-    str,
+    data: quiz.cat1,
     cate: 'cat',
     myAns: [],
-    question: {
-      idx: 1,
-      type: 'multiple',
-      options: [1, 2, 3, 4, 5],
-      ans: [1, 2, 3],
-    },
   }),
   mixins: [submitAnswer, multiStrategy],
-  methods: {},
   created() {
     console.log(process.env.VUE_APP_API_ROOT);
   },

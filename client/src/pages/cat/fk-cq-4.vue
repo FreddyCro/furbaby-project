@@ -1,56 +1,60 @@
 <template lang="pug">
-.fk-cat-q4
-  h3 Q{{ question.idx }} - {{ str.title }}
-  .q {{ str.question}}
+.fk-cq4.fk-page
+  .fk-container
+    h3 Q{{ data.idx }} - {{ data.title }}
 
-  .ans(v-if="!hasSubmitted")
-    button(
-      v-for="item in question.options"
-      :key="item.idx"
-      @click="selectAnswer(singleStrategy(question.ans, item))"
-    ) {{ str.ans[item] }}
+    .ans(v-if="!hasSubmitted")
+      button(
+        v-for="item in Object.keys(data.options)"
+        :key="`cq-${data.idx}-${item}`"
+        @click="selectAnswer(singleStrategy(data.ans, item))"
+      ) {{ data.options[item] }}
 
-  //- submit and show answer
-  fk-ans-submit(
-    v-if="hasSelect"
-    :question="question"
-    :has-select="hasSelect"
-    :has-submitted="hasSubmitted"
-    :is-correct="isCorrect"
-    :submit-answer="submitAnswer"
-    :cate="cate"
-    :is-last="false"
-  )
-    .next
-      router-link(:to="`/quiz/${cate}/${question.idx + 1}`") Next
+    //- submit and show answer
+    fk-ans-submit(
+      v-if="hasSelect"
+      :has-select="hasSelect"
+      :has-submitted="hasSubmitted"
+      :is-correct="isCorrect"
+      :submit-answer="submitAnswer"
+      :cate="cate"
+      :is-last="false"
+    )
+      fk-ans-correct(
+        :question="data.title"
+        illustration="/img/faker_sm.jpg"
+      )
+        p {{ data.ans[data.ans] }}
+
+      fk-ans-doctor(
+        avator="/img/faker_avator.jpg"
+        :name="data.doc.name"
+        :title="data.doc.title"
+        :say-title="data.doc.say.title"
+        :say-content="data.doc.say.content"
+        :source="data.doc.source"
+      )
+
+      .fk-cq4__next-wrapper
+        router-link(:to="`/quiz/${cate}/${data.idx + 1}`")
+          fk-btn-primary(:text="data.next")
 </template>
 
 <script>
+/**
+ * @mixin submitAnswer
+ * data: [hasSelect, hasSubmitted, isCorrect]
+ * methods: [selectAnswer, submitAnswer]
+ * components: [FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary]
+ */
 import { submitAnswer, singleStrategy } from '@/assets/js/mixins';
-
-const str = {
-  title: 'lorem ipsum dolor sit amet',
-  question:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit magnam, molestias exercitationem eius numquam, sunt velit beatae earum placeat corrupti nam laborum maxime aliquid. Officia reiciendis sed itaque deleniti voluptatem.',
-  ans: {
-    1: 'A',
-    2: 'B',
-    3: 'C',
-    4: 'D',
-  },
-};
+import quiz from '@/assets/json/quiz-cat.json';
 
 export default {
   name: 'CatQ4',
   data: () => ({
-    str,
+    data: quiz.cat4,
     cate: 'cat',
-    question: {
-      idx: 4,
-      type: 'single',
-      options: [1, 2, 3, 4],
-      ans: 1,
-    },
   }),
   mixins: [submitAnswer, singleStrategy],
   methods: {},

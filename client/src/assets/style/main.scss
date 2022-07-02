@@ -6,7 +6,7 @@
 }
 
 .fk-page {
-  min-height: 100vh;
+  min-height: calc(100vh - #{$header-height});
   padding-top: 5rem;
   padding-bottom: 5rem;
 }

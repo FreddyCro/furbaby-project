@@ -49,6 +49,6 @@ export default {
 .fk-footer {
   display: flex;
   justify-content: center;
-  background-color: lightyellow;
+  background-color: $gray-1;
 }
 </style>

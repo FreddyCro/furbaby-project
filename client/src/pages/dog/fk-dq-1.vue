@@ -1,26 +1,25 @@
 <template lang="pug">
 .fk-dq1.fk-page
   .fk-container
-    h3 Q{{ question.idx }} - {{ str.title }}
+    h3 Q{{ data.idx }} - {{ data.title }}
 
     .fk-dq1__option-container(v-if="!hasSubmitted")
       .fk-dq1__option(
-        v-for="item, index in question.options"
-        :key="`dq-${question.idx}-${index}`"
+        v-for="item in Object.keys(data.options)"
+        :key="`dq-${data.idx}-${item}`"
       )
-        span {{ str.ans[item] }}
+        span {{ data.options[item] }}
         input(
-          :id="`dq-input-${question.idx}-${index}`"
+          :id="`dq-input-${data.idx}-${item}`"
           type="checkbox"
-          :value="item"
+          :value="+item"
           v-model="myAns"
-          @change="selectAnswer(multiStrategy(question.ans, myAns))"
+          @change="selectAnswer(multiStrategy(data.ans, myAns))"
         )
 
     //- submit and show answer
     fk-ans-submit(
       v-if="hasSelect"
-      :question="question"
       :has-select="hasSelect"
       :has-submitted="hasSubmitted"
       :is-correct="isCorrect"
@@ -29,69 +28,42 @@
       :is-last="false"
     )
       fk-ans-correct(
-        :question="str.title"
+        :question="data.title"
         illustration="/img/faker_sm.jpg"
       )
         .fk-dq1__correct-ans-container 
-          .fk-dq1__correct-ans(v-for="item in question.ans" :key="item.id") {{  str.ans[item] }}
+          .fk-dq1__correct-ans(v-for="item in data.ans" :key="item.id") {{  data.options[item] }}
 
       fk-ans-doctor(
         avator="/img/faker_avator.jpg"
-        :name="str.doc.name"
-        :title="str.doc.title"
-        :say-title="str.doc.say.title"
-        :say-content="str.doc.say.content"
-        :source="str.doc.source"
-        :source-url="str.doc.sourceUrl"
+        :name="data.doc.name"
+        :title="data.doc.title"
+        :say-title="data.doc.say.title"
+        :say-content="data.doc.say.content"
+        :source="data.doc.source"
       )
 
       .fk-dq1__next-wrapper
-        router-link(:to="`/quiz/${cate}/${question.idx + 1}`")
-          fk-btn-primary(:text="str.next")
+        router-link(:to="`/quiz/${cate}/${data.idx + 1}`")
+          fk-btn-primary(:text="data.next")
 </template>
 
 <script>
-// mixins
-// variables: [hasSelect, hasSubmitted, isCorrect]
-// methods: [selectAnswer, submitAnswer]
-// components: [FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary]
-// from submitAnswr
+/**
+ * @mixin submitAnswer
+ * data: [hasSelect, hasSubmitted, isCorrect]
+ * methods: [selectAnswer, submitAnswer]
+ * components: [FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary]
+ */
 import { submitAnswer, multiStrategy } from '@/assets/js/mixins';
-
-const str = {
-  title: '下列何者食物是狗狗的飲食地雷？(複選題)',
-  ans: {
-    1: '牛奶',
-    2: '巧克力',
-    3: '堅果',
-    4: '煮熟肉塊',
-    5: '鳳梨',
-  },
-  next: '下一題',
-  doc: {
-    name: '王尚麟獸醫師',
-    title: '國立臺灣大學附設動物醫院內科主治醫師',
-    say: {
-      title: '給飼主的餵食提醒',
-      content:
-        '狗狗身體缺乏消化酶，無法消化乳製品。堅果高脂容易造成牠們腸胃不適、嘔吐窒息。而科學實證巧克力中的可可鹼會中斷狗狗的代謝過程，嚴重恐致死。(註1)',
-    },
-    source: '10種不可以給犬吃的有毒食物',
-    sourceUrl: '#',
-  },
-};
+import quiz from '@/assets/json/quiz-dog.json';
 
 export default {
   name: 'DogQ1',
   data: () => ({
-    str,
+    data: quiz.dog1,
     cate: 'dog',
     myAns: [],
-    question: {
-      idx: 1,
-      options: [1, 2, 3, 4, 5],
-      ans: [1, 2, 3],
-    },
   }),
   mixins: [submitAnswer, multiStrategy],
   created() {

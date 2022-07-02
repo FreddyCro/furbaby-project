@@ -12,7 +12,13 @@
   .fk-ans-doc__say
     h3(v-html="sayTitle")
     p(v-html="sayContent")
-  a.fk-ans-doc__source(v-if="source" :href="sourceUrl") {{ source }}
+
+  .fk-anc-doc__source-container(v-if="source")
+    a.fk-ans-doc__source(
+      v-for="item in source"
+      :key="item.id"
+      :href="item.url"
+    ) {{ item.text }}
 </template>
 
 <script>
@@ -40,10 +46,7 @@ export default {
       type: String,
     },
     source: {
-      type: String,
-    },
-    sourceUrl: {
-      type: String,
+      type: Array,
     },
   },
 };

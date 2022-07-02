@@ -10,10 +10,6 @@
 export default {
   name: 'FkAnsSubmit',
   props: {
-    question: {
-      type: Object,
-      required: true,
-    },
     hasSelect: {
       type: Boolean,
       required: true,
