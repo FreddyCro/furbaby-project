@@ -4,13 +4,13 @@
     .fk-container
       h1 {{ str.intro.title }}
       fk-pic(
-        src="/img/faker_lg.jpg"
+        src="img/faker_lg.jpg"
         :alt="str.intro.title"
       )
 
       button.fk-l-intro__scroll-down
         fk-pic(
-          src="/img/faker_icon.jpg"
+          src="img/faker_icon.jpg"
           alt="scroll down"
         )
   .fk-l-start.fk-section
@@ -19,7 +19,7 @@
       p {{ str.start.desc }}
 
       fk-pic(
-        src="/img/faker_md.jpg"
+        src="img/faker_md.jpg"
         :alt="str.start.title"
       )
 
@@ -31,7 +31,7 @@
   .fk-l-suggest.fk-section
     .fk-container
       fk-pic(
-        src="/img/faker_avator.jpg"
+        src="img/faker_avator.jpg"
         :alt="str.suggest.title"
       )
 
@@ -40,12 +40,12 @@
 
       
       fk-pic(
-        src="/img/faker_md.jpg"
+        src="img/faker_md.jpg"
         :alt="str.suggest.title"
       )
       
       fk-pic(
-        src="/img/faker_sm.jpg"
+        src="img/faker_sm.jpg"
         :alt="str.suggest.title"
       )
 

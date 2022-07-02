@@ -3,7 +3,7 @@ const resolve = (dir) => path.join(__dirname, dir);
 
 module.exports = {
   productionSourceMap: false,
-  publicPath: '/',
+  publicPath: `${process.env.VUE_APP_PROJECT_PATH}/`,
   chainWebpack: (config) => {
     config.module
       .rule('pug')
@@ -16,7 +16,7 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        additionalData: `@import "@/assets/style/mixins.scss"; @import "@/assets/style/variables.scss";`,
+        additionalData: ` @import "@/assets/style/_variables.scss"; @import "@/assets/style/_mixins.scss";`,
       },
     },
   },

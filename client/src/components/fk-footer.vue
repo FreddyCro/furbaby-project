@@ -4,21 +4,21 @@
     a(:href="str.dotcom.url")
       span {{ str.dotcom.name }}
       fk-pic(
-        src="/img/faker_icon.jpg"
+        src="img/faker_icon.jpg"
         :alt="str.dotcom.name"
       )
     
     a(:href="str.orange.url")
       span {{ str.orange.name }}
       fk-pic(
-        src="/img/faker_icon.jpg"
+        src="img/faker_icon.jpg"
         :alt="str.orange.name"
       )
       
     a(:href="str.royal.url")
       span {{ str.royal.name }}
       fk-pic(
-        src="/img/faker_icon.jpg"
+        src="img/faker_icon.jpg"
         :alt="str.royal.name"
       )
 </template>

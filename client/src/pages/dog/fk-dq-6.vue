@@ -29,13 +29,13 @@
     )
       fk-ans-correct(
         :question="data.title"
-        illustration="/img/faker_sm.jpg"
+        illustration="img/faker_sm.jpg"
       )
         .fk-dq6__correct-ans-container 
           .fk-dq6__correct-ans(v-for="item in data.ans" :key="item.id") {{  data.options[item] }}
 
       fk-ans-doctor(
-        avator="/img/faker_avator.jpg"
+        avator="img/faker_avator.jpg"
         :name="data.doc.name"
         :title="data.doc.title"
         :say-title="data.doc.say.title"

@@ -22,12 +22,12 @@
     )
       fk-ans-correct(
         :question="data.title"
-        illustration="/img/faker_sm.jpg"
+        illustration="img/faker_sm.jpg"
       )
         p {{ data.options[data.ans] }}
 
       fk-ans-doctor(
-        avator="/img/faker_avator.jpg"
+        avator="img/faker_avator.jpg"
         :name="data.doc.name"
         :title="data.doc.title"
         :say-title="data.doc.say.title"

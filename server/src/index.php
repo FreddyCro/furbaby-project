@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furkid</title>
+  <title>Furkid Admin</title>
 </head>
 
 <body>
-  <h1>Furkid</h1>
+  <h1>Furkid Admin</h1>
   <h2>Quiz-Dog</h2>
 
   <div class="scroe">
@@ -193,6 +193,18 @@ $HOST = $database->host;
       });
   }
 
+  function initTable() {
+    fetch(`${HOST}/init-table.php`)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log('Inititalize table success.');
+        } else {
+          console.log('Inititalize table failed.');
+        }
+      });
+  }
+
+  initTable();
   getQuizData();
   getRankData();
   assignVoteBtnEvent();
