@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../../config/database.php';
-include_once '../../class/question.php';
+include_once '../../class/quiz.php';
 
 $database = new Database();
 $table_name = $database->table_name;
@@ -11,19 +11,13 @@ $db = $database->getConnection();
 
 $items = new Question($db);
 
-$stmt = $items->getQuestions($table_name);
+$id = isset($_GET['id']) ? $_GET['id'] : die();
+$stmt = $items->getOneQuestion($table_name, $id);
+
 $itemCount = $stmt->rowCount();
 
 if ($itemCount > 0) {
-  $questionArr = array();
-  $questionArr["body"] = array();
-  $questionArr["itemCount"] = $itemCount;
-
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    array_push($questionArr["body"], $row);
-  }
-
-  echo json_encode($questionArr);
+  echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
 } else {
   http_response_code(404);
   echo json_encode(
