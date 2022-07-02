@@ -20,6 +20,7 @@
     //- submit and show answer
     fk-ans-submit(
       v-if="hasSelect"
+      :idx="data.idx"
       :has-select="hasSelect"
       :has-submitted="hasSubmitted"
       :is-correct="isCorrect"
@@ -58,9 +59,5 @@ export default {
     myAns: [],
   }),
   mixins: [submitAnswer, multiStrategy],
-  methods: {},
-  created() {
-    console.log(process.env.VUE_APP_API_ROOT);
-  },
 };
 </script>
