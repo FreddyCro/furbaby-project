@@ -1,7 +1,6 @@
 <?php
 class Question
 {
-
   // Connection
   private $conn;
 
