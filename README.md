@@ -2,13 +2,14 @@
 
 ## Setup
 
-步驟：
+三個步驟：
 
 1. docekr env
-2. php env
-3. index.html
+2. server/src/config/database.php
+3. server/src/api/*
+4. index.html
 
-### 1. 設定 docker env
+### 設定 docker env
 
 ```env
 CONTAINER_NAME=
@@ -20,7 +21,7 @@ MYSQL_USER=
 MYSQL_PASSWORD=
 ```
 
-### 2. 設定 php env
+### 設定 php env
 
 #### server/src/config/database.php
 
@@ -44,7 +45,7 @@ include_once '../../config/database.php';
 include_once '../../class/question.php';
 ```
 
-### 3. 設定 index.html 裡面的 api host
+### 設定 index.html 裡面的 api host
 
 例如: `http://192.168.1.100:8080`
 
@@ -66,4 +67,4 @@ GET `http://[host][port]/init-table.php`，產生 table 和新的題目資料。
 
 ### 3. 測試網頁功能
 
-網頁瀏覽 `http://[host][port]/index.html`，測試 click 功能是否能更新資料。
+網頁瀏覽 <http://[host>][port]/index.html，測試 click 功能是否能更新資料。
