@@ -29,7 +29,7 @@
     )
       fk-ans-correct(
         :question="data.title"
-        illustration="/img/faker_sm.jpg"
+        illustration="img/faker_sm.jpg"
       )
         .fk-dq7__correct-ans-container 
           .fk-dq7__correct-ans(v-for="item in data.ans" :key="item.id") {{  data.options[item] }}

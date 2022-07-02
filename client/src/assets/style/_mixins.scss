@@ -1,0 +1,43 @@
+$minBreakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+);
+
+$maxBreakpoints: (
+  xs: #{$sm - 0.2px},
+  sm: #{$md - 0.2px},
+  md: #{$lg - 0.2px},
+);
+
+@mixin rwd-min($min) {
+  @media screen and (min-width: map-get($minBreakpoints, $min)) {
+    @content;
+  }
+}
+
+@mixin rwd-max($max) {
+  @media screen and (max-width: map-get($maxBreakpoints, $max)) {
+    @content;
+  }
+}
+
+@mixin rwd-min-max($min, $max) {
+  @media screen and (min-width: map-get($minBreakpoints, $min)) and (max-width: map-get($maxBreakpoints, $max)) {
+    @content;
+  }
+}
+
+@mixin support-webp {
+  @supports (aspect-ratio: 1 / 1) {
+    @content;
+  }
+}
+
+@mixin bg-2x($src, $ext) {
+  background-image: url('#{$src}.#{$ext}');
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background-image: url('#{$src}@2x.#{$ext}');
+  }
+}

@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  furkid-db-dev:
+    image: mysql:5.5
+    restart: always
+    container_name: ${CONTAINER_NAME}-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - ${MYSQL_PORT}:3306
+
+  furkid-server-dev:
+    build:
+      context: .
+      dockerfile: server/docker/Dockerfile
+    container_name: ${CONTAINER_NAME}-server
+    depends_on:
+      - furkid-db-dev
+    ports:
+      - ${APACHE_PORT}:80
+    volumes:
+      - ./server/src:/var/www/html
+      - ./logs/apache2:/var/log/apache2
+    

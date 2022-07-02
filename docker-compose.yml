@@ -1,20 +1,29 @@
 version: '3.1'
 
 services:
-  server:
+  furkid-client:
+    build: 
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: ${CONTAINER_NAME}-client
+    ports:
+      - 8087:8080
+    tty: true
+
+  furkid-server:
     build:
       context: .
       dockerfile: server/docker/Dockerfile
     container_name: ${CONTAINER_NAME}-server
     depends_on:
-      - db
+      - furkid-db
     ports:
       - ${APACHE_PORT}:80
     volumes:
       - ./server/src:/var/www/html
       - ./logs/apache2:/var/log/apache2
 
-  db:
+  furkid-db:
     image: mysql:5.5
     restart: always
     container_name: ${CONTAINER_NAME}-mysql

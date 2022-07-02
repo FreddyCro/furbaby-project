@@ -43,6 +43,7 @@ export default {
   },
   computed: {
     img() {
+      // const root = process.env.VUE_APP_PROJECT_PATH;
       const { src, ext } = parsePath(this.src);
 
       let img = {

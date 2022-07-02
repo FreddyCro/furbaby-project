@@ -1,12 +1,13 @@
 <template lang="pug">
 header.fk-header
   .fk-header-navigator
-    button(@click="reset")
-      span logo
-      fk-pic(
-        src="/img/faker_icon.jpg"
-        alt="Furkid Master"
-      )
+    router-link(to="/")
+      button(@click="reset")
+        span logo
+        fk-pic(
+          src="img/faker_icon.jpg"
+          alt="Furkid Master"
+        )
 </template>
 
 <script>
@@ -19,9 +20,6 @@ export default {
   },
   methods: {
     reset() {
-      // back to home
-      this.$router.push('/');
-
       // reset all data
       this.$store.dispatch('resetState');
     },
