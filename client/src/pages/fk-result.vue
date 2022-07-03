@@ -19,6 +19,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { submitResult, getRanking } from '@/api/quiz';
+
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary';
 import FkBtnSecondary from '@/components/fk-btn/fk-btn-secondary';
 
@@ -38,6 +40,7 @@ export default {
       point: 0,
       ranking: 1,
     },
+    rankingData: undefined,
   }),
   computed: {
     rankingStr() {
@@ -69,8 +72,29 @@ export default {
     //   };
     // };
     // console.log(testCalcRanking());
-    // TODO: get result from vuex
-    // TODO: get ranking from server
+
+    if (this.$store.state.cate) {
+      // submit result
+      const score = this.$store.state[this.$store.state.cate].score;
+      submitResult(this.$store.state.cate, score);
+
+      // get ranking data
+      getRanking(this.$store.state.cate)
+        .then((res) => {
+          if (+res.status === 200) this.rankingData = res.data.body;
+          else console.log(res, 'fail');
+        })
+        .then(() => {
+          const participants = this.rankingData.reduce(
+            (acc, cur) => +acc + +cur.score,
+            0
+          );
+          const scoreBoard = this.rankingData.map((item) => +item.score);
+
+          this.result = this.calcRanking(+participants, scoreBoard, +score);
+          console.log(this.result);
+        });
+    }
   },
   methods: {
     ...mapGetters({
