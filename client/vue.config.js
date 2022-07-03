@@ -3,7 +3,13 @@ const resolve = (dir) => path.join(__dirname, dir);
 
 module.exports = {
   productionSourceMap: false,
-  publicPath: `${process.env.VUE_APP_PROJECT_PATH}/`,
+  publicPath: './',
+  pages: {
+    index: {
+      entry: 'src/main.js',
+      template: 'public/index.html',
+    },
+  },
   chainWebpack: (config) => {
     config.module
       .rule('pug')

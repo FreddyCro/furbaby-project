@@ -5,95 +5,68 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furkid Admin</title>
+  
+  <?php
+  $link = $_SERVER['PHP_SELF'];
+  $link_array = explode('/',$link);
+  ?>
+
+  <title><?php echo end($link_array) ?> | Furkid Admin</title>
 </head>
 
 <body>
   <h1>Furkid Admin</h1>
-  <h2>Quiz-Dog</h2>
 
   <div class="scroe">
-    <p>
-      <span>question-1</span>
-      <span id="dq-1">-</span>
-    </p>
-    <button class="vote-btn" id="dq1-vote-btn" value="1" table="dog">click</button>
-    <p>
-      <span>question-2</span>
-      <span id="dq-2">-</span>
-    </p>
-    <button class="vote-btn" id="dq2-vote-btn" value="2" table="dog">click</button>
-    <p>
-      <span>question-3</span>
-      <span id="dq-3">-</span>
-    </p>
-    <button class="vote-btn" id="dq3-vote-btn" value="3" table="dog">click</button>
+    <h2>Quiz-Dog</h2>
+    <?php
+    for ($x = 1; $x <= 7; $x++) {
+      echo '<p>';
+      echo '  <span>question-' . $x . '</span>';
+      echo '  <span id="dq-' . $x . '">-</span>';
+      echo '</p>';
+      echo '<button class="vote-btn" id="dq' . $x . '-vote-btn" value="' . $x . '" table="dog">click</button>';
+    }
+    ?>
 
     <h2>Quiz-Cat</h2>
-    <p>
-      <span>question-1</span>
-      <span id="cq-1">-</span>
-    </p>
-    <button class="vote-btn" id="cq1-vote-btn" value="1" table="cat">click</button>
-    <p>
-      <span>question-2</span>
-      <span id="cq-2">-</span>
-    </p>
-    <button class="vote-btn" id="cq2-vote-btn" value="2" table="cat">click</button>
-    <p>
-      <span>question-3</span>
-      <span id="cq-3">-</span>
-    </p>
-    <button class="vote-btn" id="cq3-vote-btn" value="3" table="cat">click</button>
+    <?php
+    for ($x = 1; $x <= 7; $x++) {
+      echo '<p>';
+      echo '  <span>question-' . $x . '</span>';
+      echo '  <span id="cq-' . $x . '">-</span>';
+      echo '</p>';
+      echo '<button class="vote-btn" id="cq' . $x . '-vote-btn" value="' . $x . '" table="cat">click</button>';
+    }
+    ?>
   </div>
   <div class="rank">
     <h2>Rank-Dog</h2>
-    <p>
-      <span>question-1</span>
-      <span id="dq-1-rank">-</span>
-    </p>
-    <button class="rank-btn" id="dq1-rank-btn" value="1" table="dog">click</button>
-    <p>
-      <span>question-2</span>
-      <span id="dq-2-rank">-</span>
-    </p>
-    <button class="rank-btn" id="dq2-rank-btn" value="2" table="dog">click</button>
-    <p>
-      <span>question-3</span>
-      <span id="dq-3-rank">-</span>
-    </p>
-    <button class="rank-btn" id="dq3-rank-btn" value="3" table="dog">click</button>
+    <?php
+    for ($x = 0; $x <= 7; $x++) {
+      echo '<p>';
+      echo '  <span>question-' . $x . '</span>';
+      echo '  <span id="dq-' . $x . '-rank">-</span>';
+      echo '</p>';
+      echo '<button class="rank-btn" id="dq' . $x . '-rank-btn" value="' . $x . '" table="dog">click</button>';
+    }
+    ?>
 
     <h2>Rank-Cat</h2>
-    <p>
-      <span>question-1</span>
-      <span id="cq-1-rank">-</span>
-    </p>
-    <button class="rank-btn" id="cq1-rank-btn" value="1" table="cat">click</button>
-
-    <p>
-      <span>question-2</span>
-      <span id="cq-2-rank">-</span>
-    </p>
-    <button class="rank-btn" id="cq2-rank-btn" value="2" table="cat">click</button>
-
-    <p>
-      <span>question-3</span>
-      <span id="cq-3-rank">-</span>
-    </p>
-    <button class="rank-btn" id="cq3-rank-btn" value="3" table="cat">click</button>
+    <?php
+    for ($x = 0; $x <= 7; $x++) {
+      echo '<p>';
+      echo '  <span>question-' . $x . '</span>';
+      echo '  <span id="cq-' . $x . '-rank">-</span>';
+      echo '</p>';
+      echo '<button class="rank-btn" id="cq' . $x . '-rank-btn" value="' . $x . '" table="cat">click</button>';
+    }
+    ?>
   </div>
 </body>
 
-<?php
-include_once './config/database.php';
-
-$database = new Database();
-$HOST = $database->host;
-?>
-
 <script>
-  const HOST = `http://${'<?php echo $HOST; ?>'}:8088`;
+  const HOST = `http://192.168.1.100:8080`;
 
   // fetch data from api
   function getQuizData() {
@@ -101,7 +74,7 @@ $HOST = $database->host;
       .then(res => res.json())
       .then(data => {
         console.log('dog', 'quiz', data);
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 7; i++) {
           document.getElementById(`dq-${i+1}`).innerHTML = data.body[i].participants;
         };
       });
@@ -110,7 +83,7 @@ $HOST = $database->host;
       .then(res => res.json())
       .then(data => {
         console.log('cat', 'quiz', data);
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 7; i++) {
           document.getElementById(`cq-${i+1}`).innerHTML = data.body[i].participants;
         };
       });
@@ -178,8 +151,8 @@ $HOST = $database->host;
       .then(res => res.json())
       .then(data => {
         console.log('dog', 'rank', data);
-        for (let i = 0; i < 3; i++) {
-          document.getElementById(`dq-${i+1}-rank`).innerHTML = data.body[i].score;
+        for (let i = 0; i <= 7; i++) {
+          document.getElementById(`dq-${i}-rank`).innerHTML = data.body[i].score;
         };
       });
 
@@ -187,8 +160,8 @@ $HOST = $database->host;
       .then(res => res.json())
       .then(data => {
         console.log('cat', 'rank', data);
-        for (let i = 0; i < 3; i++) {
-          document.getElementById(`cq-${i+1}-rank`).innerHTML = data.body[i].score;
+        for (let i = 0; i <= 7; i++) {
+          document.getElementById(`cq-${i}-rank`).innerHTML = data.body[i].score;
         };
       });
   }

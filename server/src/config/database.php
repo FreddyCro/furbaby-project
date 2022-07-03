@@ -1,6 +1,9 @@
 <?php
 class Database
 {
+  // appache host
+  private $host = "192.168.1.100";
+
   // [MYSQL_PORT] from docker env
   private $port = "3306";
 
@@ -13,7 +16,6 @@ class Database
   // [MYSQL_PASSWORD] from docker env
   private $password = "test";
 
-  public $host = "192.168.99.100";
   public $dog_quiz_table_name = "furkid_dog_quiz";
   public $dog_rank_table_name = "furkid_dog_rank";
   public $cat_quiz_table_name = "furkid_cat_quiz";
