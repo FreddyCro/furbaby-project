@@ -43,7 +43,6 @@ export default {
   },
   computed: {
     img() {
-      // const root = process.env.VUE_APP_PROJECT_PATH;
       const { src, ext } = parsePath(this.src);
 
       let img = {
@@ -53,7 +52,8 @@ export default {
 
       if (this.useWebp) {
         img.webpSrcset =
-          `${src}${ext}.webp` + (this.no2x ? '' : `, ${src}@2x.webp 2x`);
+          `${src}${ext}.webp` +
+          (this.no2x ? '' : `, ${src}@2x.webp 2x`);
       }
 
       return img;
