@@ -100,7 +100,7 @@ $HOST = $database->host;
     fetch(`${HOST}/api/furkid/read-quiz.php?table=dog`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        console.log('dog', 'quiz', data);
         for (let i = 0; i < 3; i++) {
           document.getElementById(`dq-${i+1}`).innerHTML = data.body[i].participants;
         };
@@ -109,7 +109,7 @@ $HOST = $database->host;
     fetch(`${HOST}/api/furkid/read-quiz.php?table=cat`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        console.log('cat', 'quiz', data);
         for (let i = 0; i < 3; i++) {
           document.getElementById(`cq-${i+1}`).innerHTML = data.body[i].participants;
         };
@@ -118,7 +118,7 @@ $HOST = $database->host;
 
   // vote quiz
   function voteQuiz(id, table) {
-    fetch(`${HOST}/api/furkid/update-quiz.php?id=${id}&table=${table}`, {
+    fetch(`${HOST}/api/furkid/update-quiz.php?id=${id}&table=${table}&correct=1`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -177,7 +177,7 @@ $HOST = $database->host;
     fetch(`${HOST}/api/furkid/read-rank.php?table=dog`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        console.log('dog', 'rank', data);
         for (let i = 0; i < 3; i++) {
           document.getElementById(`dq-${i+1}-rank`).innerHTML = data.body[i].score;
         };
@@ -186,7 +186,7 @@ $HOST = $database->host;
     fetch(`${HOST}/api/furkid/read-rank.php?table=cat`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        console.log('cat', 'rank', data);
         for (let i = 0; i < 3; i++) {
           document.getElementById(`cq-${i+1}-rank`).innerHTML = data.body[i].score;
         };

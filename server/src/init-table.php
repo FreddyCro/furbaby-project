@@ -42,12 +42,12 @@ function createRankTable($db, $table_name)
   if ($db->query("SELECT 1 FROM $table_name")->rowCount() != 0) {
     echo "Table $table_name already exists \n";
   } else {
-    for ($i = 1; $i <= 7; $i++) {
+    for ($i = 0; $i <= 7; $i++) {
       $sql = 'INSERT INTO ' . $table_name . '(name, score) VALUES(:name, :score)';
 
       $statement = $db->prepare($sql);
       $statement->execute([
-        ':name' => 'q' . $i,
+        ':name' => 'correct' . $i,
         ':score' => 0
       ]);
     }

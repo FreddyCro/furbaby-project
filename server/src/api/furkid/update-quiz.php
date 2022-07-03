@@ -21,8 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] !== 'POST') {
   $item = new Question($db);
 
   $id = isset($_GET['id']) ? $_GET['id'] : die();
+  $correct = isset($_GET['correct']) ? $_GET['correct'] : die();
 
-  if ($item->updateQuestion($tableName, $id)) {
+  if ($item->updateQuestion($tableName, $id, $correct)) {
     echo json_encode("Quiz data updated.");
   } else {
     echo json_encode("Data could not be updated");
