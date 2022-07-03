@@ -20,6 +20,7 @@
     //- submit and show answer
     fk-ans-submit(
       v-if="hasSelect"
+      :idx="data.idx"
       :has-select="hasSelect"
       :has-submitted="hasSubmitted"
       :is-correct="isCorrect"

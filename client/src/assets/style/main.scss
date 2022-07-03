@@ -1,5 +1,4 @@
-@import 'normalize-scss';
-@include normalize();
+@import './_normalize.css';
 
 * {
   box-sizing: border-box;

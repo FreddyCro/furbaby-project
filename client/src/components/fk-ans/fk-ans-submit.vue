@@ -1,6 +1,6 @@
 <template lang="pug">
 .fk-ans-submit(v-if="hasSelect")
-  button(v-if="!hasSubmitted" @click="submitAnswer(cate)") Look Answer
+  button(v-if="!hasSubmitted" @click="submitAnswer(cate, idx)") Look Answer
 
   .fk-ans-submit__correct-result(v-else)
     slot
@@ -10,6 +10,10 @@
 export default {
   name: 'FkAnsSubmit',
   props: {
+    idx: {
+      type: Number,
+      required: true
+    },
     hasSelect: {
       type: Boolean,
       required: true,
@@ -34,8 +38,6 @@ export default {
   data() {
     return {};
   },
-  methods: {},
-  created() {},
 };
 </script>
 
