@@ -2,9 +2,9 @@
 .fk-result.fk-page
   .fk-container
     h1 {{ $store.state.user }}
-    h2(v-if="rankingStr") {{ rankingStr[result.ranking].title }}
-    h3(v-if="rankingStr") {{ rankingStr[result.ranking].desc }}
-    p your point: {{ getScore() }}
+    h2(v-if="rankingStr") {{ rankingStr[result.level].title }}
+    h3(v-if="rankingStr") {{ rankingStr[result.level].desc }}
+    p your level: {{ getScore() }}
     p your ranking: {{ result.ranking }}
 
     .fk-result__share
@@ -37,7 +37,7 @@ export default {
   data: () => ({
     str,
     result: {
-      point: 0,
+      level: 0,
       ranking: 1,
     },
     rankingData: undefined,
@@ -62,12 +62,12 @@ export default {
     //   const h = (Math.random() * 10) | 0;
     //   const participants = a + b + c + d + e + f + g + h;
     //   const scoreBoard = [a, b, c, d, e, f, g, h];
-    //   const point = (Math.random() * 8) | 0;
-    //   const result = this.calcRanking(participants, scoreBoard, point);
+    //   const level = (Math.random() * 8) | 0;
+    //   const result = this.calcRanking(participants, scoreBoard, level);
     //   return {
     //     participants,
     //     scoreBoard,
-    //     point,
+    //     level,
     //     result,
     //   };
     // };
