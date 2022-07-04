@@ -1,12 +1,26 @@
 <?php
 class Database
 {
-  private $host = "localhost";
+  // appache host
+  private $host = "192.168.1.100";
+
+  // [MYSQL_PORT] from docker env
   private $port = "3306";
+
+  // [MYSQL_DATABASE] from docker env
   private $database_name = "furkid";
+
+  // [MYSQL_USER] from docker env
   private $username = "test";
+
+  // [MYSQL_PASSWORD] from docker env
   private $password = "test";
-  public $table_name = "furkid_questions";
+
+  public $dog_quiz_table_name = "furkid_dog_quiz";
+  public $dog_rank_table_name = "furkid_dog_rank";
+  public $cat_quiz_table_name = "furkid_cat_quiz";
+  public $cat_rank_table_name = "furkid_cat_rank";
+
   public $conn;
 
   public function getConnection()

@@ -10,18 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] !== 'POST') {
   echo "Only POST method is allowed";
 } else {
   include_once '../../config/database.php';
-  include_once '../../class/question.php';
+  include_once '../../class/rank.php';
 
   $database = new Database();
-  $table_name = $database->table_name;
+  $table = isset($_GET['table']) ? $_GET['table'] : die();
+  if ($table == 'dog') $tableName = $database->dog_rank_table_name;
+  if ($table == 'cat') $tableName = $database->cat_rank_table_name;
   $db = $database->getConnection();
 
-  $item = new Question($db);
+  $item = new Rank($db);
 
   $id = isset($_GET['id']) ? $_GET['id'] : die();
 
-  if ($item->updateQuestion($table_name, $id)) {
-    echo json_encode("Employee data updated.");
+  if ($item->updateRank($tableName, $id)) {
+    echo json_encode("Rank data updated.");
   } else {
     echo json_encode("Data could not be updated");
   }

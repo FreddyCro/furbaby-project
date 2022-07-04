@@ -1,7 +1,6 @@
 <?php
 class Question
 {
-
   // Connection
   private $conn;
 
@@ -38,17 +37,22 @@ class Question
   }
 
   // update single question
-  public function updateQuestion($table_name, $id)
+  public function updateQuestion($table_name, $id, $correct)
   {
     if (!isset($table_name)) return null;
 
-    $sqlQuery = "UPDATE " . $table_name . " SET participants = participants + 1 WHERE id = " . $id . "";
+    if (isset($correct) && $correct == 1) {
+      $sqlQuery = "UPDATE " . $table_name . " SET participants = participants + 1, correct = correct + 1 WHERE id = " . $id . "";
+    } else {
+      $sqlQuery = "UPDATE " . $table_name . " SET participants = participants + 1 WHERE id = " . $id . "";
+    }
+
     $stmt = $this->conn->prepare($sqlQuery);
 
     if ($stmt->execute()) {
       return true;
     }
-    
+
     return false;
   }
 }

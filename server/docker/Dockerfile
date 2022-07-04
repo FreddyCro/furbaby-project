@@ -35,4 +35,4 @@ RUN docker-php-ext-install pdo_mysql
 #RUN service apache2 restart
 
 # Set the workdir
-WORKDIR /var/www
+WORKDIR /var/www/html
