@@ -14,4 +14,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.fk-btn-prim {
+  
+}
+</style>
