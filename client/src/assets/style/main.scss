@@ -1,7 +1,18 @@
 @import './_normalize.css';
+@import './_quiz-layout.scss';
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: $text-color;
 }
 
 .fk-page {
@@ -11,12 +22,41 @@
 }
 
 .fk-container {
-  max-width: 600px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .fk-section {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: $spacing-10;
+  padding-bottom: $spacing-10;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fk-btn-prim {
+  @include reset-btn;
+
+  padding: $spacing-4 $spacing-5;
+  color: $white;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(238, 29, 35);
+  box-shadow: 0px $spacing-2 0px 0px rgb(210, 0, 3);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.25s;
+
+  &:hover {
+    background-color: lighten($color: rgb(238, 29, 35), $amount: 15%);
+    box-shadow: 0px $spacing-2 0px 0px
+      lighten($color: rgb(210, 0, 3), $amount: 5%);
+  }
 }

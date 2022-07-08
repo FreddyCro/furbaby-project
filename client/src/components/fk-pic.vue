@@ -1,10 +1,11 @@
 <template lang="pug">
-picture.fk-pic
+picture
   source(
     v-if="useWebp"
     :srcset="img.webpSrcset"
   )
-  img(
+  img.fk-pic(
+    :class="{ [className]: className }"
     :src="img.src"
     :srcset="img.srcset"
     :alt="alt"
@@ -24,6 +25,10 @@ const parsePath = (str) => {
 export default {
   name: 'fk-pic',
   props: {
+    className: {
+      type: String,
+      default: '',
+    },
     src: {
       type: String,
       required: true,
@@ -64,8 +69,6 @@ export default {
 
 <style lang="scss">
 .fk-pic {
-  img {
-    max-width: 100%;
-  }
+  max-width: 100%;
 }
 </style>

@@ -1,6 +1,8 @@
 <template lang="pug">
 .fk-dq3.fk-page
   .fk-container
+    .fk-quiz-progress-wrapper
+      fk-progress(:idx="data.idx")
     h3 Q{{ data.idx }} - {{ data.title }}
 
     .fk-dq3__option-container(v-if="!hasSubmitted")
@@ -59,9 +61,13 @@
  */
 import { submitAnswer, multiStrategy } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-dog.json';
+import FkProgress from '@/components/fk-progress.vue';
 
 export default {
   name: 'DogQ3',
+  components: {
+    FkProgress,
+  },
   data: () => ({
     data: quiz.dog3,
     cate: 'dog',

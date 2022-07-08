@@ -13,8 +13,8 @@
       fk-btn-secondary(:text="str.shareResult")
 
     .fk-result__learn-more
-      fk-btn-primary(:text="str.furkidNews")
-      fk-btn-primary(:text="str.furkidStrategy")
+      button.fk-btn-primary {{ str.furkidNews }}
+      button.fk-btn-primary {{ str.furkidStrategy }}
 </template>
 
 <script>

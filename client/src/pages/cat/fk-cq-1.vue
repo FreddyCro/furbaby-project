@@ -1,6 +1,8 @@
 <template lang="pug">
 .fk-cq1.fk-page
   .fk-container
+    .fk-quiz-progress-wrapper
+      fk-progress(:idx="data.idx")
     h3 Q{{ data.idx }} - {{ data.title }}
 
     .fk-cq1__option-container(v-if="!hasSubmitted")
@@ -58,9 +60,13 @@
  */
 import { submitAnswer, multiStrategy } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-cat.json';
+import FkProgress from '@/components/fk-progress.vue';
 
 export default {
   name: 'CatQ1',
+  components: {
+    FkProgress,
+  },
   data: () => ({
     data: quiz.cat1,
     cate: 'cat',

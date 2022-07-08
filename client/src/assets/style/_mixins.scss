@@ -41,3 +41,9 @@ $maxBreakpoints: (
     background-image: url('#{$src}@2x.#{$ext}');
   }
 }
+
+@mixin reset-btn {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}

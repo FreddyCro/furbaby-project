@@ -1,15 +1,21 @@
 <template lang="pug">
 .fk-name-input
-  input(
-    v-model="name"
-    type="text" 
-  )
+  .fk-name-input__text
+    .fk-name-input__label 請輸入你的名字
 
-  router-link(:to="`/quiz/${cate}/1`") 
-    button(
-      v-if="name.length > 0"
-      @click="$store.dispatch('setCategory', cate)"
-    ) START
+    input(
+      type="text"
+      placeholder="請輸入你的名字"
+      v-model="name"
+    )
+
+  .fk-name-input__submit
+    router-link(:to="`/quiz/${cate}/1`") 
+      button.fk-btn-prim(
+        v-if="name.length > 0"
+        @click="$store.dispatch('setCategory', cate)"
+      ) START
+
 </template>
 
 <script>
@@ -31,3 +37,26 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.fk-name-input {
+  &__text {
+    display: flex;
+    align-items: center;
+  }
+
+  &__label {
+    margin-right: $spacing-3;
+  }
+
+  input[type='text'] {
+    border: 2px solid $color-primary;
+    padding: $spacing-2 $spacing-3;
+  }
+
+  &__submit {
+    margin-top: $spacing-3;
+    text-align: center;
+  }
+}
+</style>
