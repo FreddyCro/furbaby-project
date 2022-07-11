@@ -5,20 +5,15 @@ header.fk-header
       .fk-header__logo-wrapper
         router-link(to="/")
           button.fk-header__logo(@click="reset")
-            fk-pic(
+            img(
               src="/assets/img/header/title.png"
               alt="Furkid Master"
           )
 </template>
 
 <script>
-import FkPic from '@/components/fk-pic.vue';
-
 export default {
   name: 'FkHeader',
-  components: {
-    FkPic,
-  },
   methods: {
     reset() {
       // reset all data
@@ -30,7 +25,9 @@ export default {
 
 <style lang="scss">
 .fk-header {
-  height: $header-height;
+  @include rwd-min(md) {
+    height: $header-height;
+  }
 
   &__navigator-wrapper {
     position: fixed;
@@ -63,11 +60,19 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: $spacing-4;
+    margin-right: $spacing-2;
+
+    @include rwd-min(md) {
+      margin-right: $spacing-4;
+    }
   }
 
   &__logo {
     @include reset-btn;
+
+    img {
+      max-width: 240px;
+    }
   }
 }
 </style>

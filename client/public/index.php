@@ -12,6 +12,7 @@
     <meta property="og:image:height" content="630">
     <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>"/>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>

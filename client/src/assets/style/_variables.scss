@@ -4,6 +4,13 @@ $md: 992px;
 $lg: 1200px;
 $xl: 1600px;
 
+$breakpoints: (
+  'sm': $sm,
+  'md': $md,
+  'lg': $lg,
+  'xl': $xl
+);
+
 // spacing
 $spacing-1: 4px;
 $spacing-2: 8px;
@@ -61,6 +68,8 @@ $gray-5: #999;
 $gray-6: #666;
 $gray-7: #333;
 $gray-8: #000;
+
+$gray-160: rgb(160, 160, 160);
 
 // container
 $container-sm-width: 720px;

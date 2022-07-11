@@ -4,34 +4,32 @@
     .fk-footer__logo-container
       .fk-footer__logo-wrapper(:href="str.dotcom.url")
         a.fk-footer__logo
-          fk-pic(
+          img(
             src="/assets/img/footer/udn_logo.png"
             :alt="str.dotcom.name"
           )
       
       .fk-footer__logo-wrapper(:href="str.orange.url")
         a.fk-footer__logo
-          fk-pic(
+          img(
             src="/assets/img/footer/orange_logo.png"
             :alt="str.orange.name"
           )
         
       .fk-footer__logo-wrapper(:href="str.royal.url")
         a.fk-footer__logo
-          fk-pic(
+          img(
             src="/assets/img/footer/royal_logo.png"
             :alt="str.royal.name"
           )
       
-  fk-pic(
+  img(
     src="/assets/img/footer/orange_ribbon.png"
     :alt="str.royal.name"
   )
 </template>
 
 <script>
-import FkPic from '@/components/fk-pic.vue';
-
 const str = {
   dotcom: { name: 'udn.com', url: '#' },
   orange: { name: 'Orange', url: '#' },
@@ -40,9 +38,6 @@ const str = {
 
 export default {
   name: 'FkFooter',
-  components: {
-    FkPic,
-  },
   data() {
     return {
       str,
@@ -60,6 +55,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include rwd-min(sm) {
+      max-width: 80%;
+      margin: 0 auto;
+    }
   }
 
   &__logo-wrapper {
@@ -67,11 +67,19 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 56px;
+    padding: 0 $spacing-3;
     border-right: #000 1px solid;
 
     &:last-child {
       border-right: 0;
+    }
+
+    @include rwd-min(sm) {
+      padding: 0 $spacing-6;
+    }
+
+    @include rwd-min(md) {
+      padding: 0 56px;
     }
   }
 

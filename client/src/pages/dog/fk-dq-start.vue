@@ -1,28 +1,15 @@
 <template lang="pug">
 .fk-start.fk-page
   .fk-container
-    .fk-quiz-progress-wrapper
-      fk-progress(:idx="1")
-
-    .fk-start__title
-      img(
-        src="/assets/img/common/footprint_icon.png"
-        alt="footprint"
-      )
-
-      h1 {{ str.title }}
-
-    .fk-start__desc
-      p {{ str.desc }}
-
-    .fk-start__input
-      fk-name-input(cate="dog")
-      
+    fk-ans-start(
+      :title="str.title"
+      :desc="str.desc"
+      cate="dog"
+    )
 </template>
 
 <script>
-import FkNameInput from '@/components/fk-name-input.vue';
-import FkProgress from '@/components/fk-progress.vue';
+import FkAnsStart from '@/components/fk-ans/fk-ans-start.vue';
 
 const str = {
   title: 'Hello 狗主人',
@@ -32,8 +19,7 @@ const str = {
 export default {
   name: 'DgStart',
   components: {
-    FkNameInput,
-    FkProgress,
+    FkAnsStart,
   },
   data: ()=>({
     str,

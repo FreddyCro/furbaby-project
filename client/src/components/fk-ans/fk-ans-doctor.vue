@@ -1,13 +1,6 @@
 <template lang="pug">
 .fk-ans-doc
-  .fk-ans-doc__people
-    .fk-ans-doc__avator(v-if="avator")
-      fk-pic(
-        :src="avator"
-        :alt="name"
-      )
-    .fk-ans-doc__name(v-if="name") {{ name }}
-    .fk-ans-doc__title(v-if="title") {{ title }}
+  fk-doctor
 
   .fk-ans-doc__say
     h3(v-html="sayTitle")
@@ -22,12 +15,12 @@
 </template>
 
 <script>
-import FkPic from '@/components/fk-pic.vue';
+import FkDoctor from '@/components/fk-doctor.vue';
 
 export default {
   name: 'FkAnsDoctor',
   components: {
-    FkPic,
+    FkDoctor,
   },
   props: {
     avator: {
@@ -53,8 +46,9 @@ export default {
 </script>
 
 <style lang="scss">
-.fk-ans-doc {
-  &__avator {
+.fk-suggestion {
+  &__doc {
+
   }
 
   &__name {

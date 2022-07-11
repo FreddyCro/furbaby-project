@@ -1,27 +1,15 @@
 <template lang="pug">
 .fk-start.fk-page
   .fk-container
-    .fk-quiz-progress-wrapper
-      fk-progress(:idx="1")
-
-    .fk-start__title
-      img(
-        src="/assets/img/common/footprint_icon.png"
-        alt="footprint"
-      )
-      
-      h1 {{ str.title }}
-
-    .fk-start__desc
-      p {{ str.desc }}
-
-    .fk-start__input
-      fk-name-input(cate="cat")
+    fk-ans-start(
+      :title="str.title"
+      :desc="str.desc"
+      cate="cat"
+    )
 </template>
 
 <script>
-import FkNameInput from '@/components/fk-name-input.vue';
-import FkProgress from '@/components/fk-progress.vue';
+import FkAnsStart from '@/components/fk-ans/fk-ans-start.vue';
 
 const str = {
   title: 'Hello 貓主人',
@@ -31,8 +19,7 @@ const str = {
 export default {
   name: 'CqStart',
   components: {
-    FkNameInput,
-    FkProgress,
+    FkAnsStart,
   },
   data: () => ({
     str,
@@ -42,32 +29,5 @@ export default {
 
 <style lang="scss" scoped>
 .fk-start {
-  &__title {
-    display: flex;
-    align-items: center;
-
-    h1 {
-      color: $color-primary;
-    }
-
-    img {
-      width: 32px;
-      height: 32px;
-      margin-right: $spacing-3;
-    }
-  }
-
-  &__desc {
-    margin-bottom: $spacing-7;
-  }
-
-  &__input {
-    display: flex;
-    align-items: center;
-  }
-
-  &__input-label {
-    margin-right: $spacing-3;
-  }
 }
 </style>

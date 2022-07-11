@@ -1,16 +1,16 @@
 <template lang="pug">
-.fk-progress
-  .fk-progress__circle(
+.fk-wizard
+  .fk-wizard__circle(
     v-for="item in 7"
     :key="item.id"
-    :class="{'fk-progress__circle--active': +item === +idx}"
+    :class="{'fk-wizard__circle--active': +item === +idx}"
   ) {{ item }}
     
 </template>
 
 <script>
 export default {
-  name: 'FkProgress',
+  name: 'FkWizard',
   props: {
     idx: {
       type: Number,
@@ -23,7 +23,7 @@ export default {
 <style lang="scss">
 $progress-red: rgb(235, 0, 26);
 
-.fk-progress {
+.fk-wizard {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -41,16 +41,26 @@ $progress-red: rgb(235, 0, 26);
 
   &__circle {
     position: relative;
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 $spacing-4;
+    margin: 0 $spacing-2;
     border-radius: 50%;
-    border-block: solid 2px $progress-red;
+    border: solid 2px $progress-red;
     color: $progress-red;
     background-color: $white;
+
+    @include rwd-min(sm) {
+      width: 36px;
+      height: 36px;
+      margin: 0 $spacing-3;
+    }
+
+    @include rwd-min(lg) {
+      margin: 0 $spacing-4;
+    }
 
     &--active {
       color: $white;

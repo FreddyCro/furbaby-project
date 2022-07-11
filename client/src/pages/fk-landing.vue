@@ -2,17 +2,13 @@
 .fk-l
   //- intro section
   .fk-l-intro.fk-section
-    .fk-l-intro__bg
-      .fk-l-intro__bg-floor
-      .fk-l-intro__bg-furniture
-      .fk-l-halo
+    fk-bg
 
     .fk-container
       //- TODO: Add a title here.
       h1.fk-l-intro__title {{ str.intro.title }}
       .fk-l-intro__pic-wrapper
-        fk-pic(
-          className="fk-l-intro__pic"
+        img.fk-l-intro__pic(
           src="/assets/img/landing/title.png"
           :alt="str.intro.title"
         )
@@ -36,7 +32,7 @@
   #start-quiz.fk-l-start.fk-section
     .fk-l-start__bg
       .fk-l-start__bg-footprint-first
-        fk-pic(
+        img(
           src="/assets/img/common/footprint_1.png"
           alt="background"
         )
@@ -49,8 +45,7 @@
 
         .fk-l-start__frame-content
           .fk-l-start__frame-img-wrapper
-            fk-pic(
-              className="fk-l-start__frame-img"
+            img.fk-l-start__frame-img(
               src="/assets/img/landing/play.png"
               :alt="str.start.title"
             )
@@ -92,14 +87,14 @@
       .fk-l-suggest__principle
         .fk-l-suggest__title-wrapper
           .fk-l-suggest__avator
-            fk-pic(
+            img(
               src="/assets/img/landing/suggestion_avator.png"
               :alt="str.suggest.title"
             )
 
           h2.fk-l-suggest__title {{ str.suggest.title }}
 
-          fk-pic(
+          img(
             src="/assets/img/common/footprint_icon.png"
             :alt="str.suggest.title"
           )
@@ -119,7 +114,8 @@
 </template>
 
 <script>
-import FkPic from '@/components/fk-pic.vue';
+// import FkPic from '@/components/fk-pic.vue';
+import FkBg from '@/components/fk-bg.vue';
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 import str from '@/assets/json/landing.json';
 import Mouse from '@/assets/img/mouse.svg';
@@ -128,8 +124,9 @@ export default {
   name: 'FkLanding',
   components: {
     Mouse,
-    FkPic,
+    FkBg,
     FkBtnPrimary,
+    // FkPic,
   },
   data: () => ({
     str,
@@ -138,45 +135,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fk-l-halo {
-  position: absolute;
-  top: 20%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0)
-  );
-  pointer-events: none;
-}
 
 .fk-l-intro {
   position: relative;
-  height: 800px;
   background-color: $white;
 
-  &__bg,
-  &__bg-floor,
-  &__bg-furniture {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  &__bg-floor {
-    background-image: url('/assets/img/common/bg_merge.png');
-    background-size: cover;
-    background-position: center bottom;
-  }
+  /* @include rwd-min(md) {
+    height: 800px;
+  } */
 
   &__pic-wrapper {
     position: relative;
@@ -246,6 +212,58 @@ export default {
     background-color: rgb(145, 145, 150);
   }
 
+  &__frame-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(240, 240, 240);
+
+    @include rwd-min(md) {
+      flex-direction: row;
+    }
+  }
+
+  &__title {
+    color: rgb(230, 5, 5);
+  }
+
+  &__desc {
+  }
+
+  &__frame-img-wrapper {
+    @include rwd-min(md) {
+      position: relative;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scale(1.1) translate(-$spacing-6, $spacing-8);
+    }
+  }
+
+  &__frame-text-wrapper {
+    padding: $spacing-6;
+    text-align: center;
+
+    @include rwd-min(md) {
+      width: 50%;
+      text-align: left;
+    }
+  }
+
+  &__enter-btn-container {
+    button {
+      min-width: 240px;
+      margin-bottom: $spacing-5;
+
+      @include rwd-min(sm) {
+        min-width: 320px;
+        margin-bottom: $spacing-6;
+      }
+    }
+  }
+
   &__frame-halo {
     position: absolute;
     width: 2000px;
@@ -289,41 +307,6 @@ export default {
       transform: translate(50%, 50%);
     }
   }
-
-  &__frame-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    background-color: rgb(240, 240, 240);
-  }
-
-  &__title {
-    color: rgb(230, 5, 5);
-  }
-
-  &__desc {
-  }
-
-  &__frame-img-wrapper {
-    position: relative;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: scale(1.1) translate(-$spacing-6, $spacing-8);
-  }
-
-  &__frame-text-wrapper {
-    width: 50%;
-    padding: $spacing-6;
-  }
-
-  &__enter-btn-container {
-    button {
-      min-width: 320px;
-      margin-bottom: $spacing-6;
-    }
-  }
 }
 
 .fk-l-suggest {
@@ -363,13 +346,27 @@ export default {
 
   &__share-btn-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: $spacing-9;
+
+    @include rwd-min(sm) {
+      flex-direction: row;
+    }
   }
 
   &__share-btn {
-    margin: 0 $spacing-6;
+    margin-bottom: $spacing-5;
+
+    @include rwd-min(sm) {
+      margin: 0 $spacing-6;
+    }
+
+    button {
+      min-width: 240px;
+    }
+
     img {
       height: 1rem;
       margin-right: $spacing-2;
