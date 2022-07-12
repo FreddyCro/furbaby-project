@@ -33,4 +33,11 @@ const getRanking = (table) => {
   );
 };
 
-export { answerQuiz, submitResult, getRanking };
+// get ranking of by score
+const getRankingByScore = (table, score) => {
+  return axios.get(
+    `${window.location.protocol}//${root}/api/furkid/read-rank-by-score.php?table=${table}&score=${score}`
+  );
+};
+
+export { answerQuiz, submitResult, getRanking, getRankingByScore };
