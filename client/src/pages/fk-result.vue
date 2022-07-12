@@ -6,7 +6,7 @@
     h1 {{ $store.state.user }}
     h2(v-if="rankingStr") {{ rankingStr[result.level + 1].title }}
     h3(v-if="rankingStr") {{ rankingStr[result.level + 1].desc }}
-    p your level: {{ getScore() + 1 }}
+    p your level: {{ result.level }}
     p your ranking: {{ result.ranking }}
 
     .fk-result__share
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import { submitResult, getRanking } from '@/api/quiz';
 
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary';
@@ -98,14 +97,10 @@ export default {
           const scoreBoard = this.rankingData.map((item) => +item.score);
 
           this.result = this.calcRanking(+participants, scoreBoard, +score);
-          console.log(this.result);
         });
     }
   },
   methods: {
-    ...mapGetters({
-      getScore: 'getScore',
-    }),
     calcRanking(participants, scoreBoard, point) {
       // get ranking
       let acc = 0;

@@ -29,7 +29,7 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
-        :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
+        :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
           .fk-ans-opt-container.fk-ans-opt-container--correct

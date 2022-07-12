@@ -7,7 +7,7 @@
 
   //- footer decoration
   img(
-    src="/assets/img/landing/red_ribbon.png"
+    src="assets/img/landing/red_ribbon.png"
     alt="red decoration"
   )
 

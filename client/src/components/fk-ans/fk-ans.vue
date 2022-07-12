@@ -100,10 +100,8 @@ export default {
       return null;
     },
   },
+  created() {
+    // TODO: redirect to current step if route to another step
+  },
 };
 </script>
-
-<style lang="scss">
-.fk-ans {
-}
-</style>

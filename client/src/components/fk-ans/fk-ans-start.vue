@@ -11,7 +11,7 @@
       .fk-name-input
         .fk-name-input__title
           img(
-            src="/assets/img/common/footprint_icon.png"
+            src="assets/img/common/footprint_icon.png"
             alt="footprint"
           )
           

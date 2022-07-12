@@ -31,6 +31,7 @@
   }
 
   &__title-label {
+    flex-shrink: 0;
     padding: $spacing-2 $spacing-3;
     border-radius: 40px;
     border: solid 1px $color-primary;
