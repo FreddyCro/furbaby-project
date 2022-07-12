@@ -1,0 +1,136 @@
+@import './_mixins';
+@import './_variables';
+
+$autopad-watershed-sm: $spacing-4;
+$autopad-watershed-md: $spacing-6;
+
+@mixin autopad-content($spacing, $dir: all) {
+  @if $dir == vertical {
+    margin-top: #{-$spacing};
+    margin-bottom: #{-$spacing};
+  }
+
+  @else if $dir == horizontal {
+    margin-left: #{-$spacing};
+    margin-right: #{-$spacing};
+  }
+  
+  @else if $dir == top {
+    margin-top: #{-$spacing};
+  }
+
+  @else if $dir == bottom {
+    margin-bottom: #{-$spacing};
+  }
+
+  @else if $dir == left {
+    margin-left: #{-$spacing};
+  }
+
+  @else if $dir == right {
+    margin-right: #{-$spacing};
+  }
+  
+  @else {
+    margin: #{-$spacing};
+  }
+}
+
+@mixin autopad-item($spacing, $dir: all) {
+  @if $dir == vertical {
+    padding-top: #{$spacing};
+    padding-bottom: #{$spacing};
+  }
+
+  @else if $dir == horizontal {
+    padding-left: #{$spacing};
+    padding-right: #{$spacing};
+  }
+
+  @else if $dir == top {
+    padding-top: #{$spacing};
+  }
+
+  @else if $dir == bottom {
+    padding-bottom: #{$spacing};
+  }
+
+  @else if $dir == left {
+    padding-left: #{$spacing};
+  }
+
+  @else if $dir == right {
+    padding-right: #{$spacing};
+  }
+
+  @else {
+    padding: #{$spacing};
+  }
+}
+
+@mixin autopad($spacing, $dir: all) {
+  @if ($spacing < $autopad-watershed-sm) {
+    @include autopad-content($spacing, $dir);
+
+    > * {
+      @include autopad-item($spacing, $dir);
+    }
+  } @else {
+    @include autopad-content($autopad-watershed-sm, $dir);
+
+    > * {
+      @include autopad-item($autopad-watershed-sm, $dir);
+    }
+  }
+
+  @include rwd-min(md) {
+    @if ($spacing < $autopad-watershed-md) {
+      @include autopad-content($spacing, $dir);
+
+      > * {
+        @include autopad-item($spacing, $dir);
+      }
+    } @else {
+      @include autopad-content($autopad-watershed-md, $dir);
+
+      > * {
+        @include autopad-item($autopad-watershed-md, $dir);
+      }
+    }
+  }
+
+  @include rwd-min(lg) {
+    @include autopad-content($spacing, $dir);
+
+    > * {
+      @include autopad-item($spacing, $dir);
+    }
+  }
+}
+
+$autopads: (
+  'autopad-1': $spacing-1,
+  'autopad-2': $spacing-2,
+  'autopad-3': $spacing-3,
+  'autopad-4': $spacing-4,
+  'autopad-5': $spacing-5,
+  'autopad-6': $spacing-6,
+  'autopad-7': $spacing-7,
+  'autopad-8': $spacing-8,
+  'autopad-9': $spacing-9,
+  'autopad-10': $spacing-10,
+);
+
+@each $name, $autopad in $autopads {
+  .#{$name} {
+    @include autopad($autopad);
+  }
+
+  // .#{$name}-v {
+  //   @include autopad($autopad, vertical);
+  // }
+  
+  // .#{$name}-h {
+  //   @include autopad($autopad, horizontal);
+  // }
+}

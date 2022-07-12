@@ -4,19 +4,24 @@ $md: 992px;
 $lg: 1200px;
 $xl: 1600px;
 
+$breakpoints: (
+  'sm': $sm,
+  'md': $md,
+  'lg': $lg,
+  'xl': $xl
+);
+
 // spacing
-$spacing-1: 0.25rem;
-$spacing-2: 0.5rem;
-$spacing-3: 1rem;
-$spacing-4: 1.5rem;
-$spacing-5: 2rem;
-$spacing-6: 3rem;
-$spacing-7: 4rem;
-$spacing-8: 5rem;
-$spacing-9: 6rem;
-$spacing-10: 7rem;
-$spacing-11: 8rem;
-$spacing-12: 10rem;
+$spacing-1: 4px;
+$spacing-2: 8px;
+$spacing-3: 12px;
+$spacing-4: 16px;
+$spacing-5: 24px;
+$spacing-6: 32px;
+$spacing-7: 48px;
+$spacing-8: 64px;
+$spacing-9: 80px;
+$spacing-10: 100px;
 
 // p size
 $p-1: 0.25rem;
@@ -49,11 +54,12 @@ $fw-semibold: 600;
 $fw-bold: 700;
 
 // color
-$color-primary: #0070f3;
+$color-primary: rgb(231, 15, 15);
 $color-secondary: #f3f3f3;
-$text-color: #000;
+$text-color: rgb(88, 88, 90);
 $text-color-white: #fff;
 
+$white: #fff;
 $gray-1: #fafafa;
 $gray-2: #f5f5f5;
 $gray-3: #f0f0f0;
@@ -62,6 +68,8 @@ $gray-5: #999;
 $gray-6: #666;
 $gray-7: #333;
 $gray-8: #000;
+
+$gray-160: rgb(160, 160, 160);
 
 // container
 $container-sm-width: 720px;

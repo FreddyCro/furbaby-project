@@ -83,10 +83,6 @@ GET `http://[host][port]/init-table.php`，產生 table 和新的題目資料。
 
 網頁瀏覽 `http://[host][APACHE_PORT]/index.html`，測試是否能正確顯示資料。
 
-### 4. 測試活動頁面功能
-
-網頁瀏覽 `http://[host][VUE_PORT]`，測試是否能正確更新資料。
-
 ## 布署
 
 ### Front-end

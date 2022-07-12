@@ -52,4 +52,11 @@ const routes = [
 
 export default new Router({
   routes,
+  scrollBehavior() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ x: 0, y: 0 });
+      }, 250);
+    });
+  },
 });
