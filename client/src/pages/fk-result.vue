@@ -1,10 +1,12 @@
 <template lang="pug">
 .fk-result.fk-page
   .fk-container
+    img(:src="finalImg", alt="final score")
+
     h1 {{ $store.state.user }}
-    h2(v-if="rankingStr") {{ rankingStr[result.level].title }}
-    h3(v-if="rankingStr") {{ rankingStr[result.level].desc }}
-    p your level: {{ getScore() }}
+    h2(v-if="rankingStr") {{ rankingStr[result.level + 1].title }}
+    h3(v-if="rankingStr") {{ rankingStr[result.level + 1].desc }}
+    p your level: {{ getScore() + 1 }}
     p your ranking: {{ result.ranking }}
 
     .fk-result__share
@@ -13,8 +15,8 @@
       fk-btn-secondary(:text="str.shareResult")
 
     .fk-result__learn-more
-      button.fk-btn-primary {{ str.furkidNews }}
-      button.fk-btn-primary {{ str.furkidStrategy }}
+      button.fk-btn-prim {{ str.furkidNews }}
+      button.fk-btn-prim {{ str.furkidStrategy }}
 </template>
 
 <script>
@@ -43,6 +45,10 @@ export default {
     rankingData: undefined,
   }),
   computed: {
+    finalImg() {
+      if (!this.$store.state.cate) return undefined;
+      return `/assets/img/quiz/${this.$store.state.cate}/level_${this.result.level + 1}.png`;
+    },
     rankingStr() {
       if (this.$store.state.cate === 'dog') return rankingDog;
       if (this.$store.state.cate === 'cat') return rankingCat;

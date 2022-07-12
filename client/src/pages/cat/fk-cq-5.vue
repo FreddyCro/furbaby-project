@@ -11,23 +11,17 @@
   )
     template(#my-ans)
       .fk-ans-opt-container
-        .pure-g.autopad-7
+        .pure-g.autopad-3
           .pure-u-1-12(
             v-for="item, index in Object.keys(data.options)"
             :key="`${cate}q-${data.idx}-${item}`"
           )
-            button.fk-ans-opt.fk-ans-opt--binary(
+            button(
               :class="{'fk-ans-opt--selected': +myAns === +item}"
               :id="`${cate}q-input-${data.idx}-${item}`"
               :value="+item"
               @click="selectAnswer(singleStrategy(data.ans, item))"
-            )
-              .fk-ans-opt__img-wrapper
-                img(
-                  :src="`/assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
-                  :alt="data.options[item]"
-                )
-              .fk-ans-opt__name {{ data.options[item] }}
+            ) {{ data.options[item] }}
 
     template(#correct-ans)
       fk-ans-correct(
@@ -36,7 +30,7 @@
         :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container
+          .fk-ans-opt-container.fk-ans-opt-container--correct
             button.fk-ans-opt-small.fk-ans-opt-small--correct {{ data.options[data.ans] }}
 
       fk-ans-suggest(

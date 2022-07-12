@@ -23,10 +23,8 @@
               @click="selectAnswer(singleStrategy(data.ans, item))"
             )
               .fk-ans-opt__img-wrapper
-                img(
-                  :src="`/assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
-                  :alt="data.options[item]"
-                )
+                component(:is="`Option-${index + 1}`")
+
               .fk-ans-opt__name {{ data.options[item] }}
 
     template(#correct-ans)
@@ -36,7 +34,7 @@
         :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container
+          .fk-ans-opt-container.fk-ans-opt-container--correct
             button.fk-ans-opt-small.fk-ans-opt-small--correct {{ data.options[data.ans] }}
 
       fk-ans-suggest(
@@ -58,6 +56,8 @@ import quiz from '@/assets/json/quiz-cat.json';
 import FkAns from '@/components/fk-ans/fk-ans.vue';
 import FkAnsCorrect from '@/components/fk-ans/fk-ans-correct.vue';
 import FkAnsSuggest from '@/components/fk-ans/fk-ans-suggest.vue';
+import Option1 from '@/assets/img/quiz/yes.svg';
+import Option2 from '@/assets/img/quiz/no.svg';
 
 export default {
   name: 'CatQ4',
@@ -65,6 +65,8 @@ export default {
     FkAns,
     FkAnsCorrect,
     FkAnsSuggest,
+    Option1,
+    Option2,
   },
   data: () => ({
     data: quiz.cat4,

@@ -13,7 +13,7 @@
     .fk-ans-correct__suggest
       slot(name="suggest")
 
-  .fk-ans-correct__illus
+  .fk-ans-correct__illus(v-if="illustration")
     img(
       :src="illustration"
       :alt="question"

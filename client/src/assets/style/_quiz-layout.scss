@@ -63,9 +63,13 @@
 
 // option container
 .fk-ans-opt-container {
-  justify-content: center;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+
+  &--correct {
+    justify-content: flex-start;
+  }
 }
 
 // round option
@@ -89,6 +93,8 @@
   }
 
   &--correct {
+    cursor: auto;
+
     .fk-ans-opt__img-wrapper {
       width: 64px;
       height: 64px;
@@ -111,11 +117,17 @@
     }
   }
 
-  &:hover:not(.fk-ans-opt--selected):not(.fk-ans-opt--correct) {
+  &:hover:not(.fk-ans-opt--selected):not(.fk-ans-opt--correct):not(.fk-ans-opt--binary) {
     .fk-ans-opt__img-wrapper {
       background-color: lighten($color-primary, 10%);
     }
 
+    .fk-ans-opt__name {
+      background-color: darken($gray-160, 10%);
+    }
+  }
+
+  &:hover:is(.fk-ans-opt--binary) {
     .fk-ans-opt__name {
       background-color: darken($gray-160, 10%);
     }
@@ -168,10 +180,15 @@
   border: dashed 2px $color-primary;
   cursor: pointer;
 
-  &:hover {
+  &:hover:not(.fk-ans-opt-large--correct) {
     .fk-ans-opt-large__text {
       background-color: lighten($gray-160, 10%);
     }
+  }
+
+  &--correct {
+    margin: 0;
+    cursor: auto;
   }
 
   &--selected {
@@ -228,7 +245,7 @@
   color: $white;
   background-color: $gray-160;
   border: 0;
-  transition: .15s ease-in-out;
+  transition: 0.15s ease-in-out;
   cursor: pointer;
 
   &:hover:not(.fk-ans-opt-small--correct) {

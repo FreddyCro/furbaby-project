@@ -32,8 +32,8 @@
         :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container
-            .fk-ans-opt-large(:id="`${cate}q-correct-${data.idx}`")
+          .fk-ans-opt-container.fk-ans-opt-container--correct
+            .fk-ans-opt-large.fk-ans-opt-large--correct(:id="`${cate}q-correct-${data.idx}`")
               .fk-ans-opt-large__idx-label {{ data.ans }}
               .fk-ans-opt-large__text {{ data.options[data.ans] }}
 

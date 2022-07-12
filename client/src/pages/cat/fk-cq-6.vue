@@ -46,19 +46,12 @@
         :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container.pure-g.autopad-4
+          .fk-ans-opt-container.fk-ans-opt-container--correct.pure-g.autopad-4
             .pure-u-1-3.align-center(
               v-for="item, index in data.ans"
               :key="`${cate}q-correct-${data.idx}-${item}`"
             )
-              .fk-ans-opt.fk-ans-opt--correct
-                .fk-ans-opt__img-wrapper
-                  //- component(:is="`Option-${index + 1}`")
-                  img(
-                    :src="`/assets/img/quiz/dog/${data.idx}/option${index + 1}.png`"
-                    :alt="data.options[item]"
-                  )
-                .fk-ans-opt__name {{ data.options[item] }}
+              .fk-ans-opt-small.fk-ans-opt-small--correct {{ data.options[item] }}
 
         template(#suggest)
           p {{ data.explain }}

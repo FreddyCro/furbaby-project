@@ -37,7 +37,7 @@
         :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container
+          .fk-ans-opt-container.fk-ans-opt-container--correct
             button.fk-ans-opt-small.fk-ans-opt-small--correct {{ data.options[data.ans] }}
 
       fk-ans-suggest(

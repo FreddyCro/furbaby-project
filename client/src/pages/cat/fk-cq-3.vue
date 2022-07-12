@@ -36,7 +36,7 @@
         :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container
+          .fk-ans-opt-container.fk-ans-opt-container--correct
             button.fk-ans-opt.fk-ans-opt--correct
               .fk-ans-opt__img-wrapper
                 img(

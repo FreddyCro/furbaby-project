@@ -1,81 +1,98 @@
 <template lang="pug">
-.fk-dq6.fk-page
-  .fk-container
-    .fk-quiz-wizard-wrapper
-      fk-wizard(:idx="data.idx")
-    h3 Q{{ data.idx }} - {{ data.title }}
+.fk-dq6
+  fk-ans(
+    :idx="+data.idx"
+    :title="data.title"
+    questionType="multi"
+    :has-select="hasSelect"
+    :has-submitted="hasSubmitted"
+    :submit-answer="submitAnswer"
+    :cate="cate"
+  )
+    template(#my-ans)
+      .fk-ans-pie-wrapper
+        .fk-ans-pie
+          .fk-ans-pie__option(
+            v-for="item, index in Object.keys(data.options)"
+            :key="`${cate}q-${data.idx}-${item}`"
+            :class="{ \
+              [`fk-ans-pie__option--${index + 1}`]: true, \
+              'fk-ans-pie__option--selected': myAns.includes(+item) \
+            }"
+          )
+            .fk-ans-pie__option-text {{ data.options[item] }}
 
-    .fk-dq6__option-container(v-if="!hasSubmitted")
-      .fk-dq6__option(
-        v-for="item in Object.keys(data.options)"
-        :key="`dq-${data.idx}-${item}`"
-      )
-        span {{ data.options[item] }}
-        input(
-          :id="`dq-input-${data.idx}-${item}`"
-          type="checkbox"
-          :value="+item"
-          v-model="myAns"
-          @change="selectAnswer(multiStrategy(data.ans, myAns))"
-        )
+            input.fk-ans-pie__option-input(
+              :id="`${cate}q-input-${data.idx}-${item}`"
+              type="checkbox"
+              :value="+item"
+              v-model="myAns"
+              @change="selectAnswer(multiStrategy(data.ans))"
+            )
 
-    //- submit and show answer
-    fk-ans-submit(
-      v-if="hasSelect"
-      :idx="data.idx"
-      :has-select="hasSelect"
-      :has-submitted="hasSubmitted"
-      :is-correct="isCorrect"
-      :submit-answer="submitAnswer"
-      :cate="cate"
-      :is-last="false"
-    )
+        .fk-ans-pie-label(
+          v-for="item, index in Object.keys(data.options)"
+          :key="`${cate}q-label-${data.idx}-${item}`"
+          :class="{ \
+            [`fk-ans-pie-label--${index + 1}`]: true, \
+            'fk-ans-pie-label--selected': myAns.includes(+item) \
+          }"
+        ) {{ index + 1 }}
+
+    template(#correct-ans)
       fk-ans-correct(
         :question="data.title"
-        illustration="img/faker_sm.jpg"
+        :cate="cate"
+        :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
-        .fk-dq6__correct-ans-container 
-          .fk-dq6__correct-ans(v-for="item in data.ans" :key="item.id") {{  data.options[item] }}
+        template(#ans)
+          .fk-ans-opt-container.pure-g.autopad-4
+            .pure-u-1-3.align-center(
+              v-for="item, index in data.ans"
+              :key="`${cate}q-correct-${data.idx}-${item}`"
+            )
+              .fk-ans-opt.fk-ans-opt--correct
+                .fk-ans-opt__img-wrapper
+                  //- component(:is="`Option-${index + 1}`")
+                  img(
+                    :src="`/assets/img/quiz/dog/${data.idx}/option${index + 1}.png`"
+                    :alt="data.options[item]"
+                  )
+                .fk-ans-opt__name {{ data.options[item] }}
 
-      fk-ans-doctor(
-        avator="img/faker_avator.jpg"
-        :name="data.doc.name"
-        :title="data.doc.title"
+        template(#suggest)
+          p {{ data.explain }}
+
+      fk-ans-suggest(
         :say-title="data.doc.say.title"
         :say-content="data.doc.say.content"
         :source="data.doc.source"
       )
-
-      .fk-dq6__next-wrapper
-        router-link(:to="`/quiz/${cate}/${data.idx + 1}`")
-          fk-btn-primary(:text="data.next")
 </template>
 
 <script>
 /**
- * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
- * components: [FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary]
+ * @mixin multiStrategyMixins
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, multiStrategy]
  */
-import { submitAnswer, multiStrategy } from '@/assets/js/mixins';
+import { multiStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-dog.json';
-import FkWizard from '@/components/fk-wizard.vue';
+import FkAns from '@/components/fk-ans/fk-ans.vue';
+import FkAnsCorrect from '@/components/fk-ans/fk-ans-correct.vue';
+import FkAnsSuggest from '@/components/fk-ans/fk-ans-suggest.vue';
 
 export default {
   name: 'DogQ6',
   components: {
-    FkWizard,
+    FkAns,
+    FkAnsCorrect,
+    FkAnsSuggest,
   },
   data: () => ({
     data: quiz.dog6,
     cate: 'dog',
-    myAns: [],
   }),
-  mixins: [submitAnswer, multiStrategy],
-  methods: {},
-  created() {
-    console.log(process.env.VUE_APP_API_ROOT);
-  },
+  mixins: [multiStrategyMixins],
 };
 </script>
