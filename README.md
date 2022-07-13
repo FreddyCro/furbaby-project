@@ -58,6 +58,16 @@ include_once '../../class/quiz.php';
 VUE_APP_API_ROOT=192.168.1.100:8080
 ```
 
+#### 設定 client/public/sharing.php 和其他 php 的相對路徑
+
+分享頁面使用。
+
+```php
+<?php
+include_once '../config/database.php';
+include_once '../class/rank.php';
+```
+
 #### 設定後臺測試頁
 
 以下為參考

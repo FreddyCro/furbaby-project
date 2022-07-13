@@ -24,7 +24,7 @@
             )
               .fk-ans-opt__img-wrapper
                 img(
-                  :src="`/assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
+                  :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
                   :alt="data.options[item]"
                 )
               .fk-ans-opt__name {{ data.options[item] }}
@@ -33,14 +33,14 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
-        :illustration="`/assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
+        :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
           .fk-ans-opt-container.fk-ans-opt-container--correct
             button.fk-ans-opt.fk-ans-opt--correct
               .fk-ans-opt__img-wrapper
                 img(
-                  :src="`/assets/img/quiz/${cate}/${data.idx}/option${data.ans}.png`"
+                  :src="`assets/img/quiz/${cate}/${data.idx}/option${data.ans}.png`"
                   :alt="data.options[data.ans]"
                 )
               .fk-ans-opt__name {{ data.options[data.ans] }}

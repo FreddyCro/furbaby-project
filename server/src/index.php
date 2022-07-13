@@ -66,7 +66,7 @@
 </body>
 
 <script>
-  const HOST = `http://192.168.1.100:8080`;
+  const HOST = `http://192.168.99.100:8080`;
 
   // fetch data from api
   function getQuizData() {

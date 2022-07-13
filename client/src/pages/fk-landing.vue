@@ -9,7 +9,7 @@
       h1.fk-l-intro__title {{ str.intro.title }}
       .fk-l-intro__pic-wrapper
         img.fk-l-intro__pic(
-          src="/assets/img/landing/title.png"
+          src="assets/img/landing/title.png"
           :alt="str.intro.title"
         )
 
@@ -21,19 +21,19 @@
           type="video/mp4"
           muted
         )
-          source(src="/assets/vid/landing.mp4")
+          source(src="assets/vid/landing.mp4")
 
       //- TODO: scroll down
       a.fk-l-intro__scroll-down(href="#" v-scroll-to="'#start-quiz'")
         Mouse
-        //- img(src="/assets/img/landing/mouse.svg", alt="scroll down")
+        //- img(src="assets/img/landing/mouse.svg", alt="scroll down")
 
   //- start section
   #start-quiz.fk-l-start.fk-section
     .fk-l-start__bg
       .fk-l-start__bg-footprint-first
         img(
-          src="/assets/img/common/footprint_1.png"
+          src="assets/img/common/footprint_1.png"
           alt="background"
         )
     .fk-container
@@ -46,7 +46,7 @@
         .fk-l-start__frame-content
           .fk-l-start__frame-img-wrapper
             img.fk-l-start__frame-img(
-              src="/assets/img/landing/play.png"
+              src="assets/img/landing/play.png"
               :alt="str.start.title"
             )
           .fk-l-start__frame-text-wrapper
@@ -64,21 +64,21 @@
     .fk-l-suggest__decoration-container
       .fk-l-suggest__decoration.fk-l-suggest__footprint-second
         img(
-          src="/assets/img/common/footprint_2.png"
+          src="assets/img/common/footprint_2.png"
           alt="background"
         )
         
       //- eat dog illustration
       .fk-l-suggest__decoration.fk-l-suggest__eat-dog
         img(
-          src="/assets/img/landing/dog_eat.png"
+          src="assets/img/landing/dog_eat.png"
           :alt="str.suggest.title"
         )
       
       //- cat board illustration 
       .fk-l-suggest__decoration.fk-l-suggest__cat-board
         img(
-          src="/assets/img/landing/cat_board.png"
+          src="assets/img/landing/cat_board.png"
           :alt="str.suggest.title"
         )
 
@@ -88,14 +88,14 @@
         .fk-l-suggest__title-wrapper
           .fk-l-suggest__avator
             img(
-              src="/assets/img/landing/suggestion_avator.png"
+              src="assets/img/landing/suggestion_avator.png"
               :alt="str.suggest.title"
             )
 
           h2.fk-l-suggest__title {{ str.suggest.title }}
 
           img(
-            src="/assets/img/common/footprint_icon.png"
+            src="assets/img/common/footprint_icon.png"
             :alt="str.suggest.title"
           )
 
@@ -108,7 +108,7 @@
           a.fk-l-suggest__share-btn(:href="str.suggest.lineBtnUrl")
             button.fk-btn-prim
               span
-                img(src="/assets/img/common/line_white.png", alt="share to line")
+                img(src="assets/img/common/line_white.png", alt="share to line")
               span {{ str.suggest.lineBtnText }}
     
 </template>
@@ -312,7 +312,7 @@ export default {
 .fk-l-suggest {
   position: relative;
   background-color: $white;
-  background-image: url('/assets/img/landing/bg_brick.png');
+  background-image: url('~@/assets/img/landing/bg_brick.png');
   background-size: contain;
   background-repeat: round;
   padding-bottom: 360px;

@@ -5,26 +5,26 @@
       .fk-footer__logo-wrapper(:href="str.dotcom.url")
         a.fk-footer__logo
           img(
-            src="/assets/img/footer/udn_logo.png"
+            src="assets/img/footer/udn_logo.png"
             :alt="str.dotcom.name"
           )
       
       .fk-footer__logo-wrapper(:href="str.orange.url")
         a.fk-footer__logo
           img(
-            src="/assets/img/footer/orange_logo.png"
+            src="assets/img/footer/orange_logo.png"
             :alt="str.orange.name"
           )
         
       .fk-footer__logo-wrapper(:href="str.royal.url")
         a.fk-footer__logo
           img(
-            src="/assets/img/footer/royal_logo.png"
+            src="assets/img/footer/royal_logo.png"
             :alt="str.royal.name"
           )
       
   img(
-    src="/assets/img/footer/orange_ribbon.png"
+    src="assets/img/footer/orange_ribbon.png"
     :alt="str.royal.name"
   )
 </template>

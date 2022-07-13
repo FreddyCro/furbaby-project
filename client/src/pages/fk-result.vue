@@ -1,27 +1,31 @@
 <template lang="pug">
 .fk-result.fk-page
-  .fk-container
-    img(:src="finalImg", alt="final score")
+  .fk-result__content.fk-container
+    .fk-result__illus
+      img(:src="finalImg", alt="final score")
+    .fk-result__standing
+      h2.fk-result__standing-title {{ $store.state.user }}
+      h2.fk-result__standing-title(v-if="rankingStr") {{ rankingStr[result.level + 1].title }}
+      h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr[result.level + 1].desc }}
+      p.fk-result__standing-score 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
+      p.fk-result__standing-score 你現在排 {{ result.ranking }} 名
 
-    h1 {{ $store.state.user }}
-    h2(v-if="rankingStr") {{ rankingStr[result.level + 1].title }}
-    h3(v-if="rankingStr") {{ rankingStr[result.level + 1].desc }}
-    p your level: {{ getScore() + 1 }}
-    p your ranking: {{ result.ranking }}
+      .fk-result__share
+        router-link(to="/")
+          .button.fk-result__share-btn(@click="$store.dispatch('resetState')") {{ str.tryAgain }}
+        .button.fk-result__share-btn() {{ str.lineToFriend }}
+        a(:href="sharingUrl" target="_blank" rel="noopener noreferrer")
+          .button.fk-result__share-btn() {{ str.shareResult }}
 
-    .fk-result__share
-      fk-btn-secondary(:text="str.tryAgain")
-      fk-btn-secondary(:text="str.lineToFriend")
-      fk-btn-secondary(:text="str.shareResult")
-
-    .fk-result__learn-more
-      button.fk-btn-prim {{ str.furkidNews }}
-      button.fk-btn-prim {{ str.furkidStrategy }}
+      .fk-result__learn-more
+        a(href="#", target="_blank", rel="noopener noreferrer") 
+          button.fk-btn-prim {{ str.furkidNews }}
+        a(href="#", target="_blank", rel="noopener noreferrer") 
+          button.fk-btn-prim {{ str.furkidStrategy }}
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { submitResult, getRanking } from '@/api/quiz';
+import { submitResult, getRankingByScore } from '@/api/quiz';
 
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary';
 import FkBtnSecondary from '@/components/fk-btn/fk-btn-secondary';
@@ -42,12 +46,16 @@ export default {
       level: 0,
       ranking: 1,
     },
-    rankingData: undefined,
   }),
   computed: {
+    sharingUrl() {
+      return `./sharing.php?n=${this.$store.state.user}&c=${this.$store.state.cate}&lv=${this.result.level}&sc=${this.$store.state[this.$store.state.cate].score}`;
+    },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
-      return `/assets/img/quiz/${this.$store.state.cate}/level_${this.result.level + 1}.png`;
+      return `/assets/img/quiz/${this.$store.state.cate}/level_${
+        this.result.level + 1
+      }.png`;
     },
     rankingStr() {
       if (this.$store.state.cate === 'dog') return rankingDog;
@@ -56,75 +64,59 @@ export default {
     },
   },
   created() {
-    // test calc ranking
-    // const testCalcRanking = () => {
-    //   const a = (Math.random() * 10) | 0;
-    //   const b = (Math.random() * 10) | 0;
-    //   const c = (Math.random() * 10) | 0;
-    //   const d = (Math.random() * 10) | 0;
-    //   const e = (Math.random() * 10) | 0;
-    //   const f = (Math.random() * 10) | 0;
-    //   const g = (Math.random() * 10) | 0;
-    //   const h = (Math.random() * 10) | 0;
-    //   const participants = a + b + c + d + e + f + g + h;
-    //   const scoreBoard = [a, b, c, d, e, f, g, h];
-    //   const level = (Math.random() * 8) | 0;
-    //   const result = this.calcRanking(participants, scoreBoard, level);
-    //   return {
-    //     participants,
-    //     scoreBoard,
-    //     level,
-    //     result,
-    //   };
-    // };
-    // console.log(testCalcRanking());
-
     if (this.$store.state.cate) {
       // submit result
       const score = this.$store.state[this.$store.state.cate].score;
-      submitResult(this.$store.state.cate, score);
+
+      // db index 1 = score 0, index 8 = score 7, so score should +1
+      submitResult(this.$store.state.cate, score + 1);
 
       // get ranking data
-      getRanking(this.$store.state.cate)
-        .then((res) => {
-          if (+res.status === 200) this.rankingData = res.data.body;
-          else console.log(res, 'fail');
-        })
-        .then(() => {
-          const participants = this.rankingData.reduce(
-            (acc, cur) => +acc + +cur.score,
-            0
-          );
-          const scoreBoard = this.rankingData.map((item) => +item.score);
-
-          this.result = this.calcRanking(+participants, scoreBoard, +score);
-          console.log(this.result);
-        });
+      getRankingByScore(this.$store.state.cate, score).then((res) => {
+        if (+res.status === 200) {
+          this.result = {
+            level: Math.floor(score / 2) + 1,
+            ranking: res.data,
+          };
+        } else console.log(res, 'fail');
+      });
     }
-  },
-  methods: {
-    ...mapGetters({
-      getScore: 'getScore',
-    }),
-    calcRanking(participants, scoreBoard, point) {
-      // get ranking
-      let acc = 0;
-
-      for (let i = 0; i <= point; i++) {
-        acc += scoreBoard[i];
-      }
-
-      const ranking = participants - acc + 1;
-
-      // get level
-      const gap = Math.ceil(scoreBoard.length / 4);
-      const level = Math.floor(point / gap) + 1;
-
-      return {
-        ranking,
-        level,
-      };
-    },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.fk-page {
+  margin: 5rem 0;
+}
+
+.fk-result {
+  &__content {
+    display: flex;
+  }
+
+  &__standing-title {
+    color: $color-primary;
+  }
+  &__standing-desc {
+
+  }
+  &__standing-text {
+
+  }
+
+  &__share {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  &__share-btn {
+    @include reset-btn;
+    border: solid 2px $color-primary;
+    border-radius: 20px;
+    padding: $spacing-2 $spacing-3;
+    margin-right: 1rem;
+  }
+}
+</style>

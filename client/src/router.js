@@ -1,4 +1,5 @@
 import Vue from 'vue';
+// import store from './store';
 import Router from 'vue-router';
 import FkLanding from '@/pages/fk-landing.vue';
 import FkResult from '@/pages/fk-result.vue';
@@ -50,7 +51,7 @@ const routes = [
   { path: '/quiz/dog/7', component: Dog7 },
 ];
 
-export default new Router({
+const router = new Router({
   routes,
   scrollBehavior() {
     return new Promise((resolve) => {
@@ -60,3 +61,11 @@ export default new Router({
     });
   },
 });
+
+router.beforeEach((from, to, next) => {
+  // TODO: prevent go previous page if user is quizing.
+  // console.log(from, to, store);
+  next();
+})
+
+export default router;

@@ -2,7 +2,7 @@
 class Database
 {
   // appache host
-  private $host = "192.168.1.100";
+  private $host = "192.168.99.100";
 
   // [MYSQL_PORT] from docker env
   private $port = "3306";

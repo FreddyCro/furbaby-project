@@ -1,11 +1,11 @@
 <template lang="pug">
 .fk-doc
   .fk-doc__avator
-    img(src="/assets/img/quiz/doc_wang.png", alt="doctor wang")
+    img(src="assets/img/quiz/doc_wang.png", alt="doctor wang")
   .fk-doc__name
     .fk-doc__name-text {{ name }}
     .fk-doc__name-listener
-      img(src="/assets/img/quiz/listener.png", alt="listener")
+      img(src="assets/img/quiz/listener.png", alt="listener")
 
   .fk-doc__title {{ title }}
 
@@ -29,7 +29,7 @@ export default {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  max-width: 185px;
+  min-width: 185px;
 
   &__avator {
     margin-bottom: -1.5rem;

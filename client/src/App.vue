@@ -1,13 +1,13 @@
 <template lang="pug">
 #app
-  fk-dashboard
+  //- fk-dashboard
   fk-header
   transition(name="fade")
     router-view
 
   //- footer decoration
   img(
-    src="/assets/img/landing/red_ribbon.png"
+    src="assets/img/landing/red_ribbon.png"
     alt="red decoration"
   )
 
@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import FkDashboard from '@/components/fk-dashboard.vue';
+// import FkDashboard from '@/components/fk-dashboard.vue';
 import FkHeader from '@/components/fk-header.vue';
 import FkFooter from '@/components/fk-footer.vue';
 
 export default {
   name: 'App',
   components: {
-    FkDashboard,
+    // FkDashboard,
     FkHeader,
     FkFooter,
   },
