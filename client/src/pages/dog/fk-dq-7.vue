@@ -39,17 +39,16 @@
         :cate="cate"
       )
         template(#ans)
-          .fk-ans-opt-container.fk-ans-opt-container--correct.autopad-1
-            .fk-ans-opt.fk-ans-opt--correct(
+          .fk-dq7__ans-item-container
+            .fk-dq7__ans-item(
               v-for="item, index in data.ans"
               :key="`${cate}q-correct-${data.idx}-${item}`"
             )
-              .fk-ans-opt__img-wrapper
-                img(
-                  :src="`assets/img/quiz/dog/${data.idx}/option${index + 1}.png`"
-                  :alt="data.options[item]"
-                )
-              .fk-ans-opt__name {{ data.options[item] }}
+              img(
+                :src="`assets/img/quiz/dog/${data.idx}/option${index + 1}.png`"
+                :alt="data.options[item]"
+              )
+              .fk-dq7__ans-item-text {{ data.options[item] }}
 </template>
 
 <script>
@@ -77,3 +76,29 @@ export default {
   mixins: [multiStrategyMixins],
 };
 </script>
+
+<style lang="scss">
+.fk-dq7 {
+  &__ans-item-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__ans-item {
+    width: 100%;
+    display: flex;
+    border-bottom: solid 1px $gray-160;
+    padding: $spacing-4;
+
+    img {
+      width: 100px;
+      margin-right: $spacing-4;
+    }
+  }
+
+  &__ans-item-text {
+    color: $gray-160;
+  }
+}
+</style>

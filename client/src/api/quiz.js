@@ -9,7 +9,10 @@ const answerQuiz = (table, qId, correct) => {
       `${window.location.protocol}//${root}/api/furkid/update-quiz.php?id=${qId}&table=${table}&correct=${correct}`
     )
     .then((res) => {
-      if (+res.status === 200) console.log(table, qId, 'success');
+      // if (process.env.NODE_ENV === 'production') return;
+
+      if (+res.status === 200)
+        console.log(`submit ${table} ${qId} successfully.`);
       else console.log(table, qId, 'fail');
     });
 };
@@ -21,7 +24,9 @@ const submitResult = (table, score) => {
       `${window.location.protocol}//${root}/api/furkid/update-rank.php?table=${table}&id=${score}`
     )
     .then((res) => {
-      if (+res.status === 200) console.log(table, score, 'success');
+      // if (process.env.NODE_ENV === 'production') return;
+
+      if (+res.status === 200) console.log(`submit ${table} result successfully.`);
       else console.log(table, score, 'fail');
     });
 };

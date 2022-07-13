@@ -1,23 +1,27 @@
 <template lang="pug">
 .fk-result.fk-page
-  .fk-container
-    img(:src="finalImg", alt="final score")
+  .fk-result__content.fk-container
+    .fk-result__illus
+      img(:src="finalImg", alt="final score")
+    .fk-result__standing
+      h2.fk-result__standing-title {{ $store.state.user }}
+      h2.fk-result__standing-title(v-if="rankingStr") {{ rankingStr[result.level + 1].title }}
+      h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr[result.level + 1].desc }}
+      p.fk-result__standing-score 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
+      p.fk-result__standing-score 你現在排 {{ result.ranking }} 名
 
-    h1 {{ $store.state.user }}
-    h2(v-if="rankingStr") {{ rankingStr[result.level + 1].title }}
-    h3(v-if="rankingStr") {{ rankingStr[result.level + 1].desc }}
-    p your level: {{ result.level }}
-    p your ranking: {{ result.ranking }}
+      .fk-result__share
+        router-link(to="/")
+          .button.fk-result__share-btn(@click="$store.dispatch('resetState')") {{ str.tryAgain }}
+        .button.fk-result__share-btn() {{ str.lineToFriend }}
+        a(:href="sharingUrl" target="_blank" rel="noopener noreferrer")
+          .button.fk-result__share-btn() {{ str.shareResult }}
 
-    .fk-result__share
-      fk-btn-secondary(:text="str.tryAgain")
-      fk-btn-secondary(:text="str.lineToFriend")
-      a(:href="sharingUrl")
-        fk-btn-secondary(:text="str.shareResult")
-
-    .fk-result__learn-more
-      button.fk-btn-prim {{ str.furkidNews }}
-      button.fk-btn-prim {{ str.furkidStrategy }}
+      .fk-result__learn-more
+        a(href="#", target="_blank", rel="noopener noreferrer") 
+          button.fk-btn-prim {{ str.furkidNews }}
+        a(href="#", target="_blank", rel="noopener noreferrer") 
+          button.fk-btn-prim {{ str.furkidStrategy }}
 </template>
 
 <script>
@@ -80,3 +84,39 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.fk-page {
+  margin: 5rem 0;
+}
+
+.fk-result {
+  &__content {
+    display: flex;
+  }
+
+  &__standing-title {
+    color: $color-primary;
+  }
+  &__standing-desc {
+
+  }
+  &__standing-text {
+
+  }
+
+  &__share {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  &__share-btn {
+    @include reset-btn;
+    border: solid 2px $color-primary;
+    border-radius: 20px;
+    padding: $spacing-2 $spacing-3;
+    margin-right: 1rem;
+  }
+}
+</style>
