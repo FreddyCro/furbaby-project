@@ -26,17 +26,17 @@
                 ) {{ data.options[item] }}
 
           .fk-cq7-ans__cup.pure-u-1-2
-            //- TODO: cup chart
-            img(
-              v-show="+(index + 1) === +myAns"
-              v-for="item, index in Object.keys(data.options)" :key="item.id"
-              :src="`assets/img/quiz/cat/7/${index + 1}.png`"
-              alt="cup"
-            )
-            img(
-              v-show="!myAns"
-              src="assets/img/quiz/cat/7/0.png", alt="empty cup"
-            )
+            fk-cup(:data="+myAns")
+            //- img(
+            //-   v-show="+(index + 1) === +myAns"
+            //-   v-for="item, index in Object.keys(data.options)" :key="item.id"
+            //-   :src="`assets/img/quiz/cat/7/${index + 1}.png`"
+            //-   alt="cup"
+            //- )
+            //- img(
+            //-   v-show="!myAns"
+            //-   src="assets/img/quiz/cat/7/0.png", alt="empty cup"
+            //- )
 
 
 
@@ -70,6 +70,7 @@ import quiz from '@/assets/json/quiz-cat.json';
 import FkAns from '@/components/fk-ans/fk-ans.vue';
 import FkAnsCorrect from '@/components/fk-ans/fk-ans-correct.vue';
 import FkAnsSuggest from '@/components/fk-ans/fk-ans-suggest.vue';
+import FkCup from '@/components/fk-cup.vue';
 
 export default {
   name: 'CatQ7',
@@ -77,6 +78,7 @@ export default {
     FkAns,
     FkAnsCorrect,
     FkAnsSuggest,
+    FkCup,
   },
   data: () => ({
     data: quiz.cat7,
@@ -92,6 +94,4 @@ export default {
     margin-left: auto;
   }
 }
-
-
 </style>
