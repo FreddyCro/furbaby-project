@@ -10,15 +10,26 @@
     :cate="cate"
   )
     template(#my-ans)
-      .fk-cq5-months {{ inputValue }} 個月
+      .fk-cq5-months
+        span.digit {{ inputValue }}
+        span.text 個月
       .fk-cq5-slider-wrapper
         .fk-cq5-slider
+          img.cat-img(src="assets/img/quiz/cat/5/small_cat.png", alt="small cat")
           .fk-cq5-slider__range-input-wrapper
-            .fk-cq5-slider__range-input-tooltips(:style="rangeInputTooltipsStyle") 請拖曳圓圈
-            .fk-cq5-slider__range-input-index(:style="rangeInputTooltipsStyle") {{ inputValue }}
+            .fk-cq5-slider__range-input-index(:style="rangeInputTooltipsStyle")
+              span {{ inputValue }}
+
+            .fk-cq5-slider__range-input-tooltips(
+              v-if="myAns === undefined"
+              :style="rangeInputTooltipsStyle"
+            )
+              span.gesture
+                img(src="assets/img/quiz/cat/5/gesture.png", alt="gesture")
+              span.text 請拖曳圓圈
+
             .fk-cq5-slider__range-input-track
               .fk-cq5-slider__range-input-track__bar(:style="rangeInputTrackStyle")
-
             input.fk-cq5-slider__range-input(
               type="range"
               :min="min"
@@ -26,20 +37,8 @@
               v-model="inputValue"
               @change="selectAnswer(singleStrategy(data.ans, inputValue))"
             )
-
-      //- .fk-ans-opt-container
-      //-   .pure-g.autopad-3
-      //-     .pure-u-1-12(
-      //-       v-for="item, index in Object.keys(data.options)"
-      //-       :key="`${cate}q-${data.idx}-${item}`"
-      //-     )
-      //-       button(
-      //-         :class="{'fk-ans-opt--selected': +myAns === +item}"
-      //-         :id="`${cate}q-input-${data.idx}-${item}`"
-      //-         :value="+item"
-      //-         @click="selectAnswer(singleStrategy(data.ans, item))"
-      //-       ) {{ data.options[item] }}
-
+          img.cat-img(src="assets/img/quiz/cat/5/big_cat.png", alt="big cat")
+            
     template(#correct-ans)
       fk-ans-correct(
         :question="data.title"
@@ -87,11 +86,15 @@ export default {
   }),
   computed: {
     rangeInputTrackStyle() {
-      return `transform: translateX(${(this.inputValue / this.max - 1) * 100}%)`;
+      return `transform: translateX(${
+        (this.inputValue / this.max - 1) * 100
+      }%)`;
     },
     rangeInputTooltipsStyle() {
-      return `transform: translateX(${(this.inputValue / this.max - 1 + 1) * 100}%)`;
-    }
+      return `transform: translateX(${
+        (this.inputValue / this.max - 1 + 1) * 100
+      }%)`;
+    },
   },
 
   mixins: [singleStrategyMixins],
@@ -101,14 +104,29 @@ export default {
 <style lang="scss" scoped>
 .fk-cq5 {
   overflow: hidden;
+
+  .cat-img {
+    @include rwd-max(sm) {
+      max-height: 60px;
+    }
+  }
 }
 .fk-cq5-months {
-  padding: 0.5rem;
+  margin-top: $spacing-8;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
   text-align: center;
-  font-weight: bold;
-  border-radius: 0.5rem;
+  font-weight: boldwer;
+
+  .digit {
+    font-size: 3rem;
+    margin-right: 0.5rem;
+    color: darken($gray-160, 10%);
+  }
+  .text {
+    font-size: 1rem;
+    font-weight: bold;
+    color: darken($gray-160, 20%);
+  }
 }
 
 .fk-cq5-slider-wrapper {
@@ -116,9 +134,16 @@ export default {
 }
 
 .fk-cq5-slider {
+  width: 800px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &__range-input-wrapper {
     position: relative;
     height: 10px;
+    width: 100%;
     background-color: $gray-2;
     border-radius: 100px;
   }
@@ -126,6 +151,38 @@ export default {
   &__range-input-index, &__range-input-tooltips {
     position: relative;
     z-index: 1;
+    margin-right: 36px;
+    pointer-events: none;
+  }
+
+  &__range-input-index {
+    margin-top: -20px;
+    color: $white;
+    font-size: 1.5rem;
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      margin-left: -15px;
+      text-align: center;
+    }
+  }
+
+  &__range-input-tooltips {
+    margin-top: 1rem;
+    .gesture {
+      display: block;
+    }
+
+    .text {
+      font-size: 0.5rem;
+      display: inline-block;
+      transform: translateX(-0.8rem);
+      font-weight: bolder;
+      color: darken($gray-160, 20%);
+    }
   }
 
   &__range-input-track,

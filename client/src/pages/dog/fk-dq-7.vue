@@ -48,7 +48,7 @@
                 :src="`assets/img/quiz/dog/${data.idx}/option${index + 1}.png`"
                 :alt="data.options[item]"
               )
-              .fk-dq7__ans-item-text {{ data.options[item] }}
+              .fk-dq7__ans-item-text {{ data.ansDetail[item] }}
 </template>
 
 <script>
@@ -99,6 +99,18 @@ export default {
 
   &__ans-item-text {
     color: $gray-160;
+  }
+
+  .fk-ans-correct {
+    width: 100%;
+
+    &__question {
+      margin: 0 auto;
+    }
+
+    &__question-title {
+      margin-bottom: $spacing-7;
+    }
   }
 }
 </style>

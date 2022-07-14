@@ -12,7 +12,8 @@
 
   &__title-idx {
     font-size: 64px;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: monospace;
   }
 
   &__title-name-group {
@@ -28,6 +29,7 @@
     font-size: 30px;
     line-height: 1.67;
     font-weight: 600;
+    font-weight: 500;
   }
 
   &__title-label {
@@ -40,6 +42,7 @@
   &__title-footsprint {
     width: 40px;
     height: 40px;
+    transform: translate($spacing-2, 50%);
   }
 
   &__pagination {

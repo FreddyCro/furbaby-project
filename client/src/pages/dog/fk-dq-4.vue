@@ -44,7 +44,7 @@
         :say-title="data.doc.say.title"
         :say-content="data.doc.say.content"
         :source="data.doc.source"
-        )
+      )
 
 </template>
 

@@ -29,6 +29,8 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
+        :useVideo="true"
+        illustration="assets/vid/dog5.mp4"
       )
         template(#ans)
           .fk-ans-opt-container.fk-ans-opt-container--correct

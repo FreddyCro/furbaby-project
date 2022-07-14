@@ -42,6 +42,14 @@
         :say-content="data.doc.say.content"
         :source="data.doc.source"
       )
+        .fk-cq2__vid-wrapper
+          video.fk-cq2__vid(
+            autoplay
+            loop
+            type="video/mp4"
+            muted
+          )
+            source(src="assets/vid/cat2.mp4")
 </template>
 
 <script>
@@ -70,3 +78,15 @@ export default {
   mixins: [singleStrategyMixins],
 };
 </script>
+
+<style lang="scss" scoped>
+.fk-cq2{
+  &__vid-wrapper {
+    text-align: center;
+  }
+
+  &__vid{
+    max-width: 50%;
+  }
+}
+</style>

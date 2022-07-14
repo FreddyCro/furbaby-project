@@ -14,7 +14,16 @@
       slot(name="suggest")
 
   .fk-ans-correct__illus(v-if="illustration")
+    video(
+      v-if="useVideo"
+      autoplay
+      loop
+      type="video/mp4"
+      muted
+    )
+      source(src="assets/vid/dog5.mp4")
     img(
+      v-else
       :src="illustration"
       :alt="question"
     )
@@ -37,6 +46,10 @@ export default {
     cate: {
       type: String,
       required: true,
+    },
+    useVideo: {
+      type: Boolean,
+      default: false,
     },
     illustration: {
       type: String,
@@ -82,6 +95,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    video {
+      max-width: 100%;
+    }
   }
 }
 </style>

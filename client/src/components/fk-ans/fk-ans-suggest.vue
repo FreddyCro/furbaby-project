@@ -1,23 +1,26 @@
 <template lang="pug">
 .fk-ans-suggest
-  .fk-ans-suggest__doc
-    fk-doctor
+  .fk-ans-suggest__content
+    .fk-ans-suggest__doc
+      fk-doctor
 
-  .fk-ans-suggest__info
-    .fk-ans-suggest__say-wrapper
-      .fk-ans-suggest__say
-        h4.fk-ans-suggest__say-title “ {{ sayTitle }} ”
-        p.fk-ans-suggest__say-desc(v-html="sayContent")
+    .fk-ans-suggest__info
+      .fk-ans-suggest__say-wrapper
+        .fk-ans-suggest__say
+          h4.fk-ans-suggest__say-title “ {{ sayTitle }} ”
+          p.fk-ans-suggest__say-desc(v-html="sayContent")
 
-    .fk-ans-suggest__source-container(v-if="source")
-      .fk-ans-suggest__source-label-wrapper
-        span.fk-ans-suggest__source-label 資料來源
-      .fk-ans-suggest__source-wrapper
-        a.fk-ans-suggest__source(
-          v-for="item in source"
-          :key="item.id"
-          :href="item.url"
-        ) {{ item.text }}
+      .fk-ans-suggest__source-container(v-if="source")
+        .fk-ans-suggest__source-label-wrapper
+          span.fk-ans-suggest__source-label 資料來源
+        .fk-ans-suggest__source-wrapper
+          a.fk-ans-suggest__source(
+            v-for="item in source"
+            :key="item.id"
+            :href="item.url"
+          ) {{ item.text }}
+
+  slot
 </template>
 
 <script>
@@ -53,7 +56,9 @@ export default {
 
 <style lang="scss">
 .fk-ans-suggest {
-  display: flex;
+  .fk-ans-suggest__content {
+    display: flex;
+  }
 
   &__doc {
     width: 35%;

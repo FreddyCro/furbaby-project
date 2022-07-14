@@ -11,22 +11,32 @@
   )
     template(#my-ans)
       .fk-cq7-ans
-        .fk-cq7-ans__options
-          .pure-g.autopad-2
-            .pure-u-1-1(
-              v-for="item, index in Object.keys(data.options)"
-              :key="`${cate}q-${data.idx}-${item}`"
+        .pure-g.autopad-10
+          .fk-cq7-ans__options.pure-u-1-2
+            .pure-g.autopad-2
+              .pure-u-1-1(
+                v-for="item, index in Object.keys(data.options)"
+                :key="`${cate}q-${data.idx}-${item}`"
+              )
+                button.fk-ans-opt-small(
+                  :class="{'fk-ans-opt-small--selected': +myAns === +item}"
+                  :id="`${cate}q-input-${data.idx}-${item}`"
+                  :value="+item"
+                  @click="selectAnswer(singleStrategy(data.ans, item))"
+                ) {{ data.options[item] }}
+
+          .fk-cq7-ans__cup.pure-u-1-2
+            //- TODO: cup chart
+            img(
+              v-show="+(index + 1) === +myAns"
+              v-for="item, index in Object.keys(data.options)" :key="item.id"
+              :src="`assets/img/quiz/cat/7/${index + 1}.png`"
+              alt="cup"
             )
-              button.fk-ans-opt-small(
-                :class="{'fk-ans-opt-small--selected': +myAns === +item}"
-                :id="`${cate}q-input-${data.idx}-${item}`"
-                :value="+item"
-                @click="selectAnswer(singleStrategy(data.ans, item))"
-              ) {{ data.options[item] }}
-
-        .fk-cq7-ans__cup
-          //- TODO: cup chart
-
+            img(
+              v-show="!myAns"
+              src="assets/img/quiz/cat/7/0.png", alt="empty cup"
+            )
 
 
 
@@ -75,3 +85,13 @@ export default {
   mixins: [singleStrategyMixins],
 };
 </script>
+
+<style lang="scss" scoped>
+.fk-cq7-ans {
+  .fk-ans-opt-small {
+    margin-left: auto;
+  }
+}
+
+
+</style>

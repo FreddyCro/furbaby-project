@@ -13,6 +13,8 @@ export default new Vuex.Store({
     dog: {
       score: 0,
     },
+
+    // TODO: currentIndx
   },
   mutations: {
     setUser(state, user) {
