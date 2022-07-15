@@ -24,10 +24,10 @@
             :key="`${cate}q-${data.idx}-${item.id}`"
             :id="`js-dragger-wrapper-${index}`"
           )
-            .fk-ans-opt.fk-db__drag(:class="{'fk-db__drag--selected': myAns.includes(+item.id)}")
-              .fk-ans-opt__img-wrapper.fk-db__drag-img(:class="{'fk-db__drag-img--selected': myAns.includes(+item.id)}")
+            .fk-ans-opt.fk-db__drag(:class="{'fk-db__drag--selected': myAns.includes(item.id)}")
+              .fk-ans-opt__img-wrapper.fk-db__drag-img(:class="{'fk-db__drag-img--selected': myAns.includes(item.id)}")
                 img(
-                  v-show="!myAns.includes(+item.id)"
+                  v-show="!myAns.includes(item.id)"
                   :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
                   :alt="item.value"
                 )
