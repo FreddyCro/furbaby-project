@@ -33,9 +33,9 @@
                 fk-footprint
               span {{ $store.state.user }}
               br
-              span(v-if="rankingStr") {{ rankingStr[result.level + 1].title }}
+              span(v-if="rankingStr") {{ rankingStr[result.level].title }}
               
-            h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr[result.level + 1].desc }}
+            h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr[result.level].desc }}
             p.fk-result__standing-score 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
             p.fk-result__standing-score 你現在排 {{ result.ranking }} 名
 
@@ -90,7 +90,7 @@ export default {
     finalImg() {
       if (!this.$store.state.cate) return undefined;
       return `assets/img/quiz/${this.$store.state.cate}/level_${
-        this.result.level + 1
+        this.result.level
       }.png`;
     },
     rankingStr() {
