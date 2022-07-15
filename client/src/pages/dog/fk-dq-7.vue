@@ -41,7 +41,7 @@
         template(#ans)
           .fk-dq7__ans-item-container
             .fk-dq7__ans-item(
-              v-for="item, index in data.ans"
+              v-for="item, index in shuffleOptions"
               :key="`${cate}q-correct-${data.idx}-${item}`"
             )
               .fk-dq7__ans-item-img-wrapper
@@ -49,7 +49,11 @@
                   :src="`assets/img/quiz/dog/${data.idx}/option${index + 1}.png`"
                   :alt="data.options[item]"
                 )
-              .fk-dq7__ans-item-text {{ data.ansDetail[item] }}
+              .fk-dq7__ans-item-text
+                .fk-dq7__ans-item-text-title
+                  span.fk-dq7__ans-item-text-check(v-if="data.ans.includes(+item)") 
+                  span {{ data.options[item] }}
+                .fk-dq7__ans-item-text-desc {{ data.ansDetail[item] }}
 </template>
 
 <script>
@@ -101,6 +105,28 @@ export default {
 
   &__ans-item-text {
     color: $gray-160;
+  }
+
+  &__ans-item-text-title {
+    font-weight: 600;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: $spacing-2;
+  }
+
+  &__ans-item-text-check {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: $spacing-1;
+    background-image: url('~@/assets/img/common/icon_check.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $gray-160;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  &__ans-item-text-desc {
   }
 
   .fk-ans-correct {
