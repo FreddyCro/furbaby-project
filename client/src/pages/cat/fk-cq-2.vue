@@ -13,7 +13,7 @@
       .fk-ans-opt-container
         .pure-g.autopad-2
           .pure-u-1-1(
-            v-for="item, index in Object.keys(data.options)"
+            v-for="item, index in shuffleOptions"
             :key="`${cate}q-${data.idx}-${item}`"
           )
             button.fk-ans-opt-large(
@@ -42,13 +42,21 @@
         :say-content="data.doc.say.content"
         :source="data.doc.source"
       )
+        .fk-cq2__vid-wrapper
+          video.fk-cq2__vid(
+            autoplay
+            loop
+            type="video/mp4"
+            muted
+          )
+            source(src="assets/vid/cat2.mp4")
 </template>
 
 <script>
 /**
  * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, singleStrategy]
  */
 import { singleStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-cat.json';
@@ -70,3 +78,15 @@ export default {
   mixins: [singleStrategyMixins],
 };
 </script>
+
+<style lang="scss" scoped>
+.fk-cq2{
+  &__vid-wrapper {
+    text-align: center;
+  }
+
+  &__vid{
+    max-width: 50%;
+  }
+}
+</style>

@@ -44,15 +44,15 @@
         :say-title="data.doc.say.title"
         :say-content="data.doc.say.content"
         :source="data.doc.source"
-        )
+      )
 
 </template>
 
 <script>
 /**
  * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, singleStrategy]
  */
 import { singleStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-dog.json';

@@ -13,7 +13,7 @@
       .fk-ans-pie-wrapper
         .fk-ans-pie
           .fk-ans-pie__option(
-            v-for="item, index in Object.keys(data.options)"
+            v-for="item, index in shuffleOptions"
             :key="`${cate}q-${data.idx}-${item}`"
             :class="{ \
               [`fk-ans-pie__option--${index + 1}`]: true, \
@@ -31,7 +31,7 @@
             )
 
         .fk-ans-pie-label(
-          v-for="item, index in Object.keys(data.options)"
+          v-for="item, index in shuffleOptions"
           :key="`${cate}q-label-${data.idx}-${item}`"
           :class="{ \
             [`fk-ans-pie-label--${index + 1}`]: true, \
@@ -46,8 +46,8 @@
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container.pure-g.autopad-4
-            .pure-u-1-3.align-center(
+          .fk-ans-opt-container.pure-g.autopad-2
+            .pure-u-1-1(
               v-for="item, index in data.ans"
               :key="`${cate}q-correct-${data.idx}-${item}`"
             )
@@ -89,3 +89,13 @@ export default {
   mixins: [multiStrategyMixins],
 };
 </script>
+
+<style lang="scss" scoped>
+.fk-dq6 {
+  .fk-ans-opt-small {
+    display: inline-flex;
+    min-width: auto;
+    text-align: left;
+  }
+}
+</style>

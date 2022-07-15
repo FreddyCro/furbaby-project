@@ -7,7 +7,9 @@
     .fk-doc__name-listener
       img(src="assets/img/quiz/listener.png", alt="listener")
 
-  .fk-doc__title {{ title }}
+  .fk-doc__title 
+    span {{ org }}
+    span {{ title }}
 
 </template>
 
@@ -17,7 +19,8 @@ export default {
   data() {
     return {
       name: '王尚麟 獸醫師',
-      title: '國立臺灣大學附設動物醫院內科主治醫師',
+      org: '國立臺灣大學附設動物醫院',
+      title: '內科主治醫師',
     };
   },
 };
@@ -29,7 +32,7 @@ export default {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  min-width: 185px;
+  min-width: 195px;
 
   &__avator {
     margin-bottom: -1.5rem;
@@ -58,6 +61,10 @@ export default {
     margin-top: $spacing-2;
     color: $color-primary;
     text-align: center;
+
+    span {
+      display: inline-block;
+    }
   }
 }
 </style>

@@ -13,7 +13,7 @@
     template(#my-ans)
       .fk-ans-opt-container.pure-g.autopad-4
         .pure-u-1-3.align-center(
-          v-for="item, index in Object.keys(data.options)"
+          v-for="item, index in shuffleOptions"
           :key="`${cate}q-${data.idx}-${item}`"
         )
           .fk-ans-opt(
@@ -22,7 +22,7 @@
             .fk-ans-opt__img-wrapper
               //- component(:is="`Option-${index + 1}`")
               img(
-                :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
+                :src="`assets/img/quiz/${cate}/${data.idx}/option${item}.png`"
                 :alt="data.options[item]"
               )
             .fk-ans-opt__name {{ data.options[item] }}
@@ -43,8 +43,8 @@
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container.fk-ans-opt-container--correct.pure-g.autopad-4
-            .pure-u-1-4.align-center(
+          .fk-ans-opt-container.fk-ans-opt-container--correct.pure-g.autopad-1
+            .pure-u-1-3.align-center(
               v-for="item, index in data.ans"
               :key="`${cate}q-correct-${data.idx}-${item}`"
             )

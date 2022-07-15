@@ -1,5 +1,5 @@
 import Vue from 'vue';
-// import store from './store';
+import store from './store';
 import Router from 'vue-router';
 import FkLanding from '@/pages/fk-landing.vue';
 import FkResult from '@/pages/fk-result.vue';
@@ -27,7 +27,7 @@ import Dog7 from '@/pages/dog/fk-dq-7.vue';
 Vue.use(Router);
 
 const routes = [
-  { path: '/', component: FkLanding },
+  { path: '/', name: 'landing', component: FkLanding },
   { path: '/result', component: FkResult },
 
   // cat quiz
@@ -52,6 +52,7 @@ const routes = [
 ];
 
 const router = new Router({
+  store,
   routes,
   scrollBehavior() {
     return new Promise((resolve) => {
@@ -62,10 +63,43 @@ const router = new Router({
   },
 });
 
-router.beforeEach((from, to, next) => {
-  // TODO: prevent go previous page if user is quizing.
-  // console.log(from, to, store);
+router.beforeEach((to, from, next) => {
+  const getPage = (path) => {
+    const page = path.split('/').pop();
+    return page;
+  };
+
+  // back to landing page
+  if (store.state.user === '' || !store.state.cate) {
+    if (to.path !== '/' && to.path !== '/quiz/cat' && to.path !== '/quiz/dog') {
+      router.go(-1);
+    }
+  }
+
+  // prevent go to next page
+  if (+getPage(to.path) > +store.state.currentStep + 1) {
+    // router.push({
+    //   path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
+    // });
+  }
+
+  // prevent go to previous page
+  if (+getPage(to.path) < +store.state.currentStep) {
+    // router.push({
+    //   path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
+    // });
+  }
+
+  if (to.path === '/result' && store.state.currentStep < 7) {
+    router.go(-1);
+  }
+
+  // // go to previous page
+  // if (!checkCategory(to.path, store.state.cate)) {
+  //   next();
+  // }
+
   next();
-})
+});
 
 export default router;

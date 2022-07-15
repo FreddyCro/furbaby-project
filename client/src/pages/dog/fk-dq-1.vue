@@ -13,7 +13,7 @@
     template(#my-ans)
       .fk-ans-opt-container.pure-g.autopad-4
         .pure-u-1-3.align-center(
-          v-for="item, index in Object.keys(data.options)"
+          v-for="item, index in shuffleOptions"
           :key="`${cate}q-${data.idx}-${item}`"
           :class="{'fk-ans-opt--selected': myAns.includes(+item)}"
         )

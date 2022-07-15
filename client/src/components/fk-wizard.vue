@@ -3,12 +3,20 @@
   .fk-wizard__circle(
     v-for="item in 7"
     :key="item.id"
-    :class="{'fk-wizard__circle--active': +item === +idx}"
-  ) {{ item }}
+    :class="{ \
+      'fk-wizard__circle--active': +item === +idx, \
+      'fk-wizard__circle--done': +item < +$store.state.currentStep, \
+    }"
+  )
+    span(v-if="+item < +$store.state.currentStep")
+      fk-footprint
+    span(v-else) {{ item }}
     
 </template>
 
 <script>
+import FkFootprint from '@/components/fk-footprint.vue';
+
 export default {
   name: 'FkWizard',
   props: {
@@ -16,6 +24,9 @@ export default {
       type: Number,
       required: true,
     },
+  },
+  components: {
+    FkFootprint,
   },
 };
 </script>
@@ -65,6 +76,11 @@ $progress-red: rgb(235, 0, 26);
     &--active {
       color: $white;
       background-color: $progress-red;
+    }
+
+    &--done {
+      background-color: $white;
+      border-color: transparent;
     }
 
     &:first-child {

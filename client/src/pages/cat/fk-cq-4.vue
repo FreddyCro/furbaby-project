@@ -48,8 +48,8 @@
 <script>
 /**
  * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, singleStrategy]
  */
 import { singleStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-cat.json';

@@ -13,7 +13,7 @@
       .fk-ans-opt-container
         .pure-g.autopad-2
           .pure-u-1-3(
-            v-for="item, index in Object.keys(data.options)"
+            v-for="item, index in shuffleOptions"
             :key="`${cate}q-${data.idx}-${item}`"
           )
             button.fk-ans-opt(
@@ -24,7 +24,7 @@
             )
               .fk-ans-opt__img-wrapper
                 img(
-                  :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
+                  :src="`assets/img/quiz/${cate}/${data.idx}/option${item}.png`"
                   :alt="data.options[item]"
                 )
               .fk-ans-opt__name {{ data.options[item] }}
@@ -56,8 +56,8 @@
 <script>
 /**
  * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, singleStrategy]
  */
 import { singleStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-cat.json';

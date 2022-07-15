@@ -1,23 +1,35 @@
 <template lang="pug">
 .fk-ans-correct
-  .fk-ans-correct__question
-    .fk-ans-correct__question-title
-      span.fk-ans-correct__question-title-footprint
-        footprint-cat(v-if="cate === 'cat'")
-        footprint-dog(v-if="cate === 'dog'")
-      span {{ question }}
+  .pure-g.autopad-3
+    div(:class="{'pure-u-5-8': illustration}")
+      .fk-ans-correct__question
+        .fk-ans-correct__question-title
+          span.fk-ans-correct__question-title-footprint
+            footprint-cat(v-if="cate === 'cat'")
+            footprint-dog(v-if="cate === 'dog'")
+          span {{ question }}
 
-    .fk-ans-correct__question-ans
-      slot(name="ans")
-    
-    .fk-ans-correct__suggest
-      slot(name="suggest")
+        .fk-ans-correct__question-ans
+          slot(name="ans")
+        
+        .fk-ans-correct__suggest
+          slot(name="suggest")
 
-  .fk-ans-correct__illus(v-if="illustration")
-    img(
-      :src="illustration"
-      :alt="question"
-    )
+    .pure-u-3-8(v-if="illustration")
+      .fk-ans-correct__illus
+        video(
+          v-if="useVideo"
+          autoplay
+          loop
+          type="video/mp4"
+          muted
+        )
+          source(src="assets/vid/dog5.mp4")
+        img(
+          v-else
+          :src="illustration"
+          :alt="question"
+        )
 </template>
 
 <script>
@@ -38,6 +50,10 @@ export default {
       type: String,
       required: true,
     },
+    useVideo: {
+      type: Boolean,
+      default: false,
+    },
     illustration: {
       type: String,
     },
@@ -52,7 +68,6 @@ export default {
   margin-bottom: $spacing-7;
 
   &__question {
-    width: 65%;
     display: flex;
     flex-direction: column;
   }
@@ -78,10 +93,17 @@ export default {
   }
 
   &__illus {
-    width: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    video {
+      max-width: 100%;
+    }
+
+    @include rwd-min(md) {
+      padding-left: $spacing-4;
+    }
   }
 }
 </style>

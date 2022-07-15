@@ -3,6 +3,7 @@
 // import FkAnsDoctor from '@/components/fk-ans/fk-ans-doctor.vue';
 // import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 import { answerQuiz } from '@/api/quiz';
+import { shuffle } from '@/assets/js/utils';
 
 const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
@@ -14,6 +15,11 @@ const multiStrategyMixins = {
       isCorrect: false,
       myAns: [],
     };
+  },
+  computed: {
+    shuffleOptions() {
+      return shuffle(Object.keys(this.data.options))
+    },
   },
   methods: {
     selectAnswer(isCorrec) {
@@ -29,6 +35,9 @@ const multiStrategyMixins = {
       if (this.isCorrect) {
         this.$store.dispatch('updateScore', cate);
       }
+
+      this.$store.dispatch('setCurrentStep', this.data.idx + 1);
+      console.log('go:', this.$store.state.currentStep);
     },
     multiStrategy(correctAns) {
       const newCorrectAns = correctAns.map((item) => +item).sort();
@@ -47,6 +56,11 @@ const singleStrategyMixins = {
       myAns: undefined,
     };
   },
+  computed: {
+    shuffleOptions() {
+      return shuffle(Object.keys(this.data.options))
+    },
+  },
   methods: {
     selectAnswer(isCorrec) {
       this.hasSelect = this.myAns !== undefined;
@@ -61,6 +75,9 @@ const singleStrategyMixins = {
       if (this.isCorrect) {
         this.$store.dispatch('updateScore', cate);
       }
+
+      this.$store.dispatch('setCurrentStep', this.data.idx + 1);
+      console.log('go:', this.$store.state.currentStep);
     },
     singleStrategy(correctAns, myAns) {
       this.myAns = myAns;
