@@ -13,7 +13,6 @@
           :alt="str.intro.title"
         )
 
-      //- TODO: video
       .fk-l-intro__video-wrapper
         video.fk-l-intro__video(
           autoplay
@@ -23,7 +22,6 @@
         )
           source(src="assets/vid/landing.mp4")
 
-      //- TODO: scroll down
       a.fk-l-intro__scroll-down(href="#" v-scroll-to="'#start-quiz'")
         Mouse
         //- img(src="assets/img/landing/mouse.svg", alt="scroll down")

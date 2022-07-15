@@ -163,10 +163,10 @@ export default {
   },
   computed: {
     redTransform() {
-      return `translate(0, ${30 - this.data * 5})`;
+      return `translate(0, ${60 - this.data * 10})`;
     },
     textTransform() {
-      return `translate(105, ${(30 - this.data * 5 + 145) || 0})`;
+      return `translate(105, ${(60 - this.data * 10 + 116) || 0})`;
     },
   },
 };

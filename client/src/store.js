@@ -13,8 +13,7 @@ export default new Vuex.Store({
     dog: {
       score: 0,
     },
-
-    // TODO: currentIndx
+    currentStep: 0,
   },
   mutations: {
     setUser(state, user) {
@@ -31,6 +30,10 @@ export default new Vuex.Store({
       state.user = '';
       state.cat.score = 0;
       state.dog.score = 0;
+      state.currentStep = 0;
+    },
+    setCurrentStep(state, step) {
+      state.currentStep = step;
     },
   },
   actions: {
@@ -45,6 +48,9 @@ export default new Vuex.Store({
     },
     resetState(context) {
       context.commit('resetState');
+    },
+    setCurrentStep(context, step) {
+      context.commit('setCurrentStep', step);
     },
   },
   getters: {

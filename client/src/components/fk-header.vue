@@ -60,10 +60,16 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: $spacing-2;
+    padding: 0 $spacing-2;
+    border-radius: 10px;
+    transition: .15s ease-in-out;
 
     @include rwd-min(md) {
-      margin-right: $spacing-4;
+      padding: 0 $spacing-4;
+    }
+
+    &:hover {
+      background-color: $gray-1;
     }
   }
 

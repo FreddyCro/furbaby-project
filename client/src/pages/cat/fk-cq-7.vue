@@ -15,7 +15,7 @@
           .fk-cq7-ans__options.pure-u-1-2
             .pure-g.autopad-2
               .pure-u-1-1(
-                v-for="item, index in Object.keys(data.options)"
+                v-for="item, index in shuffleOptions"
                 :key="`${cate}q-${data.idx}-${item}`"
               )
                 button.fk-ans-opt-small(
@@ -27,9 +27,10 @@
 
           .fk-cq7-ans__cup.pure-u-1-2
             fk-cup(:data="+myAns")
+            //- change image version
             //- img(
             //-   v-show="+(index + 1) === +myAns"
-            //-   v-for="item, index in Object.keys(data.options)" :key="item.id"
+            //-   v-for="item, index in shuffleOptions" :key="item.id"
             //-   :src="`assets/img/quiz/cat/7/${index + 1}.png`"
             //-   alt="cup"
             //- )
@@ -37,8 +38,6 @@
             //-   v-show="!myAns"
             //-   src="assets/img/quiz/cat/7/0.png", alt="empty cup"
             //- )
-
-
 
     template(#correct-ans)
       fk-ans-correct(
@@ -61,9 +60,8 @@
 <script>
 /**
  * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
- * components: [FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary]
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, singleStrategy]
  */
 import { singleStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-cat.json';

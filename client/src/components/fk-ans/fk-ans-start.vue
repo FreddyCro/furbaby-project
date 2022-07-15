@@ -10,10 +10,7 @@
     .fk-ans__start
       .fk-name-input
         .fk-name-input__title
-          img(
-            src="assets/img/common/footprint_icon.png"
-            alt="footprint"
-          )
+          fk-footprint
           
           h2 {{ title }}
 
@@ -26,6 +23,7 @@
             type="text"
             placeholder="請輸入你的名字"
             v-model="name"
+            @keyup.enter="$router.push(`/quiz/${cate}/1`)"
             autofocus
           )
 
@@ -43,6 +41,7 @@
 <script>
 import FkBg from '@/components/fk-bg.vue';
 import FkWizard from '@/components/fk-wizard.vue';
+import FkFootprint from '@/components/fk-footprint.vue';
 
 export default {
   name: 'FkAns',
@@ -61,6 +60,7 @@ export default {
   components: {
     FkBg,
     FkWizard,
+    FkFootprint,
   },
   data: () => ({
     name: '',
@@ -69,6 +69,9 @@ export default {
     name(val) {
       this.$store.dispatch('setUser', val);
     },
+  },
+  created() {
+    this.$store.dispatch('setCategory', this.cate);
   },
 };
 </script>
@@ -79,8 +82,10 @@ export default {
     display: flex;
     align-items: center;
 
-    h1 {
+    h2 {
+      margin-left: $spacing-2;
       color: $color-primary;
+      font-weight: 400;
     }
 
     img {
@@ -99,10 +104,6 @@ export default {
     align-items: center;
   }
 
-  &__input-label {
-    margin-right: $spacing-3;
-  }
-
   &__text {
     display: flex;
     align-items: center;
@@ -111,6 +112,7 @@ export default {
 
   &__label {
     margin: $spacing-3 $spacing-3 $spacing-3 0;
+    color: $color-primary;
   }
 
   input[type='text'] {

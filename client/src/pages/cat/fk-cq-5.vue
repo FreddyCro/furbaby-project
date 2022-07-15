@@ -3,7 +3,7 @@
   fk-ans(
     :idx="+data.idx"
     :title="data.title"
-    questionType="single"
+    questionType="drag"
     :has-select="hasSelect"
     :has-submitted="hasSubmitted"
     :submit-answer="submitAnswer"
@@ -60,9 +60,8 @@
 <script>
 /**
  * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
- * components: [FkAnsCorrect, FkAnsSubmit, FkAnsDoctor, FkBtnPrimary]
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, singleStrategy]
  */
 import { singleStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-cat.json';

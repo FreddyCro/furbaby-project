@@ -13,7 +13,7 @@
       .fk-ans-opt-container
         .pure-g.autopad-2
           .pure-u-1-1(
-            v-for="item, index in Object.keys(data.options)"
+            v-for="item, index in shuffleOptions"
             :key="`${cate}q-${data.idx}-${item}`"
           )
             button.fk-ans-opt-large(
@@ -55,8 +55,8 @@
 <script>
 /**
  * @mixin submitAnswer
- * data: [hasSelect, hasSubmitted, isCorrect]
- * methods: [selectAnswer, submitAnswer]
+ * data: [hasSelect, hasSubmitted, isCorrect, myAns]
+ * methods: [selectAnswer, submitAnswer, singleStrategy]
  */
 import { singleStrategyMixins } from '@/assets/js/mixins';
 import quiz from '@/assets/json/quiz-cat.json';

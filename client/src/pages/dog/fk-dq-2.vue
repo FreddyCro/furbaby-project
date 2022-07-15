@@ -11,63 +11,59 @@
   )
     template(#my-ans)
       //- bowl options
-      .fk-db.fk-ans-opt-container
-        .pure-g.autopad-4
-          .pure-u-1-5.align-center(
-            v-for="item, index in Object.keys(data.options)"
-            :key="`${cate}q-${data.idx}-${item}`"
-            :class="{'fk-ans-opt--selected': myAns.includes(+item)}"
+      .fk-db.fk-db__drag-container
+        draggable(
+          class="pure-g autopad-4"
+          :list="list1"
+          :group="{ name: 'dq2', pull: 'clone', put: false }"
+          :sort="false"
+          @change="handleChange"
+        )
+          .pure-u-1-5(
+            v-for="item, index in list1"
+            :key="`${cate}q-${data.idx}-${item.id}`"
+            :id="`js-dragger-wrapper-${index}`"
           )
-            .fk-ans-opt(
-              :id="`js-dragger-wrapper-${index}`"
-            )
-              .fk-ans-opt__img-wrapper(
-                :id="`js-dragger-${index}`"
-                :data-option-index="index"
-              )
-                draggable(
-                  class="fk-db__drag-item"
-                  :list="list1"
-                  group="people"
-                  @change="handleChange"
+            .fk-ans-opt.fk-db__drag(:class="{'fk-db__drag--selected': myAns.includes(+item.id)}")
+              .fk-ans-opt__img-wrapper.fk-db__drag-img(:class="{'fk-db__drag-img--selected': myAns.includes(+item.id)}")
+                img(
+                  v-show="!myAns.includes(+item.id)"
+                  :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
+                  :alt="item.value"
                 )
-                  img(
-                    :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
-                    :alt="data.options[item]"
-                  )
-
-              .fk-ans-opt__name {{ data.options[item] }}
-              //- input.fk-ans-opt__input(
-              //-   :id="`${cate}q-input-${data.idx}-${item}`"
-              //-   type="checkbox"
-              //-   :value="+item"
-              //-   v-model="myAns"
-              //-   @change="selectAnswer(multiStrategy(data.ans))"
-              //- )
+              .fk-ans-opt__name {{ item.value }}
 
       .fk-db__bowl-item-container
         .fk-db__bowl-back
-        .fk-db__bowl-item-site(
-          v-for="(element, index) in Object.keys(data.options)"
+          img(src="assets/img/quiz/dog/2/bowl_01.png", alt="bowl")
+        .fk-db__bowl-item-seat(
+          v-for="(element, index) in shuffleOptions"
           :key="`db-bowl-${index + 1}-wrapper`"
           :style="{ transform: bowlItemTransform[index] }"
         )
         draggable(
           class="fk-db__bowl-item-group"
           :list="list2"
-          group="people"
+          group="dq2"
+          :sort="false"
+          @choose="handleRemove"
           @change="handleChange"
         )
           .fk-db__bowl-item(
             v-for="(element, index) in list2"
-            :key="element.id"
+            :key="`bowl-item-${index}`"
             :style="{ transform: bowlItemTransform[index] }"
           ) 
             img(
-              :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
+              :src="`assets/img/quiz/${cate}/${data.idx}/option${element.id}.png`"
             )
-
         .fk-db__bowl-front
+          img(src="assets/img/quiz/dog/2/bowl_02.png", alt="bowl")
+
+        .fk-db__bowl-hint
+          span.print
+            footprint-dog
+          span {{ data.hint }}
 
     template(#correct-ans)
       fk-ans-correct(
@@ -76,7 +72,7 @@
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container.fk-ans-opt-container--correct.pure-g.autopad-1
+          .fk-ans-opt-container--correct.pure-g.autopad-1
             .pure-u-1-2.align-center(
               v-for="item, index in data.ans"
               :key="`${cate}q-correct-${data.idx}-${item}`"
@@ -104,8 +100,10 @@
  * methods: [selectAnswer, submitAnswer, multiStrategy]
  */
 import { multiStrategyMixins } from '@/assets/js/mixins';
+import { shuffle } from '@/assets/js/utils';
 
 import quiz from '@/assets/json/quiz-dog.json';
+import FootprintDog from '@/assets/img/quiz/dog/footprint_dog_red.svg';
 import FkAns from '@/components/fk-ans/fk-ans.vue';
 import FkAnsCorrect from '@/components/fk-ans/fk-ans-correct.vue';
 import FkAnsSuggest from '@/components/fk-ans/fk-ans-suggest.vue';
@@ -114,16 +112,17 @@ import draggable from 'vuedraggable';
 let idGlobal = 8;
 const transformSaltX = Array(10)
   .fill(0)
-  .map(() => Math.random() * (Math.round(Math.random()) * 2 - 1) * 1.2);
+  .map(() => Math.random() * (Math.round(Math.random()) * 2 - 1));
 const transformSaltY = Array(10)
   .fill(0)
-  .map(() => Math.random() * (Math.round(Math.random()) * 2 - 1) * 0.1);
+  .map(() => Math.random() * (Math.round(Math.random()) * 2 - 1));
 
 export default {
   name: 'DogQ2',
   display: 'Custom Clone',
   order: 3,
   components: {
+    FootprintDog,
     FkAns,
     FkAnsCorrect,
     FkAnsSuggest,
@@ -133,24 +132,39 @@ export default {
   data: () => ({
     data: quiz.dog2,
     cate: 'dog',
+    listRaw: [],
     list1: [],
     list2: [],
   }),
   computed: {
     bowlItemTransform() {
       return Object.keys(this.data.options).map((el, index) => {
-        return `translate(${index * 50 * transformSaltX[index]}px, ${
-          index * 50 * transformSaltY[index]
+        return `translate(${Math.min(index * 50 * 0.5 * transformSaltX[index] - 25, 50)}px, ${
+          index * 50 * 0.1 * transformSaltY[index]
         }px)`;
       });
     },
   },
   created() {
-    this.list1 = Object.keys(this.data.options);
+    // clone options and assign id
+    this.listRaw = shuffle(Object.keys(this.data.options)).map((el) => {
+      return { id: el, value: this.data.options[el] };
+    });
+    this.list1 = [...this.listRaw];
   },
   methods: {
+    handleRemove(e) {
+      this.list2.splice(e.oldIndex, 1);
+      this.myAns = this.list2.map((el) => el.id);
+    },
     handleChange() {
-      return;
+      // prevent duplicated answer
+      this.list2 = this.list2.filter(
+        (item, index) => this.list2.indexOf(item) === index
+      );
+
+      this.myAns = this.list2.map((el) => el.id);
+      this.selectAnswer(this.multiStrategy(this.data.ans));
     },
     cloneDog({ id }) {
       return {
@@ -163,6 +177,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fk-dq2 {
+  .fk-ans-opt__name {
+    min-width: 120px;
+  }
+}
 .fk-dq2-bowl {
   position: relative;
   width: 500px;
@@ -175,41 +194,76 @@ export default {
   }
 }
 .fk-db {
-  &__drag-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  &__drag {
+    &--selected {
+      background-color: transparent;
+      pointer-events: none;
+    }
+  }
+
+  &__drag-img {
+    border: dashed 2px transparent;
+
+    &--selected {
+      border-color: $color-primary;
+      background-color: transparent;
+    }
   }
 
   &__bowl-item-container {
     position: relative;
-    width: 350px;
-    height: 150px;
-    margin: 0 auto;
-    background-color: gray;
+    width: 255px;
+    height: 120px;
+    margin: $spacing-8 auto $spacing-6 auto;
+    text-align: center;
   }
 
-  &__bowl-item-site {
+  &__bowl-hint {
     position: absolute;
-    left: 40%;
-    top: 10%;
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary;
+    font-size: 0.5rem;
+    font-weight: bolder;
+    margin-top: $spacing-4;
+    transform: translate(-50%, 100%);
+
+    .print {
+      margin-right: $spacing-1;
+      transform: scale(0.5);
+      transform-origin: right;
+    }
+
+    span {
+      flex-shrink: 0;
+    }
+  }
+
+  &__bowl-item-seat {
+    position: absolute;
+    left: 50%;
+    top: 0%;
     width: 70px;
     height: 70px;
     border-radius: 50%;
     transition: 0.25s ease-in-out;
+    pointer-events: none;
   }
 
   &__bowl-item {
     position: absolute;
-    left: 40%;
-    top: 10%;
+    left: 50%;
+    top: 0%;
     width: 70px;
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    background-color: $color-primary;
     transition: 0.25s ease-in-out;
   }
 
@@ -222,7 +276,7 @@ export default {
   &__bowl-back {
     position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
     width: 100%;
     pointer-events: none;
   }

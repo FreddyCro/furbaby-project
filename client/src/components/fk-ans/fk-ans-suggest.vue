@@ -1,24 +1,27 @@
 <template lang="pug">
 .fk-ans-suggest
   .fk-ans-suggest__content
-    .fk-ans-suggest__doc
-      fk-doctor
+    .pure-g.autopad-2
+      .pure-u-1-3
+        .fk-ans-suggest__doc
+          fk-doctor
 
-    .fk-ans-suggest__info
-      .fk-ans-suggest__say-wrapper
-        .fk-ans-suggest__say
-          h4.fk-ans-suggest__say-title “ {{ sayTitle }} ”
-          p.fk-ans-suggest__say-desc(v-html="sayContent")
+      .pure-u-2-3
+        .fk-ans-suggest__info
+          .fk-ans-suggest__say-wrapper
+            .fk-ans-suggest__say
+              h4.fk-ans-suggest__say-title “ {{ sayTitle }} ”
+              p.fk-ans-suggest__say-desc(v-html="sayContent")
 
-      .fk-ans-suggest__source-container(v-if="source")
-        .fk-ans-suggest__source-label-wrapper
-          span.fk-ans-suggest__source-label 資料來源
-        .fk-ans-suggest__source-wrapper
-          a.fk-ans-suggest__source(
-            v-for="item in source"
-            :key="item.id"
-            :href="item.url"
-          ) {{ item.text }}
+          .fk-ans-suggest__source-container(v-if="source")
+            .fk-ans-suggest__source-label-wrapper
+              span.fk-ans-suggest__source-label 資料來源
+            ol.fk-ans-suggest__source-wrapper
+              li(
+                v-for="item in source"
+                :key="item.id"
+              )
+                a.fk-ans-suggest__source(:href="item.url" target="_blank" rel="noopener norefer") {{ item.text }}
 
   slot
 </template>
@@ -85,6 +88,14 @@ export default {
   &__source-container {
     display: flex;
     margin-top: $spacing-5;
+  }
+
+  &__source-wrapper, a {
+    color: $gray-5;
+
+    li {
+      margin-bottom: $spacing-3;
+    }
   }
 
   &__source-label-wrapper {
