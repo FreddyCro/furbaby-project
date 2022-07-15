@@ -72,7 +72,7 @@ router.beforeEach((to, from, next) => {
   // back to landing page
   if (store.state.user === '' || !store.state.cate) {
     if (to.path !== '/' && to.path !== '/quiz/cat' && to.path !== '/quiz/dog') {
-      router.go('/');
+      router.push({ path: '/' });
     }
   }
 
@@ -91,7 +91,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (to.path === '/result' && store.state.currentStep < 7) {
-    router.go('/');
+    router.push({ path: '/' });
   }
 
   // // go to previous page

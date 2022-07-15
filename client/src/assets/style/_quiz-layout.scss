@@ -185,7 +185,7 @@
   border: dashed 2px $color-primary;
   cursor: pointer;
 
-  &:hover:not(.fk-ans-opt-large--correct) {
+  &:hover:not(.fk-ans-opt-large--correct):not(.fk-ans-opt-large--selected) {
     .fk-ans-opt-large__text {
       background-color: lighten($gray-160, 10%);
     }
@@ -194,17 +194,13 @@
   &--correct {
     margin: 0;
     cursor: auto;
+
+    
   }
 
   &--selected {
     .fk-ans-opt-large__text {
       background-color: $color-primary;
-    }
-
-    &:hover {
-      .fk-ans-opt-large__text {
-        background-color: lighten($color-primary, 10%);
-      }
     }
   }
 
