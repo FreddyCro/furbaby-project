@@ -89,7 +89,7 @@ export default {
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
-      return `/assets/img/quiz/${this.$store.state.cate}/level_${
+      return `assets/img/quiz/${this.$store.state.cate}/level_${
         this.result.level + 1
       }.png`;
     },

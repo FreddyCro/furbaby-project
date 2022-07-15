@@ -72,26 +72,26 @@ router.beforeEach((to, from, next) => {
   // back to landing page
   if (store.state.user === '' || !store.state.cate) {
     if (to.path !== '/' && to.path !== '/quiz/cat' && to.path !== '/quiz/dog') {
-      router.go(-1);
+      router.go('/');
     }
   }
 
   // prevent go to next page
   if (+getPage(to.path) > +store.state.currentStep + 1) {
-    // router.push({
-    //   path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
-    // });
+    router.push({
+      path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
+    });
   }
 
   // prevent go to previous page
   if (+getPage(to.path) < +store.state.currentStep) {
-    // router.push({
-    //   path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
-    // });
+    router.push({
+      path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
+    });
   }
 
   if (to.path === '/result' && store.state.currentStep < 7) {
-    router.go(-1);
+    router.go('/');
   }
 
   // // go to previous page
