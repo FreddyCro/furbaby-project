@@ -81,7 +81,11 @@ export default {
   }),
   computed: {
     sharingUrl() {
-      return `./sharing.php?n=${this.$store.state.user}&c=${this.$store.state.cate}&lv=${this.result.level}&sc=${this.$store.state[this.$store.state.cate].score}`;
+      return `./sharing.php?n=${this.$store.state.user}&c=${
+        this.$store.state.cate
+      }&lv=${this.result.level}&sc=${
+        this.$store.state[this.$store.state.cate].score
+      }`;
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
@@ -99,6 +103,7 @@ export default {
     if (this.$store.state.cate) {
       // submit result
       const score = this.$store.state[this.$store.state.cate].score;
+      this.result.level = Math.floor(score / 2) + 1;
 
       // db index 1 = score 0, index 8 = score 7, so score should +1
       submitResult(this.$store.state.cate, score + 1);
@@ -106,10 +111,7 @@ export default {
       // get ranking data
       getRankingByScore(this.$store.state.cate, score).then((res) => {
         if (+res.status === 200) {
-          this.result = {
-            level: Math.floor(score / 2) + 1,
-            ranking: res.data,
-          };
+          this.result.ranking = res.data;
         } else console.log(res, 'fail');
       });
     }
@@ -180,7 +182,6 @@ export default {
   }
 
   &__standing-text {
-
   }
 
   &__share {
