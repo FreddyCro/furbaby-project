@@ -87,20 +87,20 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-  <meta property="og:title" content="<%= htmlWebpackPlugin.options.metaTitle %>" />
-  <meta property="og:url" content="<%= BASE_URL %>" />
-  <meta property="og:image" content="<%= BASE_URL %>meta.jpg" />
+  <meta property="og:title" content="法國皇家寵物健康專家" />
+  <meta property="og:url" content="https://event.udn.com/royalcanin2022/" />
+  <meta property="og:image" content="https://event.udn.com/royalcanin2022/meta.jpg" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:description" content="<?= $description ?>" />
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="icon" href="https://event.udn.com/royalcanin2022/favicon.ico">
 
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <title>法國皇家寵物健康專家</title>
 </head>
 
 <body>
   <noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    <strong>We're sorry but 法國皇家寵物健康專家 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
