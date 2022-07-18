@@ -41,7 +41,7 @@
         template(#ans)
           .fk-dq7__ans-item-container
             .fk-dq7__ans-item(
-              v-for="item, index in shuffleOptions"
+              v-for="item, index in Object.keys(data.options)"
               :key="`${cate}q-correct-${data.idx}-${item}`"
             )
               .fk-dq7__ans-item-img-wrapper

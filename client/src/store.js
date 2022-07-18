@@ -13,7 +13,8 @@ export default new Vuex.Store({
     dog: {
       score: 0,
     },
-    currentStep: 0,
+    currentStep: 1,
+    currentStepSumit: false,
   },
   mutations: {
     setUser(state, user) {
@@ -30,10 +31,14 @@ export default new Vuex.Store({
       state.user = '';
       state.cat.score = 0;
       state.dog.score = 0;
-      state.currentStep = 0;
+      state.currentStep = 1;
+      state.currentStepSumit = false;
     },
     setCurrentStep(state, step) {
       state.currentStep = step;
+    },
+    setCurrentStepSumit(state, sumit) {
+      state.currentStepSumit = sumit;
     },
   },
   actions: {
@@ -51,6 +56,9 @@ export default new Vuex.Store({
     },
     setCurrentStep(context, step) {
       context.commit('setCurrentStep', step);
+    },
+    setCurrentStepSumit(context, sumit) {
+      context.commit('setCurrentStepSumit', sumit);
     },
   },
   getters: {

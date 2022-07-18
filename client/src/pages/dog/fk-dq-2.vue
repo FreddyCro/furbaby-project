@@ -13,13 +13,13 @@
       //- bowl options
       .fk-db.fk-db__drag-container
         draggable(
-          class="pure-g autopad-4"
+          class="pure-g autopad-2"
           :list="list1"
           :group="{ name: 'dq2', pull: 'clone', put: false }"
           :sort="false"
           @change="handleChange"
         )
-          .pure-u-1-5(
+          .pure-u-1-3(
             v-for="item, index in list1"
             :key="`${cate}q-${data.idx}-${item.id}`"
             :id="`js-dragger-wrapper-${index}`"
@@ -28,7 +28,7 @@
               .fk-ans-opt__img-wrapper.fk-db__drag-img(:class="{'fk-db__drag-img--selected': myAns.includes(item.id)}")
                 img(
                   v-show="!myAns.includes(item.id)"
-                  :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
+                  :src="`assets/img/quiz/${cate}/${data.idx}/option${item.id}.png`"
                   :alt="item.value"
                 )
               .fk-ans-opt__name {{ item.value }}
@@ -58,7 +58,7 @@
               :src="`assets/img/quiz/${cate}/${data.idx}/option${element.id}.png`"
             )
         .fk-db__bowl-front
-          img(src="assets/img/quiz/dog/2/bowl_02.png", alt="bowl")
+          img(src="assets/img/quiz/dog/2/bowl_02_nobone.png", alt="bowl")
 
         .fk-db__bowl-hint
           span.print
@@ -177,11 +177,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fk-dq2 {
-  .fk-ans-opt__name {
-    min-width: 120px;
-  }
-}
 .fk-dq2-bowl {
   position: relative;
   width: 500px;

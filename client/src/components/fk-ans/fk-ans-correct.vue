@@ -1,7 +1,7 @@
 <template lang="pug">
 .fk-ans-correct
   .pure-g.autopad-3
-    div(:class="{'pure-u-5-8': illustration}")
+    div(:class="{'pure-u-1-1 pure-u-sm-5-8': illustration}")
       .fk-ans-correct__question
         .fk-ans-correct__question-title
           span.fk-ans-correct__question-title-footprint
@@ -15,7 +15,7 @@
         .fk-ans-correct__suggest
           slot(name="suggest")
 
-    .pure-u-3-8(v-if="illustration")
+    .pure-u-1-1.pure-u-sm-3-8(v-if="illustration")
       .fk-ans-correct__illus
         video(
           v-if="useVideo"
@@ -76,8 +76,10 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    padding-bottom: $spacing-1;
     border-bottom: solid 1px $gray-4;
     color: $color-primary;
+    font-size: 1.5rem;
   }
 
   &__question-title-footprint {
@@ -88,8 +90,13 @@ export default {
 
   &__question-ans {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+
+    @include rwd-min(sm) {
+      justify-content: flex-start;
+    }
   }
 
   &__illus {

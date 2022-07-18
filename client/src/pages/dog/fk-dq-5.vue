@@ -12,18 +12,19 @@
     template(#my-ans)
       .fk-ans-opt-container
         .pure-g.autopad-2
+          //- 不能用 shuffle 會亂掉
           .pure-u-1-1(
-            v-for="item, index in shuffleOptions"
+            v-for="item, index in Object.keys(data.options)"
             :key="`${cate}q-${data.idx}-${item}`"
           )
             button.fk-ans-opt-large(
               :class="{'fk-ans-opt-large--selected': +myAns === +item}"
               :id="`${cate}q-input-${data.idx}-${item}`"
               :value="+item"
-              @click="selectAnswer(singleStrategy(data.ans, item))"
+              @click="selectAnswer(singleStrategy(data.ans, index + 1))"
             )
               .fk-ans-opt-large__idx-label {{ index + 1}}
-              .fk-ans-opt-large__text {{ data.options[item] }}
+              .fk-ans-opt-large__text {{ data.options[index + 1] }}
 
     template(#correct-ans)
       fk-ans-correct(

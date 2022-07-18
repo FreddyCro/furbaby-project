@@ -23,7 +23,8 @@
               @click="selectAnswer(singleStrategy(data.ans, item))"
             )
               .fk-ans-opt__img-wrapper
-                component(:is="`Option-${index + 1}`")
+                .fk-ans-opt__circle(v-if="index === 0")
+                .fk-ans-opt__cross(v-else)
 
               .fk-ans-opt__name {{ data.options[item] }}
 
@@ -56,8 +57,6 @@ import quiz from '@/assets/json/quiz-cat.json';
 import FkAns from '@/components/fk-ans/fk-ans.vue';
 import FkAnsCorrect from '@/components/fk-ans/fk-ans-correct.vue';
 import FkAnsSuggest from '@/components/fk-ans/fk-ans-suggest.vue';
-import Option1 from '@/assets/img/quiz/yes.svg';
-import Option2 from '@/assets/img/quiz/no.svg';
 
 export default {
   name: 'CatQ4',
@@ -65,8 +64,6 @@ export default {
     FkAns,
     FkAnsCorrect,
     FkAnsSuggest,
-    Option1,
-    Option2,
   },
   data: () => ({
     data: quiz.cat4,

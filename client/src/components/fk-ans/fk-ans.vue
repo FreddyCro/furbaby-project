@@ -3,44 +3,48 @@
   fk-bg
 
   .fk-ans-content
-    .fk-container
+    .fk-ans-content__main
       .fk-ans__wizard-wrapper(v-if="!hasSubmitted")
         fk-wizard(:idx="idx || 1")
 
-      .fk-ans__quiz
-        template(v-if="!hasSubmitted")
-          .fk-ans__title-wrapper
-            h3.fk-ans__title
-              span.fk-ans__title-idx Q{{ idx }}
-              span.fk-ans__title-name-group
-                span.fk-ans__title-name {{ title }} 
-                span.fk-ans__title-label(v-if="getQuizTypeText") {{ getQuizTypeText }}
-              span.fk-ans__title-footsprint
-                footprint-cat(v-if="cate === 'cat'")
-                footprint-dog(v-if="cate === 'dog'")
+      .fk-container
+        .fk-ans__quiz
+          template(v-if="!hasSubmitted")
+            .fk-ans__title-wrapper
+              h3.fk-ans__title
+                span.fk-ans__title-idx Q{{ idx }}
+                span.fk-ans__title-name-group
+                  span.fk-ans__title-name {{ title }} 
+                  span.fk-ans__title-label(v-if="getQuizTypeText") {{ getQuizTypeText }}
+                span.fk-ans__title-footsprint
+                  footprint-cat(v-if="cate === 'cat'")
+                  footprint-dog(v-if="cate === 'dog'")
 
-          //- my answer
-          .fk-ans__my-ans-wrapper
-            slot(name="my-ans")
+            //- my answer
+            .fk-ans__my-ans-wrapper
+              slot(name="my-ans")
 
-        //- correct answer
-        .fk-ans__correct-ans-wrapper(v-else)
-          slot(name="correct-ans")
+          //- correct answer
+          .fk-ans__correct-ans-wrapper(v-else)
+            slot(name="correct-ans")
 
     //- pagination
     .fk-container
       .fk-ans__pagination
-        .fk-ans__pagination-quiz
-          //- submit
-          .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
-            button.fk-btn-prim(@click="submitAnswer(cate, idx)") 看解答
+        //- submit
+        .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
+          button.fk-btn-prim(@click="submitAnswer(cate, idx)")
+            span 看解答
+            span.fk-ans__next-step-icon
 
-          //- next step
-          router-link(
-            v-if="hasSubmitted"
-            :to="idx === 7 ? '/result' : `/quiz/${cate}/${idx + 1}`"
-          )
-            button.fk-btn-prim {{ idx === 7 ? '看最終成績' : '下一題' }}
+        //- next step
+        router-link(
+          v-if="hasSubmitted"
+          :to="idx === 7 ? '/result' : `/quiz/${cate}/${idx + 1}`"
+        )
+          button.fk-btn-prim
+            span {{ idx === 7 ? '看最終成績' : '下一題' }}
+            span.fk-ans__next-step-icon
 
 </template>
 
@@ -102,6 +106,7 @@ export default {
   },
   created() {
     // TODO: redirect to current step if route to another step
+    this.$store.dispatch('setCurrentStepSumit', false);
   },
 };
 </script>

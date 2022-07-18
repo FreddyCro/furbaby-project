@@ -43,7 +43,7 @@
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
-          .fk-ans-opt-container.fk-ans-opt-container--correct.pure-g.autopad-1
+          .fk-ans-opt-container.fk-ans-opt-container--correct.pure-g.autopad-4
             .pure-u-1-3.align-center(
               v-for="item, index in data.ans"
               :key="`${cate}q-correct-${data.idx}-${item}`"

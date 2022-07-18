@@ -8,7 +8,7 @@
         img(src='assets/img/common/crown.png')
     .fk-result__content
       .pure-g.autopad-6
-        .pure-u-1-2.align-middle
+        .pure-u-1-1.pure-u-sm-1-2.align-middle
           .fk-result__illus-wrapper
             .fk-result__starts
               img(
@@ -26,36 +26,52 @@
             .fk-result__illus
               img(:src="finalImg", alt="final score")
 
-        .pure-u-1-2
+        .pure-u-1-1.pure-u-sm-1-2
           .fk-result__standing
             h2.fk-result__standing-title
               span
                 fk-footprint
               span {{ $store.state.user }}
               br
-              span(v-if="rankingStr") {{ rankingStr[result.level].title }}
+              span(v-if="rankingStr") {{ rankingStr.title }}
               
-            h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr[result.level].desc }}
+            h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr.desc }}
             p.fk-result__standing-score 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
             p.fk-result__standing-score 你現在排 {{ result.ranking }} 名
 
             .fk-result__share
-              router-link(to="/")
-                .button.fk-result__share-btn(@click="$store.dispatch('resetState')") {{ str.tryAgain }}
-              a(href="#" target="_blank" rel="noopener noreferrer")
-                .button.fk-result__share-btn {{ str.lineToFriend }}
-              a(:href="sharingUrl" target="_blank" rel="noopener noreferrer")
-                .button.fk-result__share-btn
-                  span 
-                    img(src="assets/img/common/fb.png")
-                  span {{ str.shareResult }}
+              .fk-result__share-btn-wrapper
+                router-link(to="/")
+                  .fk-result__share-btn(@click="$store.dispatch('resetState')") {{ str.tryAgain }}
 
+              .fk-result__share-btn-wrapper
+                share-network(
+                  network="line"
+                  :url="`https://event.udn.com/royalcanin2022/sharing.php?c=${$store.state.cate}&sc=${$store.state[$store.state.cate].score}&lv=${result.level}`"
+                  :title="meta.title"
+                  :description="shareDescription"
+                  hashtags="royalcanin"
+                )
+                  .fk-result__share-btn {{ str.lineToFriend }}
+              .fk-result__share-btn-wrapper
+                share-network(
+                  network="facebook"
+                  :url="`https://event.udn.com/royalcanin2022/sharing.php?c=${$store.state.cate}&sc=${$store.state[$store.state.cate].score}&lv=${result.level}`"
+                  :title="meta.title"
+                  :description="shareDescription"
+                  hashtags="royalcanin"
+                )
+                  .fk-result__share-btn
+                    span 
+                      img(src="assets/img/common/fb.png")
+                    span {{ str.shareResult }}
       .fk-result__banner
 </template>
 
 <script>
 import { submitResult, getRankingByScore } from '@/api/quiz';
 import str from '@/assets/json/result.json';
+import meta from '@/assets/json/meta.json';
 import rankingDog from '@/assets/json/ranking-dog.json';
 import rankingCat from '@/assets/json/ranking-cat.json';
 
@@ -74,6 +90,7 @@ export default {
   },
   data: () => ({
     str,
+    meta,
     result: {
       level: 0,
       ranking: 1,
@@ -89,14 +106,17 @@ export default {
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
-      return `assets/img/quiz/${this.$store.state.cate}/level_${
-        this.result.level
-      }.png`;
+      return `assets/img/quiz/${this.$store.state.cate}/level_${this.result.level}.png`;
     },
     rankingStr() {
-      if (this.$store.state.cate === 'dog') return rankingDog;
-      if (this.$store.state.cate === 'cat') return rankingCat;
+      if (this.$store.state.cate === 'dog')
+        return rankingDog[this.$store.state.cate];
+      if (this.$store.state.cate === 'cat')
+        return rankingCat[this.$store.state.cate];
       return undefined;
+    },
+    shareDescription() {
+      return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${this.$store.state[this.$store.state.cate].score}題{，答錯${7 - this.$store.state[this.$store.state.cate].score}題${this.rankingStr ? '，等級為' + this.rankingStr : ''}，排名為${this.result.ranking}`;
     },
   },
   created() {
@@ -195,6 +215,18 @@ export default {
     }
   }
 
+  &__share-btn-wrapper {
+    margin-right: 0.5rem;
+
+    @include rwd-min(sm) {
+      margin-right: 1rem;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
   &__share-btn {
     @include reset-btn;
 
@@ -202,7 +234,6 @@ export default {
     align-items: center;
     justify-content: center;
     padding: $spacing-1 $spacing-3;
-    margin-right: 1rem;
     border: solid 2px $color-primary;
     border-radius: 20px;
     color: $color-primary;

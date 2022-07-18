@@ -37,7 +37,7 @@ export default {
   }
 
   &__floor {
-    background-image: url('/assets/img/common/bg_merge.png');
+    background-image: url('~@/assets/img/common/bg_merge.png');
     background-size: cover;
     background-position: center bottom;
   }

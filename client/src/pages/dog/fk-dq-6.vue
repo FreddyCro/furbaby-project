@@ -48,7 +48,7 @@
         template(#ans)
           .fk-ans-opt-container.pure-g.autopad-2
             .pure-u-1-1(
-              v-for="item, index in data.ans"
+              v-for="item in data.ans"
               :key="`${cate}q-correct-${data.idx}-${item}`"
             )
               .fk-ans-opt-small.fk-ans-opt-small--correct {{ data.options[item] }}
