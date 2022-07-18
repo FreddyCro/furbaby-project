@@ -44,7 +44,9 @@
 
         .fk-l-start__frame-content.pure-g.reverse-sm
           .fk-l-start__frame-text-wrapper.pure-u-1-1.pure-u-sm-1-2
-            h2.fk-l-start__title {{ str.start.title }}
+            h2.fk-l-start__title
+              span {{ str.start.title }}
+              span {{ str.start.subTitle }}
             p.fk-l-start__desc {{ str.start.desc }}
 
             .fk-l-start__enter-btn-container
@@ -197,7 +199,6 @@ export default {
 
 .fk-l-start {
   position: relative;
-  background-color: rgb(240, 240, 240);
   overflow: hidden;
 
   &__bg,
