@@ -34,7 +34,7 @@
         //- submit
         .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
           button.fk-btn-prim(@click="submitAnswer(cate, idx)")
-            span 看解答
+            span {{ str.showAns }}
             span.fk-ans__next-step-icon
 
         //- next step
@@ -43,12 +43,14 @@
           :to="idx === 7 ? '/result' : `/quiz/${cate}/${idx + 1}`"
         )
           button.fk-btn-prim
-            span {{ idx === 7 ? '看最終成績' : '下一題' }}
+            span {{ idx === 7 ? str.showFinalScore : str.next }}
             span.fk-ans__next-step-icon
 
 </template>
 
 <script>
+import str from '@/assets/json/quiz.json';
+
 import FkBg from '@/components/fk-bg.vue';
 import FkWizard from '@/components/fk-wizard.vue';
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
@@ -96,6 +98,11 @@ export default {
     FkBtnPrimary,
     FootprintCat,
     FootprintDog,
+  },
+  data() {
+    return {
+      str,
+    };
   },
   computed: {
     getQuizTypeText() {

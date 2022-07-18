@@ -19,10 +19,10 @@
               p {{ desc }}
 
             .fk-name-input__text
-              .fk-name-input__label 請輸入你的名字
+              .fk-name-input__label {{ str.inputYourName }}
               input(
                 type="text"
-                placeholder="請輸入你的名字"
+                :placeholder="str.inputYourName"
                 v-model="name"
                 @keyup.enter="$router.push(`/quiz/${cate}/1`)"
                 autofocus
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import str from '@/assets/json/quiz.json';
 import FkBg from '@/components/fk-bg.vue';
 import FkWizard from '@/components/fk-wizard.vue';
 import FkFootprint from '@/components/fk-footprint.vue';
@@ -66,6 +67,7 @@ export default {
     FkFootprint,
   },
   data: () => ({
+    str,
     name: '',
   }),
   watch: {

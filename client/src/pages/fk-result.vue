@@ -70,7 +70,7 @@
 
 <script>
 import { submitResult, getRankingByScore } from '@/api/quiz';
-import str from '@/assets/json/result.json';
+import str from '@/assets/json/quiz.json';
 import meta from '@/assets/json/meta.json';
 import rankingDog from '@/assets/json/ranking-dog.json';
 import rankingCat from '@/assets/json/ranking-cat.json';
