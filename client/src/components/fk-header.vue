@@ -25,7 +25,9 @@ export default {
 
 <style lang="scss">
 .fk-header {
-  @include rwd-min(md) {
+  height: $header-height-sm;
+
+  @include rwd-min(sm) {
     height: $header-height;
   }
 
@@ -49,11 +51,16 @@ export default {
   }
 
   &__navigator {
-    height: $header-height;
+    height: $header-height-sm;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: $white;
     border-bottom: solid 4px rgb(233, 163, 55);
+
+    @include rwd-min(sm) {
+      height: $header-height;
+      justify-content: flex-end;
+    }
   }
 
   &__logo-wrapper {
@@ -62,7 +69,7 @@ export default {
     justify-content: center;
     padding: 0 $spacing-2;
     border-radius: 10px;
-    transition: .15s ease-in-out;
+    transition: 0.15s ease-in-out;
 
     @include rwd-min(md) {
       padding: 0 $spacing-4;
@@ -70,6 +77,18 @@ export default {
 
     &:hover {
       background-color: $gray-1;
+    }
+
+    a,
+    button {
+      width: 100%;
+      height: 100%;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

@@ -13,14 +13,14 @@
     template(#my-ans)
       .fk-ans-opt-container.pure-g.autopad-4
         .pure-u-1-3.align-center(
-          v-for="item, index in shuffleOptions"
+          v-for="item in shuffleOptions"
           :key="`${cate}q-${data.idx}-${item}`"
           :class="{'fk-ans-opt--selected': myAns.includes(+item)}"
         )
           .fk-ans-opt
             .fk-ans-opt__img-wrapper
               img(
-                :src="`assets/img/quiz/${cate}/${data.idx}/option${index + 1}.png`"
+                :src="`assets/img/quiz/${cate}/${data.idx}/option${item}.png`"
                 :alt="data.options[item]"
               )
             .fk-ans-opt__name {{ data.options[item] }}

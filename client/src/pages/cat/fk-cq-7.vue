@@ -12,20 +12,20 @@
     template(#my-ans)
       .fk-cq7-ans
         .pure-g.autopad-10
-          .fk-cq7-ans__options.pure-u-1-2
+          .fk-cq7-ans__options.pure-u-1-1.pure-u-sm-1-2
             .pure-g.autopad-2
-              .pure-u-1-1(
-                v-for="item, index in shuffleOptions"
+              .pure-u-1-2.pure-u-sm-1-1(
+                v-for="item, index in Object.keys(data.options)"
                 :key="`${cate}q-${data.idx}-${item}`"
               )
                 button.fk-ans-opt-small(
-                  :class="{'fk-ans-opt-small--selected': +myAns === +item}"
-                  :id="`${cate}q-input-${data.idx}-${item}`"
-                  :value="+item"
-                  @click="selectAnswer(singleStrategy(data.ans, item))"
-                ) {{ data.options[item] }}
+                  :class="{'fk-ans-opt-small--selected': +myAns === +index + 1}"
+                  :id="`${cate}q-input-${data.idx}-${index + 1}`"
+                  :value="+index + 1"
+                  @click="selectAnswer(singleStrategy(data.ans, index + 1))"
+                ) {{ data.options[index + 1] }}
 
-          .fk-cq7-ans__cup.pure-u-1-2
+          .fk-cq7-ans__cup.pure-u-1-1.pure-u-sm-1-2
             fk-cup(:data="+myAns")
             //- change image version
             //- img(
@@ -90,6 +90,14 @@ export default {
 .fk-cq7-ans {
   .fk-ans-opt-small {
     margin-left: auto;
+  }
+  .fk-wc {
+    display: flex;
+    justify-content: center;
+  }
+
+  svg {
+    flex-shrink: 0;
   }
 }
 </style>

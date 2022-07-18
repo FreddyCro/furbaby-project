@@ -1,35 +1,59 @@
 .fk-ans {
   &__wizard-wrapper {
     text-align: center;
-    margin-bottom: $spacing-7;
+    margin-bottom: $spacing-5;
+
+    @include rwd-min(md) {
+      margin-bottom: $spacing-7;
+    }
   }
 
   &__title {
+    position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
     color: $color-primary;
+
+    @include rwd-min(sm) {
+      align-items: flex-end;
+    }
   }
 
   &__title-idx {
-    font-size: 64px;
+    font-size: 48px;
     font-weight: 400;
     font-family: monospace;
+    line-height: 1;
+
+    @include rwd-min(sm) {
+      font-size: 64px;
+    }
   }
 
   &__title-name-group {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    padding-bottom: $spacing-1;
+    align-items: flex-start;
+    padding-bottom: $spacing-2;
     padding-left: $spacing-2;
     border-bottom: solid 1px $gray-4;
+
+    @include rwd-min(sm) {
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: $spacing-1;
+    }
   }
 
   &__title-name {
-    font-size: 30px;
+    font-size: 24px;
     line-height: 1.33;
     font-weight: 500;
+
+    @include rwd-min(sm) {
+      font-size: 30px;
+    }
   }
 
   &__title-label {
@@ -40,9 +64,24 @@
   }
 
   &__title-footsprint {
-    width: 40px;
-    height: 40px;
-    transform: translate($spacing-2, 50%);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+    transform: translate($spacing-3, 50%);
+
+    @include rwd-min(sm) {
+      transform: translate($spacing-4, 100%);
+    }
+
+    @include rwd-min(md) {
+      transform: translate($spacing-1, 50%);
+    }
   }
 
   &__pagination {
@@ -52,6 +91,17 @@
     align-items: center;
     margin-top: $spacing-6;
   }
+
+  &__next-step-icon {
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $white $white transparent transparent;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: $spacing-2;
+    transform: rotate(45deg);
+  }
 }
 
 .fk-ans-content {
@@ -59,10 +109,25 @@
   height: 100%;
   min-height: calc(100vh - #{$header-height});
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  @include rwd-min(sm) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  @include rwd-min(md) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @include rwd-min(lg) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
 }
 
 // option container
@@ -94,6 +159,15 @@
     .fk-ans-opt__name {
       background-color: rgb(133, 133, 133);
     }
+
+    .fk-ans-opt__circle {
+      border-color: $color-primary;
+    }
+
+    .fk-ans-opt__cross::before,
+    .fk-ans-opt__cross::after {
+      background-color: $color-primary;
+    }
   }
 
   &--correct {
@@ -106,8 +180,13 @@
     }
 
     .fk-ans-opt__name {
-      min-width: 120px;
-      font-size: $p-3;
+      @include rwd-min(sm) {
+        min-width: 120px;
+      }
+
+      @include rwd-min(md) {
+        min-width: 132px;
+      }
 
       @include rwd-min(lg) {
         min-width: 144px;
@@ -118,6 +197,17 @@
   &--binary {
     .fk-ans-opt__img-wrapper {
       background-color: transparent;
+    }
+
+    &:hover:not(.fk-ans-opt--selected) {
+      .fk-ans-opt__circle {
+        border-color: lighten($color-primary, 20%);
+      }
+
+      .fk-ans-opt__cross::before,
+      .fk-ans-opt__cross::after {
+        background-color: lighten($color-primary, 20%);
+      }
     }
   }
 
@@ -138,25 +228,82 @@
   }
 
   &__img-wrapper {
-    width: 100px;
-    height: 100px;
+    width: 72px;
+    height: 72px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: $spacing-4;
+    padding: $spacing-2;
     border-radius: 50%;
     background-color: $gray-160;
+    transition: 0.1s ease-in-out;
+
+    @include rwd-min(sm) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  // for binary option
+  &__cross {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: 0.1s ease-in-out;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      width: 5px;
+      height: 135%;
+      background-color: $gray-160;
+    }
+
+    &::before {
+      left: 0;
+      transform-origin: left top;
+      transform: rotate(-45deg) translate(1px, 0);
+    }
+
+    &::after {
+      right: 0;
+      transform-origin: right top;
+      transform: rotate(45deg) translate(-2px, 1px);
+    }
+  }
+
+  // for binary option
+  &__circle {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: solid 5px $gray-160;
     transition: 0.1s ease-in-out;
   }
 
   &__name {
-    min-width: 180px;
+    min-width: 112px;
     padding: $spacing-2;
     border-radius: 30px;
     text-align: center;
     color: $white;
     background-color: $gray-160;
     transition: 0.1s ease-in-out;
+
+    @include rwd-min(sm) {
+      min-width: 144px;
+    }
+
+    @include rwd-min(md) {
+      min-width: 180px;
+    }
   }
 
   &__input {
@@ -181,6 +328,7 @@
   margin: 0 auto;
   color: $white;
   text-align: left;
+  background-color: transparent;
   border-radius: $border-radius-2;
   border: dashed 2px $color-primary;
   cursor: pointer;
@@ -194,8 +342,6 @@
   &--correct {
     margin: 0;
     cursor: auto;
-
-    
   }
 
   &--selected {
@@ -276,12 +422,17 @@
 // pie option
 .fk-ans-pie-wrapper {
   position: relative;
-  width: 384px;
-  height: 384px;
+  width: 300px;
+  height: 300px;
   padding: 1rem;
   margin: 0 auto;
   border: dashed 1px $gray-160;
   border-radius: 50%;
+
+  @include rwd-min(sm) {
+    width: 384px;
+    height: 384px;
+  }
 }
 
 .fk-ans-pie {

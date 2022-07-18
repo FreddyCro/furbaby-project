@@ -7,20 +7,21 @@
     .fk-container
       //- TODO: Add a title here.
       h1.fk-l-intro__title {{ str.intro.title }}
-      .fk-l-intro__pic-wrapper
-        img.fk-l-intro__pic(
-          src="assets/img/landing/title.png"
-          :alt="str.intro.title"
-        )
+      .fk-l-intro__hero
+        .fk-l-intro__pic-wrapper
+          img.fk-l-intro__pic(
+            src="assets/img/landing/title.png"
+            :alt="str.intro.title"
+          )
 
-      .fk-l-intro__video-wrapper
-        video.fk-l-intro__video(
-          autoplay
-          loop
-          type="video/mp4"
-          muted
-        )
-          source(src="assets/vid/landing.mp4")
+        .fk-l-intro__video-wrapper
+          video.fk-l-intro__video(
+            autoplay
+            loop
+            type="video/mp4"
+            muted
+          )
+            source(src="assets/vid/landing.mp4")
 
       a.fk-l-intro__scroll-down(href="#" v-scroll-to="'#start-quiz'")
         Mouse
@@ -41,13 +42,8 @@
         .fk-l-start__frame-halo.fk-l-start__frame-halo--3
         .fk-l-start__frame-halo.fk-l-start__frame-halo--4
 
-        .fk-l-start__frame-content
-          .fk-l-start__frame-img-wrapper
-            img.fk-l-start__frame-img(
-              src="assets/img/landing/play.png"
-              :alt="str.start.title"
-            )
-          .fk-l-start__frame-text-wrapper
+        .fk-l-start__frame-content.pure-g.reverse-sm
+          .fk-l-start__frame-text-wrapper.pure-u-1-1.pure-u-sm-1-2
             h2.fk-l-start__title {{ str.start.title }}
             p.fk-l-start__desc {{ str.start.desc }}
 
@@ -56,6 +52,12 @@
                 button.fk-btn-prim {{ str.start.dog }}
               router-link(to="/quiz/cat")
                 button.fk-btn-prim {{ str.start.cat }}
+
+          .fk-l-start__frame-img-wrapper.pure-u-1-1.pure-u-sm-1-2
+            img.fk-l-start__frame-img(
+              src="assets/img/landing/play.png"
+              :alt="str.start.title"
+            )
 
   //- suggestiton section
   .fk-l-suggest.fk-section
@@ -142,18 +144,35 @@ export default {
     height: 800px;
   } */
 
-  &__pic-wrapper {
+  &__hero {
     position: relative;
+    width: 100%;
+    padding-bottom: 65%;
+  }
+
+  &__pic-wrapper {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 0;
     width: 80%;
     margin: 0 auto;
+    transform: translateX(-50%);
   }
 
   &__video-wrapper {
-    position: relative;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    transform: translateX(-50%);
   }
 
   &__video {
     max-width: 100%;
+    border-radius: 60px;
+    box-shadow: 0 0 100px $white;
   }
 
   &__scroll-down {
@@ -213,26 +232,16 @@ export default {
   &__frame-content {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
     background-color: rgb(240, 240, 240);
-
-    @include rwd-min(md) {
-      flex-direction: row;
-    }
   }
 
   &__title {
     color: rgb(230, 5, 5);
   }
 
-  &__desc {
-  }
-
   &__frame-img-wrapper {
     @include rwd-min(md) {
       position: relative;
-      width: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -245,7 +254,6 @@ export default {
     text-align: center;
 
     @include rwd-min(md) {
-      width: 50%;
       text-align: left;
     }
   }
@@ -385,15 +393,36 @@ export default {
   &__eat-dog {
     left: 0;
     bottom: 0;
+    width: 36vw;
+
+    @include rwd-min(sm) {
+      left: 10%;
+      width: 25vw;
+    }
+
+    @include rwd-min(md) {
+      left: 10%;
+      width: 260px;
+    }
   }
 
   &__cat-board {
     right: 0;
     bottom: 0;
+    width: 56vw;
 
-    img {
-      height: 750px;
+    @include rwd-min(sm) {
+      width: 30vw;
     }
+
+    @include rwd-min(md) {
+      right: 5%;
+      width: 360px;
+    }
+
+    /* img {
+      height: 750px;
+    } */
   }
 }
 </style>

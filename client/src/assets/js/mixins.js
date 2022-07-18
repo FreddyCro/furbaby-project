@@ -18,7 +18,7 @@ const multiStrategyMixins = {
   },
   computed: {
     shuffleOptions() {
-      return shuffle(Object.keys(this.data.options))
+      return shuffle(Object.keys(this.data.options));
     },
   },
   methods: {
@@ -36,8 +36,9 @@ const multiStrategyMixins = {
         this.$store.dispatch('updateScore', cate);
       }
 
+      this.$store.dispatch('setCurrentStepSumit', true);
       this.$store.dispatch('setCurrentStep', this.data.idx + 1);
-      console.log('go:', this.$store.state.currentStep);
+      // console.log('go:', this.$store.state.currentStep);
     },
     multiStrategy(correctAns) {
       const newCorrectAns = correctAns.map((item) => +item).sort();
@@ -58,7 +59,7 @@ const singleStrategyMixins = {
   },
   computed: {
     shuffleOptions() {
-      return shuffle(Object.keys(this.data.options))
+      return shuffle(Object.keys(this.data.options));
     },
   },
   methods: {
@@ -76,8 +77,9 @@ const singleStrategyMixins = {
         this.$store.dispatch('updateScore', cate);
       }
 
+      this.$store.dispatch('setCurrentStepSumit', true);
       this.$store.dispatch('setCurrentStep', this.data.idx + 1);
-      console.log('go:', this.$store.state.currentStep);
+      // console.log('go:', this.$store.state.currentStep);
     },
     singleStrategy(correctAns, myAns) {
       this.myAns = myAns;
@@ -86,7 +88,4 @@ const singleStrategyMixins = {
   },
 };
 
-export {
-  multiStrategyMixins,
-  singleStrategyMixins,
-};
+export { multiStrategyMixins, singleStrategyMixins };

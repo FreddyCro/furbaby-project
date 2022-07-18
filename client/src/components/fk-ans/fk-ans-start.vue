@@ -1,31 +1,32 @@
 <template lang="pug">
 .fk-ans-start.fk-page
   fk-bg
+  .fk-ans-content
+    .fk-ans-content__main
+      .fk-ans__wizard-wrapper
+        fk-wizard(:idx="1")
 
-  .fk-ans-content.fk-container
-    .fk-ans__wizard-wrapper
-      fk-wizard(:idx="1")
+      .fk-container
+        //- start page
+        .fk-ans__start
+          .fk-name-input
+            .fk-name-input__title
+              fk-footprint
+              
+              h2 {{ title }}
 
-    //- start page
-    .fk-ans__start
-      .fk-name-input
-        .fk-name-input__title
-          fk-footprint
-          
-          h2 {{ title }}
+            .fk-name-input__desc
+              p {{ desc }}
 
-        .fk-name-input__desc
-          p {{ desc }}
-
-        .fk-name-input__text
-          .fk-name-input__label 請輸入你的名字
-          input(
-            type="text"
-            placeholder="請輸入你的名字"
-            v-model="name"
-            @keyup.enter="$router.push(`/quiz/${cate}/1`)"
-            autofocus
-          )
+            .fk-name-input__text
+              .fk-name-input__label 請輸入你的名字
+              input(
+                type="text"
+                placeholder="請輸入你的名字"
+                v-model="name"
+                @keyup.enter="$router.push(`/quiz/${cate}/1`)"
+                autofocus
+              )
 
       //- pagination
     .fk-ans__pagination
@@ -34,7 +35,9 @@
         router-link(:to="`/quiz/${cate}/1`") 
           button.fk-btn-prim(
             @click="$store.dispatch('setCategory', cate)"
-          ) START
+          ) 
+            span START
+            span.fk-ans__next-step-icon
 
 </template>
 

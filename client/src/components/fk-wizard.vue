@@ -8,8 +8,7 @@
       'fk-wizard__circle--done': +item < +$store.state.currentStep, \
     }"
   )
-    span(v-if="+item < +$store.state.currentStep")
-      fk-footprint
+    fk-footprint(v-if="+item < +$store.state.currentStep")
     span(v-else) {{ item }}
     
 </template>
@@ -52,8 +51,8 @@ $progress-red: rgb(235, 0, 26);
 
   &__circle {
     position: relative;
-    width: 24px;
-    height: 24px;
+    width: 8vw;
+    height: 8vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,6 +88,30 @@ $progress-red: rgb(235, 0, 26);
 
     &:last-child {
       margin-right: 0;
+    }
+  }
+
+  .fk-footprint {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 8vw;
+    height: 8vw;
+
+    @include rwd-min(sm) {
+      width: 32px;
+      height: 32px;
+    }
+
+    svg,
+    image {
+      width: 8vw;
+      height: 8vw;
+
+      @include rwd-min(sm) {
+        width: 32px;
+        height: 32px;
+      }
     }
   }
 }

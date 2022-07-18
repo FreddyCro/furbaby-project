@@ -2,22 +2,22 @@
 .fk-footer
   .fk-u-container
     .fk-footer__logo-container
-      .fk-footer__logo-wrapper(:href="str.dotcom.url")
-        a.fk-footer__logo
+      .fk-footer__logo-wrapper
+        a.fk-footer__logo(:href="str.dotcom.url", target="_blank", rel="noopener noreferrer")
           img(
             src="assets/img/footer/udn_logo.png"
             :alt="str.dotcom.name"
           )
       
-      .fk-footer__logo-wrapper(:href="str.orange.url")
-        a.fk-footer__logo
+      .fk-footer__logo-wrapper
+        a.fk-footer__logo(:href="str.orange.url", target="_blank", rel="noopener noreferrer")
           img(
             src="assets/img/footer/orange_logo.png"
             :alt="str.orange.name"
           )
         
-      .fk-footer__logo-wrapper(:href="str.royal.url")
-        a.fk-footer__logo
+      .fk-footer__logo-wrapper
+        a.fk-footer__logo(:href="str.royal.url", target="_blank", rel="noopener noreferrer")
           img(
             src="assets/img/footer/royal_logo.png"
             :alt="str.royal.name"
@@ -31,9 +31,9 @@
 
 <script>
 const str = {
-  dotcom: { name: 'udn.com', url: '#' },
-  orange: { name: 'Orange', url: '#' },
-  royal: { name: 'Royal Canin', url: '#' },
+  dotcom: { name: 'udn.com', url: 'https://udn.com/news/index' },
+  orange: { name: 'Orange', url: 'https://orange.udn.com/orange/index' },
+  royal: { name: 'Royal Canin', url: 'https://www.royalcanin.com/tw' },
 };
 
 export default {
