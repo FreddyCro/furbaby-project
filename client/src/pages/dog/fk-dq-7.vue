@@ -37,6 +37,7 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
+        :is-my-ans-correct="multiStrategy(data.ans)"
       )
         template(#ans)
           .fk-dq7__ans-item-container

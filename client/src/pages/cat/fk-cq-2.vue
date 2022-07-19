@@ -30,6 +30,7 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
+        :is-my-ans-correct="singleStrategy(data.ans, myAns)"
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)

@@ -7,11 +7,9 @@
           span.fk-ans-correct__question-title-footprint
             footprint-cat(v-if="cate === 'cat'")
             footprint-dog(v-if="cate === 'dog'")
-          span {{ question }}
-
-        //- TODO: correct or incorrect
-        p {{ isMyAnsCorrect ? str.myAnsIsCorrect : str.myAnsIsIncorrect }}
-
+          span
+            span {{ question }}
+            span.is-my-ans-correct {{ isMyAnsCorrect ? str.myAnsIsCorrect : str.myAnsIsIncorrect }}
 
         .fk-ans-correct__question-ans
           slot(name="ans")
@@ -89,12 +87,19 @@ export default {
 
   &__question-title {
     display: flex;
-    align-items: center;
     margin-bottom: 20px;
     padding-bottom: $spacing-1;
     border-bottom: solid 1px $gray-4;
     color: $color-primary;
     font-size: 1.5rem;
+  }
+
+  .is-my-ans-correct {
+    display: block;
+    color: $gray-160;
+    font-weight: 700;
+    font-size: larger;
+    line-height: 2;
   }
 
   &__question-title-footprint {

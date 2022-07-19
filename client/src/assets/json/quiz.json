@@ -1,7 +1,7 @@
 {
   "inputYourName": "請輸入你的名字",
-  "myAnsIsCorrect": "答對了！",
-  "myAnsIsIncorrect": "答錯了！",
+  "myAnsIsCorrect": "答對了！答案就是：",
+  "myAnsIsIncorrect": "答錯了！正確答案是：",
   "showAns": "看解答",
   "showFinalScore": "看最終成績",
   "next": "下一題",

@@ -69,6 +69,7 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
+        :is-my-ans-correct="multiStrategy(data.ans)"
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
