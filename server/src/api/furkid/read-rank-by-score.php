@@ -24,9 +24,9 @@ if ($itemCount > 0) {
   $participants = 0;
   $acc = 0;
 
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)['score']) {
-    $participants += $row;
-    array_push($rankArr, $row);
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $participants += $row['score'];
+    array_push($rankArr, $row['score']);
   }
 
   for ($i = 0; $i <= (int) $score; $i++) {

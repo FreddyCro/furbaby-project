@@ -222,17 +222,17 @@
 
   &:hover:not(.fk-ans-opt--selected):not(.fk-ans-opt--correct):not(.fk-ans-opt--binary) {
     .fk-ans-opt__img-wrapper {
-      background-color: lighten($color-primary, 10%);
+      background-color: lighten($color-primary, 20%);
     }
 
     .fk-ans-opt__name {
-      background-color: darken($gray-160, 10%);
+      background-color: darken($gray-160, 20%);
     }
   }
 
   &:hover:is(.fk-ans-opt--binary) {
     .fk-ans-opt__name {
-      background-color: darken($gray-160, 10%);
+      background-color: darken($gray-160, 20%);
     }
   }
 
@@ -482,7 +482,7 @@
     }
 
     &:hover {
-      background-color: lighten($color-primary, 10%);
+      background-color: lighten($color-primary, 20%);
     }
 
     &--1 {
