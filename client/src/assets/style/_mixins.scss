@@ -2,12 +2,14 @@ $minBreakpoints: (
   sm: $sm,
   md: $md,
   lg: $lg,
+  xl: $xl,
 );
 
 $maxBreakpoints: (
   xs: #{$sm - 0.2px},
   sm: #{$md - 0.2px},
   md: #{$lg - 0.2px},
+  lg: #{$xl - 0.2px},
 );
 
 @mixin rwd-min($min) {

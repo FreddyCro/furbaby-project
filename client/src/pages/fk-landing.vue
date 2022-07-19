@@ -45,9 +45,9 @@
         .fk-l-start__frame-content.pure-g.reverse-sm
           .fk-l-start__frame-text-wrapper.pure-u-1-1.pure-u-sm-1-2
             h2.fk-l-start__title
-              span {{ str.start.title }}
-              span {{ str.start.subTitle }}
-            p.fk-l-start__desc {{ str.start.desc }}
+              span.main(v-html="str.start.title")
+              span.sub(v-html="str.start.subTitle")
+            p.fk-l-start__desc(v-html="str.start.desc")
 
             .fk-l-start__enter-btn-container
               router-link(to="/quiz/dog")
@@ -88,21 +88,22 @@
       .fk-l-halo 
       .fk-l-suggest__principle
         .fk-l-suggest__title-wrapper
-          .fk-l-suggest__avator
-            img(
-              src="assets/img/landing/suggestion_avator.png"
-              :alt="str.suggest.title"
-            )
+          .fk-l-suggest__avator-wrapper
+            .fk-l-suggest__avator
+              img(
+                src="assets/img/landing/suggestion_avator.png"
+                :alt="str.suggest.title"
+              )
 
           h2.fk-l-suggest__title {{ str.suggest.title }}
 
-          img(
+          img.fk-l-suggest__footprint(
             src="assets/img/common/footprint_icon.png"
             :alt="str.suggest.title"
           )
 
         .fk-l-suggest__desc-wrapper
-          p.fk-l-suggest__desc {{ str.suggest.desc }}
+          p.fk-l-suggest__desc(v-html="str.suggest.desc")
 
         .fk-l-suggest__share-btn-container
           a.fk-l-suggest__share-btn(:href="str.suggest.royalBtnUrl")
@@ -137,7 +138,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .fk-l-intro {
   position: relative;
   background-color: $white;
@@ -237,34 +237,77 @@ export default {
   }
 
   &__title {
-    color: rgb(230, 5, 5);
+    .main {
+      color: $color-primary;
+      font-size: 32px;
+      line-height: 1.67;
+      display: block;
+
+      @include rwd-min(md) {
+        font-size: 36px;
+      }
+    }
+
+    .sub {
+      font-size: 24px;
+      font-weight: 500;
+      color: lighten($color: $color-primary, $amount: 15%);
+
+      @include rwd-min(md) {
+        font-size: 32px;
+      }
+    }
+  }
+
+  &__desc {
+    line-height: 1.5;
   }
 
   &__frame-img-wrapper {
-    @include rwd-min(md) {
+    padding-bottom: $spacing-10;
+
+    @include rwd-min(sm) {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      transform: scale(1.1) translate(-$spacing-6, $spacing-8);
+      padding-bottom: 0;
+      transform: scale(1.1) translate(-$spacing-6, $spacing-9);
+    }
+  }
+
+  &__frame-img {
+    @include rwd-max(xs) {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 60vw;
+      transform: translate(-50%, 50%);
     }
   }
 
   &__frame-text-wrapper {
-    padding: $spacing-6;
-    text-align: center;
+    padding: $spacing-4;
+    text-align: left;
 
     @include rwd-min(md) {
-      text-align: left;
+      padding: $spacing-6;
     }
   }
 
   &__enter-btn-container {
+    margin-top: $spacing-6;
+    text-align: center;
+
+    @include rwd-min(md) {
+      margin-top: $spacing-8;
+    }
+
     button {
       min-width: 240px;
       margin-bottom: $spacing-5;
 
-      @include rwd-min(sm) {
+      @include rwd-min(md) {
         min-width: 320px;
         margin-bottom: $spacing-6;
       }
@@ -322,7 +365,16 @@ export default {
   background-image: url('~@/assets/img/landing/bg_brick.png');
   background-size: contain;
   background-repeat: round;
-  padding-bottom: 360px;
+  padding-bottom: 280px;
+  overflow: hidden;
+
+  @include rwd-min(sm) {
+    padding-bottom: 400px;
+  }
+
+  @include rwd-min(md) {
+    padding-bottom: 360px;
+  }
 
   &__principle {
     position: relative;
@@ -335,20 +387,63 @@ export default {
   }
 
   &__title {
-    margin: $spacing-6;
+    margin: 0 $spacing-3 0 $spacing-3;
+    font-size: 32px;
+    font-weight: 500;
     color: rgb(230, 5, 5);
+
+    @include rwd-min(md) {
+      margin: 0 $spacing-4 0 $spacing-4;
+      font-size: 36px;
+    }
   }
 
-  &__avatar {
+  &__avator-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: $color-primary;
+    border-width: 4px;
+
+    @include rwd-min(md) {
+      width: 100px;
+      height: 100px;
+      border-width: 8px;
+    }
+  }
+
+  &__avator {
     position: relative;
     width: 100%;
-    margin-bottom: $spacing-6;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: $white;
+    border-radius: 50%;
+    transform: translate(-2px, 2px);
+
+    @include rwd-min(md) {
+      transform: translate(-$spacing-1, $spacing-1);
+    }
+
+    img {
+      width: 135px;
+      margin-right: $spacing-4;
+      max-width: none;
+    }
+  }
+
+  &__footprint {
+    height: 1.5rem;
   }
 
   &__desc-wrapper {
-    max-width: 260px;
+    max-width: 280px;
     margin: 0 auto;
     text-align: center;
+    line-height: 1.5;
   }
 
   &__share-btn-container {
@@ -402,7 +497,7 @@ export default {
     }
 
     @include rwd-min(md) {
-      left: 10%;
+      left: 15%;
       width: 260px;
     }
   }
@@ -411,14 +506,21 @@ export default {
     right: 0;
     bottom: 0;
     width: 56vw;
+    transform: translateY(136px);
 
     @include rwd-min(sm) {
+      right: 5%;
       width: 30vw;
+      transform: translateY(36px);
     }
 
     @include rwd-min(md) {
-      right: 5%;
       width: 360px;
+      transform: none;
+    }
+
+    @include rwd-min(xl) {
+      right: 12.5%;
     }
 
     /* img {

@@ -177,9 +177,12 @@
       width: 64px;
       height: 64px;
       padding: $spacing-4;
+      background-color: lighten($color-primary, 10%);
     }
 
     .fk-ans-opt__name {
+      background-color: lighten($color-primary, 10%);
+
       @include rwd-min(sm) {
         min-width: 120px;
       }
