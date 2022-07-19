@@ -94,18 +94,37 @@ export default {
   &__ans-item {
     width: 100%;
     display: flex;
+    flex-direction: column;
     border-bottom: solid 1px $gray-160;
-    padding: $spacing-4;
+    padding: $spacing-4 0;
+
+    @include rwd-min(sm) {
+      flex-direction: row;
+    }
+
+    @include rwd-min(md) {
+      padding: $spacing-6 0;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   &__ans-item-img-wrapper {
     min-width: 120px;
     margin-right: $spacing-5;
-    text-align: center;
+    margin-bottom: $spacing-2;
+
+    @include rwd-min(sm) {
+      margin-bottom: 0;
+      text-align: center;
+    }
   }
 
   &__ans-item-text {
     color: $gray-160;
+    align-self: center;
   }
 
   &__ans-item-text-title {
@@ -113,21 +132,20 @@ export default {
     display: flex;
     align-items: flex-end;
     margin-bottom: $spacing-2;
+    color: lighten($color: $color-primary, $amount: 10%);
   }
 
   &__ans-item-text-check {
     display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
     margin-right: $spacing-1;
     background-image: url('~@/assets/img/common/icon_check.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-color: $gray-160;
+    background-color: lighten($color: $color-primary, $amount: 10%);
     border-radius: 50%;
     overflow: hidden;
-  }
-  &__ans-item-text-desc {
   }
 
   .fk-ans-correct {

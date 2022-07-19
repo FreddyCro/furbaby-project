@@ -106,6 +106,10 @@ export default {
   overflow: hidden;
 
   .cat-img {
+    @include rwd-max(xs) {
+      max-height: 36px;
+    }
+
     @include rwd-max(sm) {
       max-height: 60px;
     }

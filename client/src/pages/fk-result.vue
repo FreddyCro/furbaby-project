@@ -8,7 +8,7 @@
         img(src='assets/img/common/crown.png')
     .fk-result__content
       .pure-g.autopad-6
-        .pure-u-1-1.pure-u-sm-1-2.align-middle
+        .pure-u-1-1.pure-u-sm-2-5.pure-u-md-1-2.align-middle
           .fk-result__illus-wrapper
             .fk-result__starts
               img(
@@ -26,7 +26,7 @@
             .fk-result__illus
               img(:src="finalImg", alt="final score")
 
-        .pure-u-1-1.pure-u-sm-1-2
+        .pure-u-1-1.pure-u-sm-3-5.pure-u-md-1-2
           .fk-result__standing
             h2.fk-result__standing-title
               span
@@ -43,6 +43,7 @@
               .fk-result__share-btn-wrapper
                 router-link(to="/")
                   .fk-result__share-btn(@click="$store.dispatch('resetState')") {{ str.tryAgain }}
+                    span.fk-result__share-btn-arrow
 
               .fk-result__share-btn-wrapper
                 share-network(
@@ -53,6 +54,7 @@
                   hashtags="royalcanin"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
+                    span.fk-result__share-btn-arrow
               .fk-result__share-btn-wrapper
                 share-network(
                   network="facebook"
@@ -62,10 +64,13 @@
                   hashtags="royalcanin"
                 )
                   .fk-result__share-btn
-                    span 
-                      img(src="assets/img/common/fb.png")
+                    img(src="assets/img/common/fb.png" alt="fb icon")
                     span {{ str.shareResult }}
-      .fk-result__banner
+                      span.fk-result__share-btn-arrow
+                    
+      a.fk-result__banner(:href="str.getRewardUrl")
+        img(src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
+
 </template>
 
 <script>
@@ -130,6 +135,7 @@ export default {
 
       // get ranking data
       getRankingByScore(this.$store.state.cate, score).then((res) => {
+        console.log(res);
         if (+res.status === 200) {
           this.result.ranking = res.data;
         } else console.log(res, 'fail');
@@ -178,9 +184,20 @@ export default {
 
   &__starts {
     text-align: center;
+    margin-bottom: $spacing-2;
 
     img {
       margin: $spacing-2;
+    }
+  }
+
+  &__illus {
+    text-align: center;
+  }
+
+  &__standing {
+    @include rwd-max(xs) {
+      text-align: center;
     }
   }
 
@@ -213,6 +230,10 @@ export default {
       color: $color-primary;
       text-decoration: none;
     }
+
+    @include rwd-max(xs) {
+      justify-content: center;
+    }
   }
 
   &__share-btn-wrapper {
@@ -233,21 +254,36 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: $spacing-1 $spacing-3;
+    padding: $spacing-1 $spacing-2;
     border: solid 2px $color-primary;
     border-radius: 20px;
     color: $color-primary;
+    font-size: 0.5rem;
+
+    @include rwd-min(sm) {
+      padding: $spacing-1 $spacing-3;
+    }
 
     img {
+      width: 1rem;
       margin-right: $spacing-1;
     }
   }
+  
+  &__share-btn-arrow {
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $color-primary $color-primary transparent transparent;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: $spacing-1;
+    transform: rotate(45deg);
+  }
 
   &__banner {
-    margin: 0 auto;
-    width: 350px;
-    height: 200px;
-    background-color: lightcoral;
+    display: block;
+    margin: $spacing-8 auto 0 auto;
   }
 }
 </style>

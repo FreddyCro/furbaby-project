@@ -51,9 +51,13 @@
 
             .fk-l-start__enter-btn-container
               router-link(to="/quiz/dog")
-                button.fk-btn-prim {{ str.start.dog }}
+                button.fk-btn-prim
+                  span {{ str.start.dog }}
+                  span.btn-arrow
               router-link(to="/quiz/cat")
-                button.fk-btn-prim {{ str.start.cat }}
+                button.fk-btn-prim
+                  span {{ str.start.cat }}
+                  span.btn-arrow
 
           .fk-l-start__frame-img-wrapper.pure-u-1-1.pure-u-sm-1-2
             img.fk-l-start__frame-img(
@@ -107,12 +111,14 @@
 
         .fk-l-suggest__share-btn-container
           a.fk-l-suggest__share-btn(:href="str.suggest.royalBtnUrl")
-            button.fk-btn-prim {{ str.suggest.royalBtnText }}
+            button.fk-btn-prim
+              span {{ str.suggest.royalBtnText }}
+              span.btn-arrow
           a.fk-l-suggest__share-btn(:href="str.suggest.lineBtnUrl")
             button.fk-btn-prim
-              span
-                img(src="assets/img/common/line_white.png", alt="share to line")
+              img(src="assets/img/common/line_white.png", alt="share to line")
               span {{ str.suggest.lineBtnText }}
+              span.btn-arrow
     
 </template>
 
@@ -201,6 +207,10 @@ export default {
   position: relative;
   overflow: hidden;
 
+  @include rwd-max(xs) {
+    padding-bottom: 136px;
+  }
+
   &__bg,
   &__bg-footprint-first {
     position: absolute;
@@ -281,13 +291,13 @@ export default {
       position: absolute;
       left: 50%;
       bottom: 0;
-      width: 60vw;
+      width: 272px;
       transform: translate(-50%, 50%);
     }
   }
 
   &__frame-text-wrapper {
-    padding: $spacing-4;
+    padding: $spacing-4 $spacing-6;
     text-align: left;
 
     @include rwd-min(md) {
@@ -384,6 +394,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: $spacing-2;
+
+    @include rwd-min(md) {
+      margin-right: $spacing-7;
+    }
   }
 
   &__title {
@@ -399,12 +414,17 @@ export default {
   }
 
   &__avator-wrapper {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border-style: solid;
     border-color: $color-primary;
     border-width: 4px;
+
+    @include rwd-min(sm) {
+      width: 60px;
+      height: 60px;
+    }
 
     @include rwd-min(md) {
       width: 100px;
@@ -424,14 +444,20 @@ export default {
     border-radius: 50%;
     transform: translate(-2px, 2px);
 
-    @include rwd-min(md) {
-      transform: translate(-$spacing-1, $spacing-1);
-    }
-
     img {
       width: 135px;
-      margin-right: $spacing-4;
+      margin-right: $spacing-2;
       max-width: none;
+    }
+
+    @include rwd-min(md) {
+      transform: translate(-$spacing-1, $spacing-1);
+
+      img {
+        width: 135px;
+        margin-right: $spacing-4;
+        max-width: none;
+      }
     }
   }
 
@@ -527,5 +553,16 @@ export default {
       height: 750px;
     } */
   }
+
+}
+.btn-arrow {
+  display: inline-block;
+  border-style: solid;
+  border-width: 2px;
+  border-color: $white $white transparent transparent;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-left: $spacing-2;
+  transform: rotate(45deg);
 }
 </style>

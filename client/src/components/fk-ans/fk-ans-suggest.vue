@@ -1,29 +1,28 @@
 <template lang="pug">
 .fk-ans-suggest
-  .fk-ans-suggest__content
-    .pure-g.autopad-4
-      .pure-u-1-1.pure-u-sm-1-3.pure-u-lg-1-4.center
-        .fk-ans-suggest__doc
-          fk-doctor
+  .fk-ans-suggest__content.pure-g.autopad-4
+    .pure-u-1-1.pure-u-sm-1-3.pure-u-lg-1-4.center
+      .fk-ans-suggest__doc
+        fk-doctor
 
-      .pure-u-1-1.pure-u-sm-2-3.pure-u-lg-3-4.center
-        .fk-ans-suggest__info
-          .fk-ans-suggest__say-wrapper
-            .fk-ans-suggest__say-quote-arrow-wrapper
-              .fk-ans-suggest__say-quote-arrow
-            .fk-ans-suggest__say
-              h4.fk-ans-suggest__say-title “ {{ sayTitle }} ”
-              p.fk-ans-suggest__say-desc(v-html="sayContent")
+    .pure-u-1-1.pure-u-sm-2-3.pure-u-lg-3-4.center
+      .fk-ans-suggest__info
+        .fk-ans-suggest__say-wrapper
+          .fk-ans-suggest__say-quote-arrow-wrapper
+            .fk-ans-suggest__say-quote-arrow
+          .fk-ans-suggest__say
+            h4.fk-ans-suggest__say-title “ {{ sayTitle }} ”
+            p.fk-ans-suggest__say-desc(v-html="sayContent")
 
-          .fk-ans-suggest__source-container(v-if="source")
-            .fk-ans-suggest__source-label-wrapper
-              span.fk-ans-suggest__source-label 資料來源
-            ol.fk-ans-suggest__source-wrapper
-              li(
-                v-for="item in source"
-                :key="item.id"
-              )
-                a.fk-ans-suggest__source(:href="item.url" target="_blank" rel="noopener norefer") {{ item.text }}
+        .fk-ans-suggest__source-container(v-if="source")
+          .fk-ans-suggest__source-label-wrapper
+            span.fk-ans-suggest__source-label 資料來源
+          ol.fk-ans-suggest__source-wrapper
+            li(
+              v-for="item in source"
+              :key="item.id"
+            )
+              a.fk-ans-suggest__source(:href="item.url" target="_blank" rel="noopener norefer") {{ item.text }}
 
   slot
 </template>
@@ -61,12 +60,38 @@ export default {
 
 <style lang="scss">
 .fk-ans-suggest {
+  animation: fly-in 1.5s ease-in-out;
+
+  @keyframes fly-in {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   &__doc {
     text-align: center;
   }
 
   &__content {
     display: flex;
+
+    @include rwd-max(xs) {
+      animation: fade-in 1.5s ease-in-out forwards;
+    }
+
+    @keyframes fade-in {
+      0% {
+        background-color: rgba($gray-3, 0);
+      }
+      100% {
+        background-color: rgba($gray-3, 1);
+      }
+    }
   }
 
   &__info {

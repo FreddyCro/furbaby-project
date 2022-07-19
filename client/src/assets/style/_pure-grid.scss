@@ -15,6 +15,10 @@
     flex-flow: row-reverse;
   }
 
+  .flex {
+    display: inline-flex !important;
+  }
+
   .center {
     justify-content: center;
   }

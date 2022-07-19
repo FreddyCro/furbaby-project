@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-ans-start.fk-page
+.fk-ans-start
   fk-bg
   .fk-ans-content
     .fk-ans-content__main
@@ -33,9 +33,7 @@
       //- start page
       .fk-ans__pagination-start(v-show="name.length > 0")
         router-link(:to="`/quiz/${cate}/1`") 
-          button.fk-btn-prim(
-            @click="$store.dispatch('setCategory', cate)"
-          ) 
+          button.fk-btn-prim(@click="startQuiz")
             span START
             span.fk-ans__next-step-icon
 
@@ -77,6 +75,12 @@ export default {
   },
   created() {
     this.$store.dispatch('setCategory', this.cate);
+  },
+  methods: {
+    startQuiz() {
+      this.$store.dispatch('setCategory', this.cate);
+      this.$store.dispatch('setCurrentStep', 1);
+    },
   },
 };
 </script>
@@ -123,6 +127,10 @@ export default {
   input[type='text'] {
     border: 2px solid $color-primary;
     padding: $spacing-2 $spacing-3;
+
+    @include rwd-max(xs) {
+      width: 164px;
+    }
   }
 }
 </style>
