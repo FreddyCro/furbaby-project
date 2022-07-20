@@ -48,7 +48,7 @@
               .fk-result__share-btn-wrapper
                 share-network(
                   network="line"
-                  :url="`https://event.udn.com/royalcanin2022/sharing.php?c=${$store.state.cate}&sc=${$store.state[$store.state.cate].score}&lv=${result.level}`"
+                  :url="sharingUrl"
                   :title="meta.title"
                   :description="shareDescription"
                   hashtags="royalcanin"
@@ -58,7 +58,7 @@
               .fk-result__share-btn-wrapper
                 share-network(
                   network="facebook"
-                  :url="`https://event.udn.com/royalcanin2022/sharing.php?c=${$store.state.cate}&sc=${$store.state[$store.state.cate].score}&lv=${result.level}`"
+                  :url="sharingUrl"
                   :title="meta.title"
                   :description="shareDescription"
                   hashtags="royalcanin"
@@ -103,10 +103,10 @@ export default {
   }),
   computed: {
     sharingUrl() {
-      return `./sharing.php?n=${this.$store.state.user}&c=${
+      return `${process.env.VUE_APP_API_ROOT}/api/furkid/sharing.php?c=${
         this.$store.state.cate
-      }&lv=${this.result.level}&sc=${
-        this.$store.state[this.$store.state.cate].score
+      }&sc=${this.$store.state[this.$store.state.cate].score}&lv=${
+        this.result.level
       }`;
     },
     finalImg() {
@@ -121,7 +121,11 @@ export default {
       return undefined;
     },
     shareDescription() {
-      return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${this.$store.state[this.$store.state.cate].score}題{，答錯${7 - this.$store.state[this.$store.state.cate].score}題${this.rankingStr ? '，等級為' + this.rankingStr : ''}，排名為${this.result.ranking}`;
+      return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
+        this.$store.state[this.$store.state.cate].score
+      }題{，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
+        this.rankingStr ? '，等級為' + this.rankingStr : ''
+      }，排名為${this.result.ranking}`;
     },
   },
   created() {
@@ -135,7 +139,6 @@ export default {
 
       // get ranking data
       getRankingByScore(this.$store.state.cate, score).then((res) => {
-        console.log(res);
         if (+res.status === 200) {
           this.result.ranking = res.data;
         } else console.log(res, 'fail');
@@ -269,7 +272,7 @@ export default {
       margin-right: $spacing-1;
     }
   }
-  
+
   &__share-btn-arrow {
     display: inline-block;
     border-style: solid;
