@@ -24,7 +24,7 @@
                 type="text"
                 :placeholder="str.inputYourName"
                 v-model="name"
-                @keyup.enter="$router.push(`/quiz/${cate}/1`)"
+                @keyup.enter="handleInputKeydown"
                 autofocus
               )
 
@@ -77,6 +77,10 @@ export default {
     this.$store.dispatch('setCategory', this.cate);
   },
   methods: {
+    handleInputKeydown() {
+      this.startQuiz();
+      this.$router.push(`/quiz/${this.cate}/1`);
+    },
     startQuiz() {
       this.$store.dispatch('setCategory', this.cate);
       this.$store.dispatch('setCurrentStep', 1);
