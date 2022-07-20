@@ -1,0 +1,79 @@
+<?php
+function callAPI($method, $url, $data)
+{
+  $curl = curl_init();
+  switch ($method) {
+    case "POST":
+      curl_setopt($curl, CURLOPT_POST, 1);
+      if ($data)
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      break;
+    case "PUT":
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+      if ($data)
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      break;
+    default:
+      if ($data)
+        $url = sprintf("%s?%s", $url, http_build_query($data));
+  }
+  // OPTIONS:
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    'APIKEY: 111111111111111111111',
+    'Content-Type: application/json',
+  ));
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+  // EXECUTE:
+  $result = curl_exec($curl);
+  if (!$result) {
+    die("Connection Failure");
+  }
+  curl_close($curl);
+  return $result;
+}
+
+$description = "軟萌的幼貓、幼犬惹人憐愛，需要特殊營養為體質打底，隨著牠一天天成長，正確的轉糧與飼主照護觀念更為重要，找朋友一起挑戰你的毛寵達人級數吧！";
+$username = isset($_GET["n"]) ? $_GET["n"] : null;
+$category = isset($_GET["c"]) ? $_GET["c"] : null;
+$level = isset($_GET["lv"]) ? $_GET["lv"] : null;
+$score = isset($_GET["sc"]) ? $_GET["sc"] : null;
+
+// get data from another server
+// $url = "http://192.168.99.100:8080/api/furkid/get-sharing.php?n={$username}&c={$category}&lv={$level}&sc={$score}";
+$url = "https://event.udn.com/royalcanin2022/api/furkid/get-sharing.php?n={$username}&c={$category}&lv={$level}&sc={$score}";
+
+$get_data = callAPI("GET", $url, false);
+$description = json_decode($get_data, true);
+$errors = $response["response"]["errors"];
+?>
+
+<!DOCTYPE html>
+<html lang="zh-HANT-TW">
+
+<head>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="noindex">
+
+
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="法國皇家寵物健康專家" />
+  <meta property="og:url" content="https://event.udn.com/royalcanin2022/" />
+  <meta property="og:image" content="https://event.udn.com/royalcanin2022/meta.jpg" />
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:description" content="<?= $description ?>" />
+  <link rel="icon" href="https://event.udn.com/royalcanin2022/favicon.ico">
+  <title>法國皇家寵物健康專家</title>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -115,16 +115,18 @@ export default {
     },
     rankingStr() {
       if (this.$store.state.cate === 'dog')
-        return rankingDog[this.$store.state.cate];
+        return rankingDog[this.result.level];
+
       if (this.$store.state.cate === 'cat')
-        return rankingCat[this.$store.state.cate];
+        return rankingCat[this.result.level];
+
       return undefined;
     },
     shareDescription() {
       return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
         this.$store.state[this.$store.state.cate].score
       }題{，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
-        this.rankingStr ? '，等級為' + this.rankingStr : ''
+        this.rankingStr ? '，等級為' + this.rankingStr.title : ''
       }，排名為${this.result.ranking}`;
     },
   },
