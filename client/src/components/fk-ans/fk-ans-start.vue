@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-ans-start.fk-page
+.fk-ans-start
   fk-bg
   .fk-ans-content
     .fk-ans-content__main
@@ -19,10 +19,10 @@
               p {{ desc }}
 
             .fk-name-input__text
-              .fk-name-input__label 請輸入你的名字
+              .fk-name-input__label {{ str.inputYourName }}
               input(
                 type="text"
-                placeholder="請輸入你的名字"
+                :placeholder="str.inputYourName"
                 v-model="name"
                 @keyup.enter="$router.push(`/quiz/${cate}/1`)"
                 autofocus
@@ -33,15 +33,14 @@
       //- start page
       .fk-ans__pagination-start(v-show="name.length > 0")
         router-link(:to="`/quiz/${cate}/1`") 
-          button.fk-btn-prim(
-            @click="$store.dispatch('setCategory', cate)"
-          ) 
+          button.fk-btn-prim(@click="startQuiz")
             span START
             span.fk-ans__next-step-icon
 
 </template>
 
 <script>
+import str from '@/assets/json/quiz.json';
 import FkBg from '@/components/fk-bg.vue';
 import FkWizard from '@/components/fk-wizard.vue';
 import FkFootprint from '@/components/fk-footprint.vue';
@@ -66,6 +65,7 @@ export default {
     FkFootprint,
   },
   data: () => ({
+    str,
     name: '',
   }),
   watch: {
@@ -75,6 +75,12 @@ export default {
   },
   created() {
     this.$store.dispatch('setCategory', this.cate);
+  },
+  methods: {
+    startQuiz() {
+      this.$store.dispatch('setCategory', this.cate);
+      this.$store.dispatch('setCurrentStep', 1);
+    },
   },
 };
 </script>
@@ -121,6 +127,10 @@ export default {
   input[type='text'] {
     border: 2px solid $color-primary;
     padding: $spacing-2 $spacing-3;
+
+    @include rwd-max(xs) {
+      width: 164px;
+    }
   }
 }
 </style>

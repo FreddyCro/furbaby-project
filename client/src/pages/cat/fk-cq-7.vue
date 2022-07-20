@@ -14,7 +14,7 @@
         .pure-g.autopad-10
           .fk-cq7-ans__options.pure-u-1-1.pure-u-sm-1-2
             .pure-g.autopad-2
-              .pure-u-1-2.pure-u-sm-1-1(
+              .pure-u-1-2.pure-u-sm-1-1.flex.center(
                 v-for="item, index in Object.keys(data.options)"
                 :key="`${cate}q-${data.idx}-${item}`"
               )
@@ -43,6 +43,7 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
+        :is-my-ans-correct="singleStrategy(data.ans, myAns)"
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)

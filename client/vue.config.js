@@ -13,14 +13,6 @@ module.exports = {
       metaTitle: meta.metaTitle,
       metaDescription: meta.metaDescription,
     },
-    sharing: {
-      entry: 'src/main.js',
-      template: 'public/sharing.php',
-      filename: 'sharing.php',
-      title: meta.title,
-      metaTitle: meta.metaTitle,
-      metaDescription: meta.metaDescription,
-    },
   },
   chainWebpack: (config) => {
     config.module

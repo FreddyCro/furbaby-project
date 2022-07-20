@@ -31,6 +31,7 @@
         :question="data.title"
         :cate="cate"
         :useVideo="true"
+        :is-my-ans-correct="singleStrategy(data.ans, myAns)"
         illustration="assets/vid/dog5.mp4"
       )
         template(#ans)

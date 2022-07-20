@@ -64,10 +64,10 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  // const getPage = (path) => {
-  //   const page = path.split('/').pop();
-  //   return page;
-  // };
+  const getPage = (path) => {
+    const page = path.split('/').pop();
+    return page;
+  };
 
   // back to landing page
   if (store.state.user === '' || !store.state.cate) {
@@ -77,21 +77,21 @@ router.beforeEach((to, from, next) => {
   }
 
   // prevent go to next page and go back to previous page
-  // if (!isNaN(+getPage(to.path)) && store.state.cate) {
-  //   // prevent next
-  //   if (+getPage(to.path) > +store.state.currentStep) {
-  //     next({
-  //       path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
-  //     });
-  //   }
+  if (!isNaN(+getPage(to.path)) && store.state.cate) {
+    // prevent next
+    if (+getPage(to.path) > +store.state.currentStep) {
+      next({
+        path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
+      });
+    }
 
-  //   // prevent previous
-  //   if (+getPage(to.path) < +store.state.currentStep) {
-  //     next({
-  //       path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
-  //     });
-  //   }
-  // }
+    // prevent previous
+    if (+getPage(to.path) < +store.state.currentStep) {
+      next({
+        path: `/quiz/${store.state.cate}/${store.state.currentStep}`,
+      });
+    }
+  }
 
   if (to.path === '/result' && store.state.currentStep < 7) {
     next({ path: '/' });

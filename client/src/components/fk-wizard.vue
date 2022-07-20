@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-wizard
+.fk-wizard(v-if="+$store.state.currentStep > 0")
   .fk-wizard__circle(
     v-for="item in 7"
     :key="item.id"

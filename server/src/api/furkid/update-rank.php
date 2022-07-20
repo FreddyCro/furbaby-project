@@ -22,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] !== 'POST') {
 
   $id = isset($_GET['id']) ? $_GET['id'] : die();
 
+  // TODO: recaptcha
+
   if ($item->updateRank($tableName, $id)) {
     echo json_encode("Rank data updated.");
   } else {

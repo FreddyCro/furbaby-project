@@ -7,7 +7,9 @@
           span.fk-ans-correct__question-title-footprint
             footprint-cat(v-if="cate === 'cat'")
             footprint-dog(v-if="cate === 'dog'")
-          span {{ question }}
+          span
+            span {{ question }}
+            span.is-my-ans-correct {{ isMyAnsCorrect ? str.myAnsIsCorrect : str.myAnsIsIncorrect }}
 
         .fk-ans-correct__question-ans
           slot(name="ans")
@@ -33,6 +35,8 @@
 </template>
 
 <script>
+import str from '@/assets/json/quiz.json';
+
 import FootprintCat from '@/assets/img/quiz/cat/footprint_cat_red.svg';
 import FootprintDog from '@/assets/img/quiz/dog/footprint_dog_red.svg';
 
@@ -46,6 +50,10 @@ export default {
     question: {
       type: String,
     },
+    isMyAnsCorrect: {
+      type: Boolean,
+      default: false,
+    },
     cate: {
       type: String,
       required: true,
@@ -57,6 +65,11 @@ export default {
     illustration: {
       type: String,
     },
+  },
+  data() {
+    return {
+      str,
+    };
   },
 };
 </script>
@@ -74,12 +87,19 @@ export default {
 
   &__question-title {
     display: flex;
-    align-items: center;
     margin-bottom: 20px;
     padding-bottom: $spacing-1;
     border-bottom: solid 1px $gray-4;
     color: $color-primary;
     font-size: 1.5rem;
+  }
+
+  .is-my-ans-correct {
+    display: block;
+    color: $gray-160;
+    font-weight: 700;
+    font-size: larger;
+    line-height: 2;
   }
 
   &__question-title-footprint {

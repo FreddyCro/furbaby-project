@@ -30,6 +30,7 @@
       fk-ans-correct(
         :question="data.title"
         :cate="cate"
+        :is-my-ans-correct="singleStrategy(data.ans, myAns)"
         :illustration="`assets/img/quiz/${cate}/${data.idx}/ans_illus.png`"
       )
         template(#ans)
@@ -81,13 +82,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fk-cq2{
+.fk-cq2 {
   &__vid-wrapper {
     text-align: center;
   }
 
-  &__vid{
-    max-width: 50%;
+  &__vid {
+    max-width: 100%;
+    
+    @include rwd-min(sm) {
+      max-width: 50%;
+    }
   }
 }
 </style>
