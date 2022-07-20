@@ -33,7 +33,10 @@
       .fk-ans__pagination
         //- submit
         .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
-          button.fk-btn-prim(@click="submitAnswer(cate, idx)")
+          button.fk-btn-prim.g-recaptcha(
+            @click="submitAnswer(cate, idx)"
+            data-sitekey="6LfA8AAhAAAAAFR0q3HDMWN9qVrHiGii3xqnQDs6"
+          )
             span {{ str.showAns }}
             span.fk-ans__next-step-icon
 

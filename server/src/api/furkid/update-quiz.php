@@ -23,6 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] !== 'POST') {
   $id = isset($_GET['id']) ? $_GET['id'] : die();
   $correct = isset($_GET['correct']) ? $_GET['correct'] : die();
 
+  // TODO: recaptcha
+
   if ($item->updateQuestion($tableName, $id, $correct)) {
     echo json_encode("Quiz data updated.");
   } else {

@@ -103,7 +103,7 @@ export default {
   }),
   computed: {
     sharingUrl() {
-      return `${process.env.VUE_APP_API_ROOT}/api/furkid/sharing.php?c=${
+      return `${window.location.protocol}//${process.env.VUE_APP_API_ROOT}/api/furkid/sharing.php?c=${
         this.$store.state.cate
       }&sc=${this.$store.state[this.$store.state.cate].score}&lv=${
         this.result.level
