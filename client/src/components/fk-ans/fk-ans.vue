@@ -128,6 +128,8 @@ export default {
   created() {
     // TODO: redirect to current step if route to another step
     this.$store.dispatch('setCurrentStepSumit', false);
+
+    if (this.$store.state.currentStep > 7) this.$router.push('/result');
   },
 };
 </script>

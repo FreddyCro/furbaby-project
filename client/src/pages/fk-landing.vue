@@ -111,11 +111,19 @@
           p.fk-l-suggest__desc(v-html="str.suggest.desc")
 
         .fk-l-suggest__share-btn-container
-          a.fk-l-suggest__share-btn(:href="str.suggest.royalBtnUrl")
+          a.fk-l-suggest__share-btn(
+            :href="str.suggest.royalBtnUrl",
+            target="_blank",
+            rel="noopener noreferrer"
+          )
             button.fk-btn-prim
               span {{ str.suggest.royalBtnText }}
               span.btn-arrow
-          a.fk-l-suggest__share-btn(:href="str.suggest.lineBtnUrl")
+          a.fk-l-suggest__share-btn(
+            :href="str.suggest.lineBtnUrl",
+            target="_blank",
+            rel="noopener noreferrer"
+          )
             button.fk-btn-prim
               img(src="assets/img/common/line_white.png", alt="share to line")
               span {{ str.suggest.lineBtnText }}

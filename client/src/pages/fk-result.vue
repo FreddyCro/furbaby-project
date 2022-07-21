@@ -110,11 +110,11 @@ export default {
   }),
   computed: {
     sharingUrl() {
-      return `${window.location.protocol}//${process.env.VUE_APP_API_ROOT}/sharing.php?c=${
-        this.$store.state.cate
-      }&sc=${this.$store.state[this.$store.state.cate].score}&lv=${
-        this.result.level
-      }`;
+      return `${window.location.protocol}//${
+        process.env.VUE_APP_API_ROOT
+      }/sharing.php?c=${this.$store.state.cate}&sc=${
+        this.$store.state[this.$store.state.cate].score
+      }&lv=${this.result.level}`;
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;

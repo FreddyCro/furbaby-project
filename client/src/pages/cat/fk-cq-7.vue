@@ -3,7 +3,7 @@
   fk-ans(
     :idx="+data.idx"
     :title="data.title"
-    questionType="multi"
+    questionType="single"
     :has-select="hasSelect"
     :has-submitted="hasSubmitted"
     :submit-answer="submitAnswer"

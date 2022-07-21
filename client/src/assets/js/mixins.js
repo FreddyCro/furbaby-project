@@ -37,7 +37,7 @@ const multiStrategyMixins = {
       }
 
       this.$store.dispatch('setCurrentStepSumit', true);
-      this.$store.dispatch('setCurrentStep', this.data.idx + 1);
+      this.$store.dispatch('setCurrentStep', Math.min(this.data.idx + 1, 7));
       // console.log('go:', this.$store.state.currentStep);
     },
     multiStrategy(correctAns) {
@@ -78,7 +78,7 @@ const singleStrategyMixins = {
       }
 
       this.$store.dispatch('setCurrentStepSumit', true);
-      this.$store.dispatch('setCurrentStep', this.data.idx + 1);
+      this.$store.dispatch('setCurrentStep', Math.min(this.data.idx + 1, 7));
       // console.log('go:', this.$store.state.currentStep);
     },
     singleStrategy(correctAns, myAns) {
