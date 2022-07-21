@@ -45,7 +45,7 @@ export default {
     padding: $spacing-1 $spacing-6;
     border-radius: 30px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: $p-4;
     color: $white;
     background-color: $color-primary;
   }

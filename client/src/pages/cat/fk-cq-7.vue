@@ -12,7 +12,7 @@
     template(#my-ans)
       .fk-cq7-ans
         .pure-g.autopad-10
-          .fk-cq7-ans__options.pure-u-1-1.pure-u-sm-1-2
+          .fk-cq7-ans__options.pure-u-1-1.pure-u-sm-1-2.align-middle
             .pure-g.autopad-2
               .pure-u-1-2.pure-u-sm-1-1.flex.center(
                 v-for="item, index in Object.keys(data.options)"
@@ -90,7 +90,9 @@ export default {
 <style lang="scss" scoped>
 .fk-cq7-ans {
   .fk-ans-opt-small {
-    margin-left: auto;
+    @include rwd-min(sm) {
+      margin-left: auto;
+    }
   }
   .fk-wc {
     display: flex;

@@ -305,11 +305,11 @@
     color: $white;
     background-color: $gray-160;
     transition: 0.1s ease-in-out;
-    font-size: 0.5rem;
+    font-size: $p-2;
 
     @include rwd-min(sm) {
       min-width: 144px;
-      font-size: 1rem;
+      font-size: $p-3;
     }
 
     @include rwd-min(md) {

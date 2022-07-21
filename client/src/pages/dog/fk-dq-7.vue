@@ -54,7 +54,7 @@
                 .fk-dq7__ans-item-text-title
                   span.fk-dq7__ans-item-text-check(v-if="data.ans.includes(+item)") 
                   span {{ data.options[item] }}
-                .fk-dq7__ans-item-text-desc {{ data.ansDetail[item] }}
+                .fk-dq7__ans-item-text-desc(v-html="data.ansDetail[item]")
 </template>
 
 <script>
@@ -133,6 +133,10 @@ export default {
     align-items: flex-end;
     margin-bottom: $spacing-2;
     color: lighten($color: $color-primary, $amount: 10%);
+  }
+
+  &__ans-item-text-desc {
+    line-height: 1.5;
   }
 
   &__ans-item-text-check {

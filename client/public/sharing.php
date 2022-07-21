@@ -53,6 +53,9 @@ $errors = $response["response"]["errors"];
 <html lang="zh-HANT-TW">
 
 <head>
+
+
+
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
 
@@ -61,19 +64,28 @@ $errors = $response["response"]["errors"];
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta property="og:title" content="法國皇家寵物健康專家" />
   <meta property="og:url" content="https://event.udn.com/royalcanin2022/" />
   <meta property="og:image" content="https://event.udn.com/royalcanin2022/meta.jpg" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:description" content="<?= $description ?>" />
+  <meta property="fb:app_id" content="350231215126101" />
   <link rel="icon" href="https://event.udn.com/royalcanin2022/favicon.ico">
   <title>法國皇家寵物健康專家</title>
 </head>
 
 <body>
-
+  <main style="opacity: 0;">
+    <h1>毛寵達人大會考</h1>
+    <p>開始測驗</p>
+    <p>你有自信成為<br>皇家級的飼主嗎？</p>
+    <p>軟萌的幼貓、幼犬惹人憐愛，<br>需要特殊營養為體質打底。<br>隨著牠一天天成長，<br>正確的轉糧與飼主照護觀念更為重要。<br><br>《皇家營養學：毛寵達人大會考》比專業知識，<br>也比答題速度，找朋友一起挑戰你的毛寵達人級數吧！</p>
+    <button>我是狗主人 GO</button>
+    <button>我是貓主人 GO</button>
+    <p>好飼主必知守則</p>
+    <p>守護愛犬、愛貓的健康成長，<br>除了飼主的細心觀察、照護，<br>遵循獸醫師的專業建議，<br>打造最適合牠們成長的環境。</p>
+  </main>
 </body>
 
 </html>

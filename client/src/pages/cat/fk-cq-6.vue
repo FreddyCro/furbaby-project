@@ -55,7 +55,7 @@
               .fk-ans-opt-small.fk-ans-opt-small--correct {{ data.options[item] }}
 
         template(#suggest)
-          p {{ data.explain }}
+          p(v-html="data.explain")
 
       fk-ans-suggest(
         :say-title="data.doc.say.title"

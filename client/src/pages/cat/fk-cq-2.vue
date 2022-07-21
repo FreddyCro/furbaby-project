@@ -46,6 +46,7 @@
       )
         .fk-cq2__vid-wrapper
           video.fk-cq2__vid(
+            playsinline
             autoplay
             loop
             type="video/mp4"
@@ -84,6 +85,7 @@ export default {
 <style lang="scss" scoped>
 .fk-cq2 {
   &__vid-wrapper {
+    margin-top: $spacing-4;
     text-align: center;
   }
 

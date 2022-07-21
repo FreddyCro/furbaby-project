@@ -222,7 +222,7 @@ export default {
     align-items: center;
     justify-content: center;
     color: $color-primary;
-    font-size: 0.5rem;
+    font-size: $p-2;
     font-weight: bolder;
     margin-top: $spacing-4;
     transform: translate(-50%, 100%);

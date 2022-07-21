@@ -21,9 +21,15 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:description" content="<%= htmlWebpackPlugin.options.metaDescription %>"/>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+  
+    <meta property="fb:app_id" content="350231215126101" />
     
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="alternate" href="<%= htmlWebpackPlugin.options.pageUrl %>">
+    <link rel="canonical" href="<%= htmlWebpackPlugin.options.pageUrl %>">
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>

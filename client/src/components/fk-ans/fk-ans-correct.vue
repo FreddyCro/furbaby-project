@@ -21,6 +21,7 @@
       .fk-ans-correct__illus
         video(
           v-if="useVideo"
+          playsinline
           autoplay
           loop
           type="video/mp4"
@@ -117,6 +118,10 @@ export default {
     @include rwd-min(sm) {
       justify-content: flex-start;
     }
+  }
+
+  &__suggest {
+    line-height: 1.67;
   }
 
   &__illus {
