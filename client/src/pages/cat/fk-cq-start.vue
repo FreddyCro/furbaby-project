@@ -10,7 +10,7 @@
 
 <script>
 import FkAnsStart from '@/components/fk-ans/fk-ans-start.vue';
-import str from '@/assets/json/start.json';
+import str from '@/assets/json/quiz-cat.json';
 
 export default {
   name: 'CqStart',
@@ -18,10 +18,9 @@ export default {
     FkAnsStart,
   },
   data: () => ({
-    str,
+    str: str.start,
   }),
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

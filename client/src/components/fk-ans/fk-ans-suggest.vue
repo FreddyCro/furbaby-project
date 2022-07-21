@@ -169,6 +169,7 @@ export default {
   &__say-desc {
     color: rgb(130, 130, 130);
     margin-bottom: 0;
+    line-height: 1.5;
   }
 
   &__source-container {

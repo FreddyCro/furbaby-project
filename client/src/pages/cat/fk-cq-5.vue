@@ -162,7 +162,7 @@ export default {
   &__range-input-index {
     margin-top: -20px;
     color: $white;
-    font-size: 1.5rem;
+    font-size: 24px;
     span {
       display: inline-flex;
       align-items: center;
@@ -181,7 +181,7 @@ export default {
     }
 
     .text {
-      font-size: 0.5rem;
+      font-size: $p-1;
       display: inline-block;
       transform: translateX(-0.8rem);
       font-weight: bolder;

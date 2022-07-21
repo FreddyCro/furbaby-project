@@ -17,6 +17,7 @@
         .fk-l-intro__video-wrapper
           video.fk-l-intro__video(
             autoplay
+            playsinline
             loop
             type="video/mp4"
             muted

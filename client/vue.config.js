@@ -12,6 +12,7 @@ module.exports = {
       title: meta.title,
       metaTitle: meta.metaTitle,
       metaDescription: meta.metaDescription,
+      pageUrl: 'https://event.udn.com/royalcanin2022/',
     },
     sharing: {
       template: 'public/sharing.php',

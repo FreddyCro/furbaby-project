@@ -53,6 +53,9 @@ $errors = $response["response"]["errors"];
 <html lang="zh-HANT-TW">
 
 <head>
+
+
+
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
 
@@ -61,19 +64,25 @@ $errors = $response["response"]["errors"];
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta property="og:title" content="法國皇家寵物健康專家" />
   <meta property="og:url" content="https://event.udn.com/royalcanin2022/" />
   <meta property="og:image" content="https://event.udn.com/royalcanin2022/meta.jpg" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:description" content="<?= $description ?>" />
+  <meta property="fb:app_id" content="350231215126101" />
   <link rel="icon" href="https://event.udn.com/royalcanin2022/favicon.ico">
   <title>法國皇家寵物健康專家</title>
 </head>
 
 <body>
-
+  <script>
+    (function() {
+      setTimeout(function() {
+        window.location.replace('https://event.udn.com/royalcanin2022/');
+      }, 1000);
+    })();
+  </script>
 </body>
 
 </html>

@@ -34,7 +34,7 @@
         //- submit
         .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
           button.fk-btn-prim.g-recaptcha(
-            @click="submitAnswer(cate, idx)"
+            @click="handleSumbitClick"
             data-sitekey="6LfA8AAhAAAAAFR0q3HDMWN9qVrHiGii3xqnQDs6"
           )
             span {{ str.showAns }}
@@ -45,7 +45,7 @@
           v-if="hasSubmitted"
           :to="idx === 7 ? '/result' : `/quiz/${cate}/${idx + 1}`"
         )
-          button.fk-btn-prim
+          button.fk-btn-prim(@click="scrollToTop")
             span {{ idx === 7 ? str.showFinalScore : str.next }}
             span.fk-ans__next-step-icon
 
@@ -112,6 +112,17 @@ export default {
       if (this.questionType === 'multi') return '複選題';
       if (this.questionType === 'drag') return '拖曳題';
       return null;
+    },
+  },
+  methods: {
+    scrollToTop() {
+      this.$nextTick(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    },
+    handleSumbitClick() {
+      this.submitAnswer(this.cate, this.idx);
+      this.scrollToTop();
     },
   },
   created() {

@@ -16,7 +16,7 @@
               h2 {{ title }}
 
             .fk-name-input__desc
-              p {{ desc }}
+              p(v-html="desc")
 
             .fk-name-input__text
               .fk-name-input__label {{ str.inputYourName }}
@@ -110,6 +110,8 @@ export default {
 
   &__desc {
     margin-bottom: $spacing-7;
+
+    line-height: 1.67;
   }
 
   &__input {

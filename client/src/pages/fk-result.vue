@@ -51,7 +51,7 @@
                   :url="sharingUrl"
                   :title="meta.title"
                   :description="shareDescription"
-                  hashtags="royalcanin"
+                  :hashtags="str.hashtags"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
                     span.fk-result__share-btn-arrow
@@ -61,15 +61,22 @@
                   :url="sharingUrl"
                   :title="meta.title"
                   :description="shareDescription"
-                  hashtags="royalcanin"
+                  :hashtags="str.hashtags"
                 )
                   .fk-result__share-btn
                     img(src="assets/img/common/fb.png" alt="fb icon")
                     span {{ str.shareResult }}
                       span.fk-result__share-btn-arrow
                     
-      a.fk-result__banner(:href="str.getRewardUrl")
-        img(src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
+      .fk-result__banner
+        share-network(
+          network="facebook"
+          :url="sharingUrl"
+          :title="meta.title"
+          :description="shareDescription"
+          :hashtags="str.hashtags"
+        )
+          img(src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
 
 </template>
 
@@ -103,7 +110,7 @@ export default {
   }),
   computed: {
     sharingUrl() {
-      return `${window.location.protocol}//${process.env.VUE_APP_API_ROOT}/api/furkid/sharing.php?c=${
+      return `${window.location.protocol}//${process.env.VUE_APP_API_ROOT}/sharing.php?c=${
         this.$store.state.cate
       }&sc=${this.$store.state[this.$store.state.cate].score}&lv=${
         this.result.level
@@ -125,7 +132,7 @@ export default {
     shareDescription() {
       return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
         this.$store.state[this.$store.state.cate].score
-      }題{，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
+      }題，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
         this.rankingStr ? '，等級為' + this.rankingStr.title : ''
       }，排名為${this.result.ranking}`;
     },
@@ -237,12 +244,12 @@ export default {
     }
 
     @include rwd-max(xs) {
-      justify-content: center;
+      justify-content: space-evenly;
     }
   }
 
   &__share-btn-wrapper {
-    margin-right: 0.5rem;
+    margin-right: $spacing-1;
 
     @include rwd-min(sm) {
       margin-right: 1rem;
@@ -256,6 +263,7 @@ export default {
   &__share-btn {
     @include reset-btn;
 
+    min-height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,7 +271,7 @@ export default {
     border: solid 2px $color-primary;
     border-radius: 20px;
     color: $color-primary;
-    font-size: 0.5rem;
+    font-size: $p-2;
 
     @include rwd-min(sm) {
       padding: $spacing-1 $spacing-3;
@@ -287,7 +295,6 @@ export default {
   }
 
   &__banner {
-    display: block;
     margin: $spacing-8 auto 0 auto;
   }
 }
