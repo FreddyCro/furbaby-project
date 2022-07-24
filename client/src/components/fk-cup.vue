@@ -104,9 +104,9 @@
               font-family="SegoeUI, Segoe UI"
             >
               <tspan x="-19.191" y="0">
-                <tspan v-if="data === 0 || data === 1" opacity="0">0</tspan>
-                <tspan>{{ table[data] }}</tspan>
-                <tspan>%</tspan>
+                <tspan v-if="textIndex === 0 || textIndex === 1" opacity="0">0</tspan>
+                <tspan v-if="textIndex !== 0">{{ table[textIndex] }}</tspan>
+                <tspan v-if="textIndex !== 0">%</tspan>
               </tspan>
             </text>
           </g>
@@ -149,6 +149,10 @@ export default {
       type: Number,
       default: 0,
     },
+    tempData: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -162,11 +166,18 @@ export default {
     };
   },
   computed: {
+    textIndex() {
+      return this.tempData || this.data || 0;
+    },
     redTransform() {
-      return `translate(0, ${60 - this.data * 10})`;
+      const count = this.tempData || this.data || 1;
+
+      return `translate(0, ${60 - count * 10})`;
     },
     textTransform() {
-      return `translate(105, ${(60 - this.data * 10 + 116) || 0})`;
+      const count = this.tempData || this.data || 1;
+
+      return `translate(105, ${60 - count * 10 + 116 || 0})`;
     },
   },
 };
@@ -177,7 +188,7 @@ export default {
   display: flex;
 }
 
-/* .fk-wc-text-group, */
+.fk-wc-text-group,
 .fk-wc-water {
   transition: 0.5s ease-in-out;
 }

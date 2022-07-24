@@ -33,12 +33,10 @@
       .fk-ans__pagination
         //- submit
         .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
-          button.fk-btn-prim.g-recaptcha(
-            @click="handleSumbitClick"
-            data-sitekey="6LfA8AAhAAAAAFR0q3HDMWN9qVrHiGii3xqnQDs6"
-          )
-            span {{ str.showAns }}
-            span.fk-ans__next-step-icon
+          //- vue-recaptcha(sitekey="6LfA8AAhAAAAAFR0q3HDMWN9qVrHiGii3xqnQDs6")
+          button.fk-btn-prim(@click="handleSumbitClick")
+              span {{ str.showAns }}
+              span.fk-ans__next-step-icon
 
         //- next step
         router-link(
@@ -54,6 +52,7 @@
 <script>
 import str from '@/assets/json/quiz.json';
 
+// import { VueRecaptcha } from 'vue-recaptcha';
 import FkBg from '@/components/fk-bg.vue';
 import FkWizard from '@/components/fk-wizard.vue';
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
@@ -96,6 +95,7 @@ export default {
     },
   },
   components: {
+    // VueRecaptcha,
     FkBg,
     FkWizard,
     FkBtnPrimary,

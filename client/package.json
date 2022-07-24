@@ -13,6 +13,7 @@
     "pug-html-loader": "^1.1.5",
     "pug-plain-loader": "^1.1.0",
     "vue": "^2.6.11",
+    "vue-recaptcha": "^2.0.2",
     "vue-router": "^3.5.4",
     "vue-scrollto": "^2.20.0",
     "vue-social-sharing": "^3.0.9",
