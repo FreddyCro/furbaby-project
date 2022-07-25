@@ -6,7 +6,7 @@
     router-view
 
   //- footer decoration
-  img(
+  img.full-vw(
     src="assets/img/landing/red_ribbon.png"
     alt="red decoration"
   )

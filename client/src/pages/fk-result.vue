@@ -55,6 +55,7 @@
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
                     span.fk-result__share-btn-arrow
+                    
               .fk-result__share-btn-wrapper
                 share-network(
                   network="facebook"
@@ -69,14 +70,16 @@
                       span.fk-result__share-btn-arrow
                     
       .fk-result__banner
-        share-network(
-          network="facebook"
-          :url="sharingUrl"
-          :title="meta.title"
-          :description="shareDescription"
-          :hashtags="str.hashtags"
-        )
-          img(src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
+        img(@click="toggleDialog(true)" src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
+
+  fk-share-dialog(
+    :is-dialog-open="isDialogOpen"
+    :toggle="toggleDialog"
+    :share-title="meta.title"
+    :share-url="sharingUrl"
+    :share-description="shareDescription"
+    :share-tags="str.hashtags"
+  )
 
 </template>
 
@@ -88,17 +91,15 @@ import rankingDog from '@/assets/json/ranking-dog.json';
 import rankingCat from '@/assets/json/ranking-cat.json';
 
 import FkBg from '@/components/fk-bg.vue';
-import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary';
-import FkBtnSecondary from '@/components/fk-btn/fk-btn-secondary';
 import FkFootprint from '@/components/fk-footprint.vue';
+import FkShareDialog from '@/components/fk-share-dialog.vue';
 
 export default {
   name: 'Result',
   components: {
     FkBg,
-    FkBtnPrimary,
-    FkBtnSecondary,
     FkFootprint,
+    FkShareDialog,
   },
   data: () => ({
     str,
@@ -107,6 +108,7 @@ export default {
       level: 0,
       ranking: 1,
     },
+    isDialogOpen: false,
   }),
   computed: {
     sharingUrl() {
@@ -153,6 +155,14 @@ export default {
         } else console.log(res, 'fail');
       });
     }
+  },
+  methods: {
+    toggleDialog(bool) {
+      console.log(bool);
+      this.isDialogOpen = bool;
+
+      document.querySelector('body').style.overflow = bool ? 'hidden' : 'auto';
+    },
   },
 };
 </script>
@@ -228,9 +238,6 @@ export default {
     padding-bottom: $spacing-2;
     border-bottom: solid 1px $gray-4;
     margin-top: $spacing-2;
-  }
-
-  &__standing-text {
   }
 
   &__share {

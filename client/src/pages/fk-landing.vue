@@ -1,28 +1,28 @@
 <template lang="pug">
 .fk-l
   //- intro section
-  .fk-l-intro.fk-section
+  .fk-l-intro
     fk-bg
 
-    .fk-container
-      //- TODO: Add a title here.
-      h1.fk-l-intro__title {{ str.intro.title }}
-      .fk-l-intro__hero
-        .fk-l-intro__pic-wrapper
-          img.fk-l-intro__pic(
-            src="assets/img/landing/title.png"
-            :alt="str.intro.title"
-          )
+    .fk-l-intro__hero-wrapper
+      .fk-container
+        h1.fk-l-intro__title {{ str.intro.title }}
+        .fk-l-intro__hero
+          .fk-l-intro__pic-wrapper
+            img.fk-l-intro__pic(
+              src="assets/img/landing/title.png"
+              :alt="str.intro.title"
+            )
 
-        .fk-l-intro__video-wrapper
-          video.fk-l-intro__video(
-            autoplay
-            playsinline
-            loop
-            type="video/mp4"
-            muted
-          )
-            source(src="assets/vid/landing.mp4")
+          .fk-l-intro__video-wrapper
+            video.fk-l-intro__video(
+              autoplay
+              playsinline
+              loop
+              type="video/mp4"
+              muted
+            )
+              source(src="assets/vid/landing.mp4")
 
       a.fk-l-intro__scroll-down(href="#" v-scroll-to="'#start-quiz'")
         Mouse
@@ -155,16 +155,30 @@ export default {
 <style lang="scss" scoped>
 .fk-l-intro {
   position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: $spacing-6 0;
+  box-sizing: border-box;
   background-color: $white;
 
-  /* @include rwd-min(md) {
-    height: 800px;
-  } */
+  @include rwd-min(md) {
+    padding: $spacing-8 0;
+  }
+
+  &__hero-wrapper {
+    width: 100%;
+  }
 
   &__hero {
     position: relative;
     width: 100%;
     padding-bottom: 65%;
+
+    @include rwd-max(xs) {
+      transform: scale(1.25);
+      transform-origin: center;
+    }
   }
 
   &__pic-wrapper {
@@ -199,11 +213,17 @@ export default {
     z-index: 1;
     bottom: 0;
     left: 50%;
+    border-radius: 10px;
     transition: all 0.3s ease-in-out;
     transform: translate(-50%, 50%);
 
     &:hover {
+      background-color: rgba($color: $gray-1, $alpha: 0.5);
       transform: translate(-50%, 50%);
+    }
+
+    svg {
+      transform: scale(0.75);
     }
   }
 

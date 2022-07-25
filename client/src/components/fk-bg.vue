@@ -78,6 +78,8 @@ export default {
     }
 
     @include rwd-min(sm) {
+      background-image: url('~@/assets/img/common/bg_merge.png');
+
       &--dog {
         background-image: url('~@/assets/img/common/99_bg_dog.png');
       }

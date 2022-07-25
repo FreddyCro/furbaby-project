@@ -24,6 +24,7 @@
           )
       
   img(
+    class="full-vw"
     src="assets/img/footer/orange_ribbon.png"
     :alt="str.royal.name"
   )
@@ -51,23 +52,27 @@ export default {
   background-color: $white;
 
   &__logo-container {
-    height: 112px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: $spacing-1 0;
+
+    @media screen and (min-width: 576px) {
+      min-height: 80px;
+    }
 
     @include rwd-min(sm) {
       max-width: 80%;
       margin: 0 auto;
+      padding: $spacing-4 0;
     }
   }
 
   &__logo-wrapper {
-    height: 56px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 $spacing-3;
+    padding: 0 $spacing-5;
     border-right: #000 1px solid;
 
     &:last-child {
@@ -75,6 +80,7 @@ export default {
     }
 
     @include rwd-min(sm) {
+      height: 56px;
       padding: 0 $spacing-6;
     }
 

@@ -91,9 +91,15 @@ export default {
       }%)`;
     },
     rangeInputTooltipsStyle() {
-      return `transform: translateX(${
-        (this.inputValue / this.max - 1 + 1) * 100
-      }%)`;
+      let offset = 40;
+
+      if (window.innerWidth > 768) {
+        offset = 24;
+      }
+
+      return `transform: translateX(calc(${
+        ((this.inputValue - 1) / this.max) * 100
+      }%  - ${offset * ((this.inputValue - 1) / (this.max - 1))}px))`;
     },
   },
 
@@ -135,10 +141,11 @@ export default {
 
 .fk-cq5-slider-wrapper {
   position: relative;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .fk-cq5-slider {
-  width: 800px;
   max-width: 100%;
   display: flex;
   justify-content: center;
@@ -152,10 +159,10 @@ export default {
     border-radius: 100px;
   }
 
-  &__range-input-index, &__range-input-tooltips {
+  &__range-input-index,
+  &__range-input-tooltips {
     position: relative;
     z-index: 1;
-    margin-right: 36px;
     pointer-events: none;
   }
 
@@ -163,19 +170,19 @@ export default {
     margin-top: -20px;
     color: $white;
     font-size: 24px;
+
     span {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 50px;
       height: 50px;
-      margin-left: -15px;
       text-align: center;
     }
   }
 
   &__range-input-tooltips {
-    margin-top: 1rem;
+    padding: $spacing-4;
     .gesture {
       display: block;
     }

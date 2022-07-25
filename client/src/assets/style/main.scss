@@ -36,6 +36,10 @@ ol {
   padding-inline-start: $spacing-5;
 }
 
+.full-vw {
+  width: 100vw;
+}
+
 .fk-page {
   min-height: calc(100vh - #{$header-height + $spacing-5});
 }
@@ -44,8 +48,8 @@ ol {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: $spacing-4;
-  padding-right: $spacing-4;
+  padding-left: $spacing-3;
+  padding-right: $spacing-3;
 
   @media screen and (min-width: 572px) {
     max-width: 560px;
