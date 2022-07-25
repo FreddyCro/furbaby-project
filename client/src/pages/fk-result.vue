@@ -51,7 +51,7 @@
                   :url="sharingUrl"
                   :title="meta.title"
                   :description="shareDescription"
-                  :hashtags="str.hashtags"
+                  hashtags="營養成就健康基礎"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
                     span.fk-result__share-btn-arrow
@@ -135,7 +135,7 @@ export default {
       return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
         this.$store.state[this.$store.state.cate].score
       }題，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
-        this.rankingStr ? '，等級為' + this.rankingStr.title : ''
+        this.rankingStr ? '，你是' + this.rankingStr.title : ''
       }，排名為${this.result.ranking}`;
     },
   },
@@ -303,6 +303,7 @@ export default {
 
   &__banner {
     margin: $spacing-8 auto 0 auto;
+    cursor: pointer;
   }
 }
 </style>

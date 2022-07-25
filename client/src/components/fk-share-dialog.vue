@@ -1,5 +1,5 @@
 <template lang="pug">
-.fk-dialog(:class="{'fk-dialog--open': isDialogOpen}")
+.fk-dialog(:class="{'fk-dialog--open': isDialogOpen}" @click.self="toggle(false)")
 
   .fk-dialog__content
     .fk-dialog__close(@click="toggle(false)")
@@ -10,6 +10,8 @@
     .fk-dialog__body
       .fk-dialog__header
         .fk-dialog__logo
+          img(src="assets/img/footer/royal_logo.png" alt="logo")
+
       .fk-dialog__title {{ str.title }}
       .fk-dialog__row
         .fk-dialog__row-title(v-html="str.row1Title")
@@ -37,8 +39,8 @@
       )
         .fk-btn-prim
           img(src="assets/img/common/fb.png" alt="fb icon")
-          span 立即分享
-            span.fk-result__share-btn-arrow
+          span {{ str.shareBtn }}
+          span.btn-arrow
 </template>
 
 <script>
@@ -104,33 +106,60 @@ export default {
     padding: $spacing-10 $spacing-8;
   }
 
-  .fk-dialog__content {
+  &__header {
+    position: relative;
+    text-align: center;
+    margin-bottom: $spacing-5;
+    margin-top: $spacing-4;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $color-primary;
+      opacity: 0.5;
+    }
+  }
+
+  &__logo {
+    position: relative;
+    display: inline-block;
+    padding: 0 $spacing-3;
+    background-color: $white;
+    max-width: 120px;
+  }
+
+  &__content {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: $spacing-6 $spacing-4;
+    padding: $spacing-6 0;
     background-color: $white;
     border: solid 2px $color-primary;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
 
     @include rwd-min(sm) {
-      width: 80%;
-      height: 80%;
-      padding: $spacing-6 $spacing-8;
+      width: 90%;
+      height: 90%;
+      padding: $spacing-6 0;
       border-bottom-left-radius: 50px;
       border-bottom-right-radius: 50px;
     }
 
     @include rwd-min(md) {
-      width: 760px;
+      width: 936px;
+      height: 696px;
     }
   }
 
-  .fk-dialog__close {
+  &__close {
     @include reset-btn;
 
     position: absolute;
@@ -175,13 +204,17 @@ export default {
     }
   }
 
-  .fk-dialog__header {
+  &__body {
+    height: 100%;
+    overflow: auto;
+    padding: 0 $spacing-4;
+
+    @include rwd-min(sm) {
+      padding: 0 $spacing-9;
+    }
   }
 
-  .fk-dialog__body {
-  }
-
-  .fk-dialog__title {
+  &__title {
     margin-bottom: $spacing-5;
     font-size: 24px;
     color: $color-primary;
@@ -192,10 +225,15 @@ export default {
     }
   }
 
-  .fk-dialog__row {
+  &__row {
     display: flex;
     flex-direction: column;
     margin-bottom: $spacing-5;
+    font-size: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     @include rwd-min(sm) {
       flex-direction: row;
@@ -203,19 +241,42 @@ export default {
     }
   }
 
-  .fk-dialog__row-title {
-    color: $color-primary;
+  &__row-title {
     margin-right: $spacing-3;
     margin-bottom: $spacing-2;
+    color: $color-primary;
+    font-weight: bolder;
 
     @include rwd-min(sm) {
       margin-right: $spacing-5;
+      min-width: 88px;
     }
   }
-  .fk-dialog__row-desc {
-  }
 
-  .fk-dialog__footer {
+  &__footer {
+    padding: $spacing-5 20% 0 20%;
+    text-align: center;
+
+    .fk-btn-prim {
+      display: inline-block;
+      text-align: center;
+      max-width: 136px;
+
+      img {
+        height: 1rem;
+        margin-right: $spacing-2;
+      }
+    }
+  }
+  .btn-arrow {
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $white $white transparent transparent;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: $spacing-2;
+    transform: rotate(45deg);
   }
 }
 </style>

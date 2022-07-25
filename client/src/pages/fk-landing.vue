@@ -153,6 +153,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fk-l {
+  overflow: hidden;
+}
+
 .fk-l-intro {
   position: relative;
   min-height: 80vh;
@@ -582,7 +586,6 @@ export default {
       height: 750px;
     } */
   }
-
 }
 .btn-arrow {
   display: inline-block;

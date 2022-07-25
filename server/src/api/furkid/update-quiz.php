@@ -11,6 +11,9 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
  */
 function recaptchaCheck()
 {
+  // TODO: implement recaptcha
+  return true;
+
   // Google reCAPTCHA private key
   $data['secret'] = '';
   $data['response'] = $_POST['g-recaptcha-response'];
