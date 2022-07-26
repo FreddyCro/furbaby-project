@@ -59,11 +59,12 @@ try {
       if ($level == "3") $levelName = "毛寵達人";
       if ($level == "4") $levelName = "皇家級毛寵達人";
 
-      $description = $description . "，等級為{$levelName}";
+      $description = $description . "，是{$levelName}";
     }
 
     if (isset($ranking)) {
-      $description = $description . "，排名為{$ranking}";
+      $description = $description . "，排名為{$ranking}。參加活動就有機會拿3個月份寵物飼料。
+      你也一起來挑戰看看吧！";
     }
 
     echo json_encode($description);

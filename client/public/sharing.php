@@ -42,12 +42,15 @@ $score = isset($_GET["sc"]) ? $_GET["sc"] : null;
 
 // get data from another server
 // $url = "http://192.168.99.100:8080/api/furkid/get-sharing.php?n={$username}&c={$category}&lv={$level}&sc={$score}";
+$ogUrl = "https://event.udn.com/royalcanin2022/sharing.php?n={$username}&c={$category}&lv={$level}&sc={$score}";
+
 $url = "https://event.udn.com/royalcanin2022/api/furkid/get-sharing.php?n={$username}&c={$category}&lv={$level}&sc={$score}";
 
 $get_data = callAPI("GET", $url, false);
 $description = json_decode($get_data, true);
 $errors = $response["response"]["errors"];
 ?>
+
 
 <!DOCTYPE html>
 <html lang="zh-HANT-TW">
@@ -64,8 +67,8 @@ $errors = $response["response"]["errors"];
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="法國皇家寵物健康專家" />
-  <meta property="og:url" content="https://event.udn.com/royalcanin2022/" />
+  <meta property="og:title" content="你有自信成為皇家級飼主嗎？" />
+  <meta property="og:url" content="<?= $ogUrl ?>" />
   <meta property="og:image" content="https://event.udn.com/royalcanin2022/assets/img/meta_<?= $category . $level ?>.png" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -86,6 +89,12 @@ $errors = $response["response"]["errors"];
     <p>好飼主必知守則</p>
     <p>守護愛犬、愛貓的健康成長，<br>除了飼主的細心觀察、照護，<br>遵循獸醫師的專業建議，<br>打造最適合牠們成長的環境。</p>
   </main>
+
+  <script>
+    setTimeout(function() {
+      window.location.replace('https://event.udn.com/royalcanin2022/');
+    }, 1000);
+  </script>
 </body>
 
 </html>

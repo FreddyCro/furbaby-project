@@ -29,15 +29,15 @@
         .pure-u-1-1.pure-u-sm-3-5.pure-u-md-1-2
           .fk-result__standing
             h2.fk-result__standing-title
-              span
-                fk-footprint
+              fk-footprint
               span {{ $store.state.user }}
               br
-              span(v-if="rankingStr") {{ rankingStr.title }}
+              span(v-if="rankingStr") 你是{{ rankingStr.title }}
               
             h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr.desc }}
-            p.fk-result__standing-score 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
-            p.fk-result__standing-score 你現在排 {{ result.ranking }} 名
+            p.fk-result__standing-score
+              span 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
+              span 你現在排 {{ result.ranking }} 名
 
             .fk-result__share
               .fk-result__share-btn-wrapper
@@ -49,7 +49,7 @@
                 share-network(
                   network="line"
                   :url="sharingUrl"
-                  :title="meta.title"
+                  :title="shareTitle"
                   :description="shareDescription"
                   hashtags="營養成就健康基礎"
                 )
@@ -60,7 +60,7 @@
                 share-network(
                   network="facebook"
                   :url="sharingUrl"
-                  :title="meta.title"
+                  :title="shareTitle"
                   :description="shareDescription"
                   :hashtags="str.hashtags"
                 )
@@ -75,7 +75,7 @@
   fk-share-dialog(
     :is-dialog-open="isDialogOpen"
     :toggle="toggleDialog"
-    :share-title="meta.title"
+    :share-title="shareTitle"
     :share-url="sharingUrl"
     :share-description="shareDescription"
     :share-tags="str.hashtags"
@@ -109,6 +109,7 @@ export default {
       ranking: 1,
     },
     isDialogOpen: false,
+    shareTitle: '你有自信成為皇家級飼主嗎？',
   }),
   computed: {
     sharingUrl() {
@@ -135,8 +136,10 @@ export default {
       return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
         this.$store.state[this.$store.state.cate].score
       }題，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
-        this.rankingStr ? '，你是' + this.rankingStr.title : ''
-      }，排名為${this.result.ranking}`;
+        this.rankingStr ? '，是' + this.rankingStr.title : ''
+      }，排名為${
+        this.result.ranking
+      }。參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！`;
     },
   },
   created() {
@@ -167,7 +170,6 @@ export default {
   },
   methods: {
     toggleDialog(bool) {
-      console.log(bool);
       this.isDialogOpen = bool;
 
       document.querySelector('body').style.overflow = bool ? 'hidden' : 'auto';
@@ -211,6 +213,7 @@ export default {
   &__content {
     position: relative;
     margin-top: $spacing-7;
+    overflow: hidden;
   }
 
   &__starts {
@@ -228,6 +231,7 @@ export default {
 
   &__standing {
     @include rwd-max(xs) {
+      padding: 0 5%;
       text-align: center;
     }
   }
@@ -247,6 +251,12 @@ export default {
     padding-bottom: $spacing-2;
     border-bottom: solid 1px $gray-4;
     margin-top: $spacing-2;
+  }
+
+  &__standing-score {
+    span {
+      margin: 0 $spacing-3;
+    }
   }
 
   &__share {
@@ -311,8 +321,14 @@ export default {
   }
 
   &__banner {
+    max-width: 480px;
     margin: $spacing-8 auto 0 auto;
     cursor: pointer;
+
+    @include rwd-min(sm) {
+      max-width: 500px;
+      margin: $spacing-6 auto 0 auto;
+    }
   }
 }
 </style>
