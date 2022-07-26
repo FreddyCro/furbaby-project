@@ -66,7 +66,7 @@ $errors = $response["response"]["errors"];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="法國皇家寵物健康專家" />
   <meta property="og:url" content="https://event.udn.com/royalcanin2022/" />
-  <meta property="og:image" content="https://event.udn.com/royalcanin2022/meta.jpg" />
+  <meta property="og:image" content="https://event.udn.com/royalcanin2022/assets/img/meta_<?= $category . $level ?>.png" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:description" content="<?= $description ?>" />

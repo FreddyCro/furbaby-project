@@ -146,7 +146,16 @@ export default {
       this.result.level = Math.floor(score / 2) + 1;
 
       // db index 1 = score 0, index 8 = score 7, so score should +1
-      submitResult(this.$store.state.cate, score + 1);
+      window.grecaptcha.ready(() => {
+        window.grecaptcha
+          .execute('6Ld7IxohAAAAAIYW6BpJCeUIUL4MMf0BQkbq_uto', {
+            action: 'submit',
+          })
+          .then((token) => {
+            if (token) console.log('client recaptcha success');
+            submitResult(this.$store.state.cate, score + 1, token);
+          });
+      });
 
       // get ranking data
       getRankingByScore(this.$store.state.cate, score).then((res) => {

@@ -33,10 +33,9 @@
       .fk-ans__pagination
         //- submit
         .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
-          //- vue-recaptcha(sitekey="6LfA8AAhAAAAAFR0q3HDMWN9qVrHiGii3xqnQDs6")
           button.fk-btn-prim(@click="handleSumbitClick")
-              span {{ str.showAns }}
-              span.fk-ans__next-step-icon
+            span {{ str.showAns }}
+            span.fk-ans__next-step-icon
 
         //- next step
         router-link(
@@ -52,7 +51,6 @@
 <script>
 import str from '@/assets/json/quiz.json';
 
-// import { VueRecaptcha } from 'vue-recaptcha';
 import FkBg from '@/components/fk-bg.vue';
 import FkWizard from '@/components/fk-wizard.vue';
 import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
@@ -64,30 +62,24 @@ export default {
   props: {
     idx: {
       type: Number,
-      // required: true,
     },
     cate: {
       type: String,
-      // required: true,
     },
     title: {
       type: String,
-      // required: true,
     },
     questionType: {
       type: String,
     },
     hasSelect: {
       type: Boolean,
-      // required: true,
     },
     hasSubmitted: {
       type: Boolean,
-      // required: true,
     },
     submitAnswer: {
       type: Function,
-      // required: true,
     },
     suggestionDialog: {
       type: Boolean,
@@ -95,7 +87,6 @@ export default {
     },
   },
   components: {
-    // VueRecaptcha,
     FkBg,
     FkWizard,
     FkBtnPrimary,

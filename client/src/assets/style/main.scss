@@ -107,3 +107,8 @@ ol {
     box-shadow: 0px 6px 0px 0px lighten($color: rgb(210, 0, 3), $amount: 5%);
   }
 }
+
+.grecaptcha-badge {
+  visibility: hidden;
+  pointer-events: none;
+}

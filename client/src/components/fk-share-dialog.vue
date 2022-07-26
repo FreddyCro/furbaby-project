@@ -7,11 +7,11 @@
       span
       span
 
-    .fk-dialog__body
-      .fk-dialog__header
-        .fk-dialog__logo
-          img(src="assets/img/footer/royal_logo.png" alt="logo")
+    .fk-dialog__header
+      .fk-dialog__logo
+        img(src="assets/img/footer/royal_logo.png" alt="logo")
 
+    .fk-dialog__body
       .fk-dialog__title {{ str.title }}
       .fk-dialog__row
         .fk-dialog__row-title(v-html="str.row1Title")
@@ -29,7 +29,7 @@
         .fk-dialog__row-title(v-html="str.row4Title")
         .fk-dialog__row-desc(v-html="str.row4Desc")
 
-    .fk-dialog__footer
+    .fk-dialog__footer(v-if="shareTitle !== '' && shareUrl !== '' && shareDescription !== '' && shareTags !== ''")
       share-network(
         network="facebook"
         :url="sharingUrl"
@@ -58,15 +58,15 @@ export default {
     },
     shareTitle: {
       type: String,
-      required: true,
+      default: '',
     },
     shareUrl: {
       type: String,
-      required: true,
+      default: '',
     },
     shareDescription: {
       type: String,
-      required: true,
+      default: '',
     },
     shareTags: {
       type: String,
@@ -84,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 .fk-dialog {
   position: fixed;
+  z-index: 250;
   left: 0;
   top: 0;
   width: 100%;
@@ -94,7 +95,6 @@ export default {
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
   pointer-events: none;
-  padding: $spacing-9 $spacing-5;
   transition: 0.25s ease-in-out;
 
   &--open {
@@ -116,8 +116,8 @@ export default {
       content: '';
       position: absolute;
       top: 50%;
-      left: 0;
-      width: 100%;
+      left: 5%;
+      width: 90%;
       height: 1px;
       background-color: $color-primary;
       opacity: 0.5;
@@ -139,23 +139,21 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: $spacing-6 0;
+    padding: $spacing-7 $spacing-4;
     background-color: $white;
-    border: solid 2px $color-primary;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
 
     @include rwd-min(sm) {
       width: 90%;
       height: 90%;
       padding: $spacing-6 0;
+      border: solid 2px $color-primary;
       border-bottom-left-radius: 50px;
       border-bottom-right-radius: 50px;
     }
 
     @include rwd-min(md) {
       width: 936px;
-      height: 696px;
+      height: 676px;
     }
   }
 
@@ -163,8 +161,8 @@ export default {
     @include reset-btn;
 
     position: absolute;
-    right: 0;
-    top: 0;
+    right: $spacing-3;
+    top: $spacing-3;
     width: 50px;
     height: 50px;
     display: flex;
@@ -174,7 +172,6 @@ export default {
     padding: $spacing-2;
     border-radius: 50%;
     background-color: $color-primary;
-    transform: translate(25%, -25%);
 
     &:hover {
       opacity: 0.8;
@@ -200,6 +197,8 @@ export default {
     }
 
     @include rwd-min(sm) {
+      right: 0;
+      top: 0;
       transform: translate(50%, -50%);
     }
   }
@@ -207,7 +206,7 @@ export default {
   &__body {
     height: 100%;
     overflow: auto;
-    padding: 0 $spacing-4;
+    padding: 0 $spacing-6;
 
     @include rwd-min(sm) {
       padding: 0 $spacing-9;
@@ -217,6 +216,8 @@ export default {
   &__title {
     margin-bottom: $spacing-5;
     font-size: 24px;
+    text-align: center;
+    line-height: 1.5;
     color: $color-primary;
 
     @include rwd-min(sm) {
@@ -260,7 +261,11 @@ export default {
     .fk-btn-prim {
       display: inline-block;
       text-align: center;
-      max-width: 136px;
+      width: 100%;
+
+      @include rwd-min(sm) {
+        max-width: 136px;
+      }
 
       img {
         height: 1rem;

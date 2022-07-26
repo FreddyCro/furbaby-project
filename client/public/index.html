@@ -1,38 +1,127 @@
 <!DOCTYPE html>
 <html lang="zh-HANT-TW">
   <head>
-    <meta name="robots" content="noindex">
-    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex" />
+    <meta name="googlebot" content="noindex" />
 
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
+    <meta
+      property="og:title"
+      content="<%= htmlWebpackPlugin.options.metaTitle %>"
+    />
+    <meta property="og:url" content="<%= BASE_URL %>" />
+    <meta property="og:image" content="<%= BASE_URL %>meta.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:description"
+      content="<%= htmlWebpackPlugin.options.metaDescription %>"
+    />
 
-
-
-
-
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-    <meta property="og:title" content="<%= htmlWebpackPlugin.options.metaTitle %>"/>
-    <meta property="og:url" content="<%= BASE_URL %>"/>
-    <meta property="og:image" content="<%= BASE_URL %>meta.jpg"/>
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:description" content="<%= htmlWebpackPlugin.options.metaDescription %>"/>
-  
     <meta property="fb:app_id" content="350231215126101" />
-    
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="alternate" href="<%= htmlWebpackPlugin.options.pageUrl %>">
-    <link rel="canonical" href="<%= htmlWebpackPlugin.options.pageUrl %>">
 
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="alternate" href="<%= htmlWebpackPlugin.options.pageUrl %>" />
+    <link rel="canonical" href="<%= htmlWebpackPlugin.options.pageUrl %>" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6Ld7IxohAAAAAIYW6BpJCeUIUL4MMf0BQkbq_uto"></script>
+    <!-- 1.橘世代GA -->
+    <!-- 2.udn全站GA -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        'script',
+        'https://www.google-analytics.com/analytics.js',
+        'ga'
+      );
+      ga('create', 'UA-19660006-1', 'auto', { name: 'udn' });
+      ga('create', 'UA-44955675-38', 'auto', { name: 'orange' });
+      ga('orange.send', 'pageview');
+      ga('udn.send', 'pageview');
+    </script>
+
+    <!-- 3.FB Pixel -->
+    <!-- Facebook Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        'script',
+        'https://connect.facebook.net/en_US/fbevents.js'
+      );
+      fbq('init', '817495682353563');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        src="https://www.facebook.com/tr?id=817495682353563&ev=PageView&noscript=1"
+      />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!-- 4.comScore(只要在udn下的網域，都同一組) -->
+    <!-- Begin comScore Tag -->
+    <script>
+      var _comscore = _comscore || [];
+      _comscore.push({ c1: '2', c2: '7390954' });
+      (function () {
+        var s = document.createElement('script'),
+          el = document.getElementsByTagName('script')[0];
+        s.async = true;
+        s.src =
+          (document.location.protocol == 'https:' ? 'https://sb' : 'http://b') +
+          '.scorecardresearch.com/beacon.js';
+        el.parentNode.insertBefore(s, el);
+      })();
+    </script>
+    <noscript>
+      <img src="http://b.scorecardresearch.com/p?c1=2&c2=7390954&cv=2.0&cj=1" />
+    </noscript>
+    <!-- End comScore Tag -->
+    
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
