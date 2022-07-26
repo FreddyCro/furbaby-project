@@ -29,15 +29,15 @@
         .pure-u-1-1.pure-u-sm-3-5.pure-u-md-1-2
           .fk-result__standing
             h2.fk-result__standing-title
-              span
-                fk-footprint
+              fk-footprint
               span {{ $store.state.user }}
               br
               span(v-if="rankingStr") {{ rankingStr.title }}
               
             h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr.desc }}
-            p.fk-result__standing-score 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
-            p.fk-result__standing-score 你現在排 {{ result.ranking }} 名
+            p.fk-result__standing-score
+              span 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
+              span 你現在排 {{ result.ranking }} 名
 
             .fk-result__share
               .fk-result__share-btn-wrapper
@@ -167,7 +167,6 @@ export default {
   },
   methods: {
     toggleDialog(bool) {
-      console.log(bool);
       this.isDialogOpen = bool;
 
       document.querySelector('body').style.overflow = bool ? 'hidden' : 'auto';
@@ -211,6 +210,7 @@ export default {
   &__content {
     position: relative;
     margin-top: $spacing-7;
+    overflow: hidden;
   }
 
   &__starts {
@@ -228,6 +228,7 @@ export default {
 
   &__standing {
     @include rwd-max(xs) {
+      padding: 0 10%;
       text-align: center;
     }
   }
@@ -247,6 +248,12 @@ export default {
     padding-bottom: $spacing-2;
     border-bottom: solid 1px $gray-4;
     margin-top: $spacing-2;
+  }
+
+  &__standing-score {
+    span {
+      margin: 0 $spacing-3;
+    }
   }
 
   &__share {
@@ -311,8 +318,14 @@ export default {
   }
 
   &__banner {
+    max-width: 480px;
     margin: $spacing-8 auto 0 auto;
     cursor: pointer;
+
+    @include rwd-min(sm) {
+      max-width: 500px;
+      margin: $spacing-6 auto 0 auto;
+    }
   }
 }
 </style>
