@@ -23,10 +23,10 @@
               muted
             )
               source(src="assets/vid/landing.mp4")
-
-      a.fk-l-intro__scroll-down(href="#" v-scroll-to="'#start-quiz'")
-        Mouse
-        //- img(src="assets/img/landing/mouse.svg", alt="scroll down")
+  .fk-l-mouse
+    a.fk-l-mouse__scroll-down(href="#" v-scroll-to="'#start-quiz'")
+      Mouse
+      //- img(src="assets/img/landing/mouse.svg", alt="scroll down")
 
   //- start section
   #start-quiz.fk-l-start.fk-section
@@ -159,12 +159,18 @@ export default {
 
 .fk-l-intro {
   position: relative;
-  min-height: 80vh;
+  min-height: 60vh;
   display: flex;
-  align-items: center;
-  padding: $spacing-6 0;
+  align-items: flex-end;
+  padding:  0 0 $spacing-8 0;
   box-sizing: border-box;
   background-color: $white;
+
+  @include rwd-min(sm) {
+    min-height: 80vh;
+    align-items: center;
+    padding: $spacing-6 0;
+  }
 
   @include rwd-min(md) {
     padding: $spacing-8 0;
@@ -210,6 +216,18 @@ export default {
     box-shadow: 0 0 100px $white;
   }
 
+  &__title {
+    display: none;
+  }
+}
+
+.fk-l-mouse {
+  position: relative;
+
+  @include rwd-max(xs) {
+    height: 10vh;
+  }
+
   &__scroll-down {
     @include reset-btn;
 
@@ -229,10 +247,6 @@ export default {
     svg {
       transform: scale(0.75);
     }
-  }
-
-  &__title {
-    display: none;
   }
 }
 
@@ -406,12 +420,12 @@ export default {
   position: relative;
   background-color: $white;
   background-image: url('~@/assets/img/landing/bg_brick.png');
-  background-size: contain;
   background-repeat: round;
   padding-bottom: 280px;
   overflow: hidden;
 
   @include rwd-min(sm) {
+    background-size: contain;
     padding-bottom: 400px;
   }
 
