@@ -49,7 +49,7 @@
                 share-network(
                   network="line"
                   :url="sharingUrl"
-                  :title="meta.title"
+                  :title="shareTitle"
                   :description="shareDescription"
                   hashtags="營養成就健康基礎"
                 )
@@ -60,7 +60,7 @@
                 share-network(
                   network="facebook"
                   :url="sharingUrl"
-                  :title="meta.title"
+                  :title="shareTitle"
                   :description="shareDescription"
                   :hashtags="str.hashtags"
                 )
@@ -75,7 +75,7 @@
   fk-share-dialog(
     :is-dialog-open="isDialogOpen"
     :toggle="toggleDialog"
-    :share-title="meta.title"
+    :share-title="shareTitle"
     :share-url="sharingUrl"
     :share-description="shareDescription"
     :share-tags="str.hashtags"
@@ -109,6 +109,7 @@ export default {
       ranking: 1,
     },
     isDialogOpen: false,
+    shareTitle: '你有自信成為皇家級飼主嗎？',
   }),
   computed: {
     sharingUrl() {
@@ -135,8 +136,10 @@ export default {
       return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
         this.$store.state[this.$store.state.cate].score
       }題，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
-        this.rankingStr ? '，你是' + this.rankingStr.title : ''
-      }，排名為${this.result.ranking}`;
+        this.rankingStr ? '，' + this.rankingStr.title : ''
+      }，排名為${
+        this.result.ranking
+      }。參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！`;
     },
   },
   created() {
