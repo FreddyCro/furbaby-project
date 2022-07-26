@@ -10,6 +10,7 @@ const answerQuiz = (table, qId, correct) => {
     )
     .then((res) => {
       // if (process.env.NODE_ENV === 'production') return;
+
       if (+res.status === 200)
         console.log(`submit ${table} ${qId} successfully.`);
       else console.log(table, qId, 'fail');
@@ -25,7 +26,8 @@ const submitResult = (table, score) => {
     .then((res) => {
       // if (process.env.NODE_ENV === 'production') return;
 
-      if (+res.status === 200) console.log(`submit ${table} result successfully.`);
+      if (+res.status === 200)
+        console.log(`submit ${table} result successfully.`);
       else console.log(table, score, 'fail');
     });
 };

@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] !== 'POST') {
   http_response_code(400);
   echo "Only POST method is allowed";
 } else {
+
   include_once '../../config/database.php';
   include_once '../../class/quiz.php';
 
@@ -22,8 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] !== 'POST') {
 
   $id = isset($_GET['id']) ? $_GET['id'] : die();
   $correct = isset($_GET['correct']) ? $_GET['correct'] : die();
-
-  // TODO: recaptcha
 
   if ($item->updateQuestion($tableName, $id, $correct)) {
     echo json_encode("Quiz data updated.");

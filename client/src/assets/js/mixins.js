@@ -1,7 +1,3 @@
-// import FkAnsSubmit from '@/components/fk-ans/fk-ans-submit.vue';
-// import FkAnsCorrect from '@/components/fk-ans/fk-ans-correct.vue';
-// import FkAnsDoctor from '@/components/fk-ans/fk-ans-doctor.vue';
-// import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 import { answerQuiz } from '@/api/quiz';
 import { shuffle } from '@/assets/js/utils';
 
@@ -30,6 +26,7 @@ const multiStrategyMixins = {
       if (this.hasSubmitted) return;
 
       this.hasSubmitted = true;
+
       answerQuiz(cate, id, this.isCorrect ? 1 : 0);
 
       if (this.isCorrect) {
@@ -37,8 +34,7 @@ const multiStrategyMixins = {
       }
 
       this.$store.dispatch('setCurrentStepSumit', true);
-      this.$store.dispatch('setCurrentStep', this.data.idx + 1);
-      // console.log('go:', this.$store.state.currentStep);
+      this.$store.dispatch('setCurrentStep', Math.min(this.data.idx + 1, 7));
     },
     multiStrategy(correctAns) {
       const newCorrectAns = correctAns.map((item) => +item).sort();
@@ -78,7 +74,7 @@ const singleStrategyMixins = {
       }
 
       this.$store.dispatch('setCurrentStepSumit', true);
-      this.$store.dispatch('setCurrentStep', this.data.idx + 1);
+      this.$store.dispatch('setCurrentStep', Math.min(this.data.idx + 1, 7));
       // console.log('go:', this.$store.state.currentStep);
     },
     singleStrategy(correctAns, myAns) {

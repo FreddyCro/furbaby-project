@@ -3,7 +3,7 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 import VueScrollTo from 'vue-scrollto';
-import VueSocialSharing from 'vue-social-sharing'
+import VueSocialSharing from 'vue-social-sharing';
 import './assets/style/main.scss';
 
 Vue.use(VueScrollTo);

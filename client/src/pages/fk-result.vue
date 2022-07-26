@@ -51,10 +51,11 @@
                   :url="sharingUrl"
                   :title="meta.title"
                   :description="shareDescription"
-                  :hashtags="str.hashtags"
+                  hashtags="營養成就健康基礎"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
                     span.fk-result__share-btn-arrow
+                    
               .fk-result__share-btn-wrapper
                 share-network(
                   network="facebook"
@@ -69,14 +70,16 @@
                       span.fk-result__share-btn-arrow
                     
       .fk-result__banner
-        share-network(
-          network="facebook"
-          :url="sharingUrl"
-          :title="meta.title"
-          :description="shareDescription"
-          :hashtags="str.hashtags"
-        )
-          img(src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
+        img(@click="toggleDialog(true)" src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
+
+  fk-share-dialog(
+    :is-dialog-open="isDialogOpen"
+    :toggle="toggleDialog"
+    :share-title="meta.title"
+    :share-url="sharingUrl"
+    :share-description="shareDescription"
+    :share-tags="str.hashtags"
+  )
 
 </template>
 
@@ -88,17 +91,15 @@ import rankingDog from '@/assets/json/ranking-dog.json';
 import rankingCat from '@/assets/json/ranking-cat.json';
 
 import FkBg from '@/components/fk-bg.vue';
-import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary';
-import FkBtnSecondary from '@/components/fk-btn/fk-btn-secondary';
 import FkFootprint from '@/components/fk-footprint.vue';
+import FkShareDialog from '@/components/fk-share-dialog.vue';
 
 export default {
   name: 'Result',
   components: {
     FkBg,
-    FkBtnPrimary,
-    FkBtnSecondary,
     FkFootprint,
+    FkShareDialog,
   },
   data: () => ({
     str,
@@ -107,14 +108,15 @@ export default {
       level: 0,
       ranking: 1,
     },
+    isDialogOpen: false,
   }),
   computed: {
     sharingUrl() {
-      return `${window.location.protocol}//${process.env.VUE_APP_API_ROOT}/sharing.php?c=${
-        this.$store.state.cate
-      }&sc=${this.$store.state[this.$store.state.cate].score}&lv=${
-        this.result.level
-      }`;
+      return `${window.location.protocol}//${
+        process.env.VUE_APP_API_ROOT
+      }/sharing.php?c=${this.$store.state.cate}&sc=${
+        this.$store.state[this.$store.state.cate].score
+      }&lv=${this.result.level}`;
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
@@ -133,7 +135,7 @@ export default {
       return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
         this.$store.state[this.$store.state.cate].score
       }題，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
-        this.rankingStr ? '，等級為' + this.rankingStr.title : ''
+        this.rankingStr ? '，你是' + this.rankingStr.title : ''
       }，排名為${this.result.ranking}`;
     },
   },
@@ -144,7 +146,16 @@ export default {
       this.result.level = Math.floor(score / 2) + 1;
 
       // db index 1 = score 0, index 8 = score 7, so score should +1
-      submitResult(this.$store.state.cate, score + 1);
+      window.grecaptcha.ready(() => {
+        window.grecaptcha
+          .execute('6Ld7IxohAAAAAIYW6BpJCeUIUL4MMf0BQkbq_uto', {
+            action: 'submit',
+          })
+          .then((token) => {
+            if (token) console.log('client recaptcha success');
+            submitResult(this.$store.state.cate, score + 1, token);
+          });
+      });
 
       // get ranking data
       getRankingByScore(this.$store.state.cate, score).then((res) => {
@@ -153,6 +164,14 @@ export default {
         } else console.log(res, 'fail');
       });
     }
+  },
+  methods: {
+    toggleDialog(bool) {
+      console.log(bool);
+      this.isDialogOpen = bool;
+
+      document.querySelector('body').style.overflow = bool ? 'hidden' : 'auto';
+    },
   },
 };
 </script>
@@ -230,9 +249,6 @@ export default {
     margin-top: $spacing-2;
   }
 
-  &__standing-text {
-  }
-
   &__share {
     display: flex;
     align-items: center;
@@ -296,6 +312,7 @@ export default {
 
   &__banner {
     margin: $spacing-8 auto 0 auto;
+    cursor: pointer;
   }
 }
 </style>

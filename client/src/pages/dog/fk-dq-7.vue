@@ -3,7 +3,7 @@
   fk-ans(
     :idx="+data.idx"
     :title="data.title"
-    questionType="single"
+    questionType="multi"
     :has-select="hasSelect"
     :has-submitted="hasSubmitted"
     :submit-answer="submitAnswer"
@@ -113,12 +113,17 @@ export default {
 
   &__ans-item-img-wrapper {
     min-width: 120px;
+    max-width: 120px;
     margin-right: $spacing-5;
     margin-bottom: $spacing-2;
 
     @include rwd-min(sm) {
       margin-bottom: 0;
       text-align: center;
+    }
+
+    img {
+      width: 100%;
     }
   }
 

@@ -33,10 +33,7 @@
       .fk-ans__pagination
         //- submit
         .fk-ans__next-step(v-if="hasSelect && !hasSubmitted")
-          button.fk-btn-prim.g-recaptcha(
-            @click="handleSumbitClick"
-            data-sitekey="6LfA8AAhAAAAAFR0q3HDMWN9qVrHiGii3xqnQDs6"
-          )
+          button.fk-btn-prim(@click="handleSumbitClick")
             span {{ str.showAns }}
             span.fk-ans__next-step-icon
 
@@ -65,30 +62,24 @@ export default {
   props: {
     idx: {
       type: Number,
-      // required: true,
     },
     cate: {
       type: String,
-      // required: true,
     },
     title: {
       type: String,
-      // required: true,
     },
     questionType: {
       type: String,
     },
     hasSelect: {
       type: Boolean,
-      // required: true,
     },
     hasSubmitted: {
       type: Boolean,
-      // required: true,
     },
     submitAnswer: {
       type: Function,
-      // required: true,
     },
     suggestionDialog: {
       type: Boolean,
@@ -128,6 +119,8 @@ export default {
   created() {
     // TODO: redirect to current step if route to another step
     this.$store.dispatch('setCurrentStepSumit', false);
+
+    if (this.$store.state.currentStep > 7) this.$router.push('/result');
   },
 };
 </script>

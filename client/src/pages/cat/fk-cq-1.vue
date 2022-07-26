@@ -73,11 +73,6 @@
  * methods: [selectAnswer, submitAnswer, multiStrategy]
  */
 import { multiStrategyMixins } from '@/assets/js/mixins';
-// import Option1 from '@/assets/img/quiz/cat/1/option1.svg';
-// import Option2 from '@/assets/img/quiz/cat/1/option2.svg';
-// import Option3 from '@/assets/img/quiz/cat/1/option3.svg';
-// import Option4 from '@/assets/img/quiz/cat/1/option4.svg';
-// import Option5 from '@/assets/img/quiz/cat/1/option5.svg';
 
 import quiz from '@/assets/json/quiz-cat.json';
 import FkAns from '@/components/fk-ans/fk-ans.vue';
@@ -87,11 +82,6 @@ import FkAnsSuggest from '@/components/fk-ans/fk-ans-suggest.vue';
 export default {
   name: 'CatQ1',
   components: {
-    // Option1,
-    // Option2,
-    // Option3,
-    // Option4,
-    // Option5,
     FkAns,
     FkAnsCorrect,
     FkAnsSuggest,

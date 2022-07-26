@@ -3,7 +3,7 @@
   fk-ans(
     :idx="+data.idx"
     :title="data.title"
-    questionType="multi"
+    questionType="single"
     :has-select="hasSelect"
     :has-submitted="hasSubmitted"
     :submit-answer="submitAnswer"
@@ -22,11 +22,13 @@
                   :class="{'fk-ans-opt-small--selected': +myAns === +index + 1}"
                   :id="`${cate}q-input-${data.idx}-${index + 1}`"
                   :value="+index + 1"
-                  @click="selectAnswer(singleStrategy(data.ans, index + 1))"
-                ) {{ data.options[index + 1] }}
+                  @mouseenter="handleEnter(+index + 1)"
+                  @mouseleave="handleLeave"
+                  @click="handleClick(+index + 1)"
+                ) {{ data.options[+index + 1] }}
 
           .fk-cq7-ans__cup.pure-u-1-1.pure-u-sm-1-2
-            fk-cup(:data="+myAns")
+            fk-cup(:data="+myAns" :tempData="+tempMyAns")
             //- change image version
             //- img(
             //-   v-show="+(index + 1) === +myAns"
@@ -82,8 +84,21 @@ export default {
   data: () => ({
     data: quiz.cat7,
     cate: 'cat',
+    tempMyAns: undefined,
   }),
   mixins: [singleStrategyMixins],
+  methods: {
+    handleClick(index) {
+      this.tempMyAns = index;
+      this.selectAnswer(this.singleStrategy(this.data.ans, index));
+    },
+    handleEnter(index) {
+      this.tempMyAns = index;
+    },
+    handleLeave() {
+      this.tempMyAns = undefined;
+    },
+  },
 };
 </script>
 
