@@ -159,7 +159,7 @@ export default {
 
 .fk-l-intro {
   position: relative;
-  min-height: 60vh;
+  min-height: 65vh;
   display: flex;
   align-items: flex-end;
   padding:  0 0 $spacing-8 0;

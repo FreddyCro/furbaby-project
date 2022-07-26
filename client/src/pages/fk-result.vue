@@ -32,7 +32,7 @@
               fk-footprint
               span {{ $store.state.user }}
               br
-              span(v-if="rankingStr") {{ rankingStr.title }}
+              span(v-if="rankingStr") 你是{{ rankingStr.title }}
               
             h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr.desc }}
             p.fk-result__standing-score
@@ -136,7 +136,7 @@ export default {
       return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
         this.$store.state[this.$store.state.cate].score
       }題，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
-        this.rankingStr ? '，' + this.rankingStr.title : ''
+        this.rankingStr ? '，是' + this.rankingStr.title : ''
       }，排名為${
         this.result.ranking
       }。參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！`;
@@ -231,7 +231,7 @@ export default {
 
   &__standing {
     @include rwd-max(xs) {
-      padding: 0 10%;
+      padding: 0 5%;
       text-align: center;
     }
   }

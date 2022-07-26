@@ -32,10 +32,10 @@
     .fk-dialog__footer(v-if="shareTitle !== '' && shareUrl !== '' && shareDescription !== '' && shareTags !== ''")
       share-network(
         network="facebook"
-        :url="sharingUrl"
-        :title="sharingTitle"
+        :url="shareUrl"
+        :title="shareTitle"
         :description="shareDescription"
-        :hashtags="sharingTags"
+        :hashtags="shareTags"
       )
         .fk-btn-prim
           img(src="assets/img/common/fb.png" alt="fb icon")
