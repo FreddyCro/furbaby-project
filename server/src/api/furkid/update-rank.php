@@ -11,7 +11,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
  */
 function recaptchaCheck()
 {
-  Google reCAPTCHA private key
+  // Google reCAPTCHA private key
   $data['secret'] = '6Ld7IxohAAAAAOrBVJ39N8mZW6K_VEZb1kxV7PmR';
   $data['response'] = $_POST['g-recaptcha-response'];
   $ch = curl_init();
