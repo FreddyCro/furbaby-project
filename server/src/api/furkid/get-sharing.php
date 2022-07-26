@@ -59,7 +59,7 @@ try {
       if ($level == "3") $levelName = "毛寵達人";
       if ($level == "4") $levelName = "皇家級毛寵達人";
 
-      $description = $description . "，你是{$levelName}";
+      $description = $description . "，是{$levelName}";
     }
 
     if (isset($ranking)) {
