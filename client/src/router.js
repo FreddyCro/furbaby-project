@@ -93,7 +93,8 @@ router.beforeEach((to, from, next) => {
     }
   }
 
-  if (to.path === '/result' && store.state.currentStep < 7) {
+  if (from.path === '/result' && store.state.currentStep === 7) {
+    store.dispatch('resetState');
     next({ path: '/' });
   }
 

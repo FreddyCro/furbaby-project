@@ -50,7 +50,7 @@ try {
     }
 
     // handle description
-    $description = "{$username} 剛剛測驗了自己的毛寵達人級數，答對{$score}題，答錯{$wrongScore}題";
+    $description = "{$username} 剛剛測驗了自己的毛寵達人級數，答對{$score}題";
 
     if (isset($level)) {
       $levelName = "";

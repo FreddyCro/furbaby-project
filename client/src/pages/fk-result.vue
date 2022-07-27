@@ -29,14 +29,15 @@
         .pure-u-1-1.pure-u-sm-3-5.pure-u-md-1-2
           .fk-result__standing
             h2.fk-result__standing-title
-              fk-footprint
-              span {{ $store.state.user }}
+              span.user-name
+                fk-footprint
+                span {{ $store.state.user }}
               br
               span(v-if="rankingStr") 你是{{ rankingStr.title }}
               
             h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr.desc }}
             p.fk-result__standing-score
-              span 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }}
+              span 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }} 題
               span 你現在排 {{ result.ranking }} 名
 
             .fk-result__share
@@ -48,9 +49,8 @@
               .fk-result__share-btn-wrapper
                 share-network(
                   network="line"
+                  :title="shareDescription"
                   :url="sharingUrl"
-                  :title="shareTitle"
-                  :description="shareDescription"
                   hashtags="營養成就健康基礎"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
@@ -68,11 +68,12 @@
                     img(src="assets/img/common/fb.png" alt="fb icon")
                     span {{ str.shareResult }}
                       span.fk-result__share-btn-arrow
-                    
-      .fk-result__banner
-        img(@click="toggleDialog(true)" src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
+
+          .fk-result__banner
+            img(@click="toggleDialog(true)" src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
 
   fk-share-dialog(
+    v-if="toggleDialog && shareTitle && shareDescription && sharingUrl && str.hashtags"
     :is-dialog-open="isDialogOpen"
     :toggle="toggleDialog"
     :share-title="shareTitle"
@@ -115,9 +116,11 @@ export default {
     sharingUrl() {
       return `${window.location.protocol}//${
         process.env.VUE_APP_API_ROOT
-      }/sharing.php?c=${this.$store.state.cate}&sc=${
-        this.$store.state[this.$store.state.cate].score
-      }&lv=${this.result.level}`;
+      }/sharing.php?n=${this.$store.state.user}&c=${
+        this.$store.state.cate
+      }&sc=${this.$store.state[this.$store.state.cate].score}&lv=${
+        this.result.level
+      }`;
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
@@ -133,13 +136,16 @@ export default {
       return undefined;
     },
     shareDescription() {
-      return `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數，答對${
-        this.$store.state[this.$store.state.cate].score
-      }題，答錯${7 - this.$store.state[this.$store.state.cate].score}題${
-        this.rankingStr ? '，是' + this.rankingStr.title : ''
-      }，排名為${
-        this.result.ranking
-      }。參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！`;
+      const wording = [
+        `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數`,
+        `，答對${this.$store.state[this.$store.state.cate].score}題`,
+        `${this.rankingStr ? '，是' + this.rankingStr.title : ''}`,
+        `，排名為${this.result.ranking}。
+`,
+        '參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！',
+      ];
+
+      return wording.join('');
     },
   },
   created() {
@@ -179,6 +185,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fk-bg {
+  opacity: 0.5;
+}
 .fk-page {
   margin: 5rem 0;
 }
@@ -230,27 +239,38 @@ export default {
   }
 
   &__standing {
+    line-height: 1.5;
+
     @include rwd-max(xs) {
-      padding: 0 5%;
       text-align: center;
     }
   }
 
   &__standing-title {
     color: $color-primary;
-    line-height: 1.5;
     font-weight: 500;
     margin-bottom: $spacing-2;
+    .user-name {
+      display: inline-flex;
+      align-items: center;
+    }
 
     .fk-footprint {
       margin-right: $spacing-2;
+      height: 2rem;
     }
   }
 
   &__standing-desc {
     padding-bottom: $spacing-2;
-    border-bottom: solid 1px $gray-4;
+    border-bottom: solid 1px $gray-5;
     margin-top: $spacing-2;
+    font-weight: 500;
+
+    @include rwd-max(xs) {
+      margin-left: $spacing-5;
+      margin-right: $spacing-5;
+    }
   }
 
   &__standing-score {
@@ -327,7 +347,7 @@ export default {
 
     @include rwd-min(sm) {
       max-width: 500px;
-      margin: $spacing-6 auto 0 auto;
+      margin: $spacing-7 auto 0 auto;
     }
   }
 }
