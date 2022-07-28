@@ -50,7 +50,7 @@
                 share-network(
                   network="line"
                   :title="meta.title"
-                  :url="sharingUrl"
+                  :url="sharingLineUrl"
                   :description="shareDescription"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
