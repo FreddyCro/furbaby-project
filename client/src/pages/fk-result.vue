@@ -180,10 +180,9 @@ export default {
       const score = this.$store.state[this.$store.state.cate].score;
 
       if (!score || score === 0 || score === 1) this.result.level = 1;
-      if (score === 2 || score === 3) this.result.level = 2;
-      if (score === 4 || score === 5 || score === 6) this.result.level = 3;
+      if (score === 2 || score === 3 || score === 4) this.result.level = 2;
+      if (score === 5 || score === 6) this.result.level = 3;
       if (score === 7) this.result.level = 4;
-
       // this.result.level = Math.floor(score / 2) + 1;
 
       // db index 1 = score 0, index 8 = score 7, so score should +1
