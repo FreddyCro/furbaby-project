@@ -49,8 +49,9 @@
               .fk-result__share-btn-wrapper
                 share-network(
                   network="line"
-                  :title="shareDescription"
+                  :title="meta.title"
                   :url="sharingUrl"
+                  :description="shareDescription"
                   hashtags="營養成就健康基礎"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
