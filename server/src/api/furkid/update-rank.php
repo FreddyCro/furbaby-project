@@ -16,7 +16,7 @@ function recaptchaCheck()
   // TODO: implement recaptcha
 
   // Google reCAPTCHA private key
-  $data['secret'] = '6Ld7IxohAAAAAOrBVJ39N8mZW6K_VEZb1kxV7PmR';
+  $data['secret'] = '';
   $data['response'] = $_POST['g-recaptcha-response'];
   $ch = curl_init();
 
@@ -32,26 +32,6 @@ function recaptchaCheck()
 
   // decode
   $result = json_decode($result, true);
-
-  # Verify captcha
-  // $post_data = http_build_query(
-  //   array(
-  //     'secret' => '6Ld7IxohAAAAAOrBVJ39N8mZW6K_VEZb1kxV7PmR',
-  //     'response' => $_POST['g-recaptcha-response'],
-  //     'remoteip' => $_SERVER['REMOTE_ADDR']
-  //   )
-  // );
-  // $opts = array(
-  //   'http' =>
-  //   array(
-  //     'method'  => 'POST',
-  //     'header'  => 'Content-type: application/x-www-form-urlencoded',
-  //     'content' => $post_data
-  //   )
-  // );
-  // $context  = stream_context_create($opts);
-  // $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
-  // $result = json_decode($response);
 
   // check
   if (!isset($result['success']) || !$result['success']) {

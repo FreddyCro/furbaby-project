@@ -63,8 +63,7 @@ try {
     }
 
     if (isset($ranking)) {
-      $description = $description . "，排名為{$ranking}。參加活動就有機會拿3個月份寵物飼料。
-      你也一起來挑戰看看吧！";
+      $description = $description . "，排名為{$ranking}。參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！";
     }
 
     echo json_encode($description);
