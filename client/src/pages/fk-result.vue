@@ -382,9 +382,13 @@ export default {
   max-width: 880px;
   display: flex;
   margin: 0 auto;
-  margin-top: 120px;
+  margin-top: $spacing-8;
   text-align: left;
   color: $gray-6;
+
+  @include rwd-min(sm) {
+    margin-top: 120px;
+  }
 
   &__content {
     display: inline-flex;
