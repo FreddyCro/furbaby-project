@@ -22,6 +22,7 @@
               type="video/mp4"
               muted
             )
+              source(src="assets/vid/landing.webm")
               source(src="assets/vid/landing.mp4")
   .fk-l-mouse
     a.fk-l-mouse__scroll-down(href="#" v-scroll-to="'#start-quiz'")
