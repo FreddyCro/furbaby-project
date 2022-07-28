@@ -42,7 +42,7 @@ const getRanking = (table) => {
 // get ranking of by score
 const getRankingByScore = (table, score) => {
   return axios.get(
-    `${window.location.protocol}//${root}/api/furkid/read-rank-by-score.php?table=${table}&score=${score}`
+    `${window.location.protocol}//${root}/api/furkid/read-rank-by-score.php?c=${table}&sc=${score}`
   );
 };
 
