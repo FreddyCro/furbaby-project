@@ -168,5 +168,23 @@ export default {
       margin-bottom: $spacing-7;
     }
   }
+
+  .fk-ans-opt .fk-ans-opt__img-wrapper {
+    border: solid 1px transparent;
+    padding: $spacing-3;
+  }
+  
+  .fk-ans-opt--selected .fk-ans-opt__img-wrapper {
+    background-color: $gray-1;
+    border-color: $color-primary;
+  }
+
+  .fk-ans-opt:hover .fk-ans-opt__img-wrapper {
+    background-color: $gray-1 !important;
+  }
+
+  .fk-ans-opt__img-wrapper {
+    background-color: transparent;
+  }
 }
 </style>

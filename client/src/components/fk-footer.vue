@@ -79,6 +79,10 @@ export default {
       border-right: 0;
     }
 
+    @include rwd-max(xs) {
+      max-width: 160px;
+    }
+
     @include rwd-min(sm) {
       height: 56px;
       padding: 0 $spacing-6;

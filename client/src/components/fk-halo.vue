@@ -39,8 +39,13 @@ export default {
   pointer-events: none;
 
   @include rwd-min(sm) {
-    width: 135%;
-    height: 135%;
+    width: 180%;
+    height: 180%;
+  }
+
+  @include rwd-min(md) {
+    width: 150%;
+    height: 150%;
   }
 }
 </style>

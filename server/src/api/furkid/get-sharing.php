@@ -15,7 +15,7 @@ try {
   $score = isset($_GET["sc"]) ? $_GET["sc"] : null;
   $wrongScore = isset($score) ? max(7 - (int) $score, 0) : null;
 
-  $description = "軟萌的幼貓、幼犬惹人憐愛，需要特殊營養為體質打底，隨著牠一天天成長，正確的轉糧與飼主照護觀念更為重要，找朋友一起挑戰你的毛寵達人級數吧！";
+  $title = "你有自信成為皇家級飼主嗎？";
 
   if (isset($username) && isset($category) && isset($score)) {
     $ranking = null;
@@ -49,27 +49,16 @@ try {
       }
     }
 
-    // handle description
-    $description = "{$username} 剛剛測驗了自己的毛寵達人級數，答對{$score}題，答錯{$wrongScore}題";
-
-    if (isset($level)) {
-      $levelName = "";
-      if ($level == "1") $levelName = "毛寵新鮮人";
-      if ($level == "2") $levelName = "毛寵素人";
-      if ($level == "3") $levelName = "毛寵達人";
-      if ($level == "4") $levelName = "皇家級毛寵達人";
-
-      $description = $description . "，是{$levelName}";
-    }
+    // handle title
+    $title = "{$username}剛剛測驗自己的毛寵達人級數，答對{$score}題";
 
     if (isset($ranking)) {
-      $description = $description . "，排名為{$ranking}。參加活動就有機會拿3個月份寵物飼料。
-      你也一起來挑戰看看吧！";
+      $title = $title . "，排名為{$ranking}";
     }
 
-    echo json_encode($description);
+    echo json_encode($title);
   } else {
-    echo json_encode($description);
+    echo json_encode($title);
   }
 } catch (Exception $e) {
   // do nothing

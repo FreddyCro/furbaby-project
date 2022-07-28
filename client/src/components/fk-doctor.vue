@@ -1,7 +1,8 @@
 <template lang="pug">
 .fk-doc
-  .fk-doc__avator
-    img(src="assets/img/quiz/doc_wang.png", alt="doctor wang")
+  .fk-doc__avator-wrapper
+    .fk-doc__avator
+      img(src="assets/img/quiz/doc_wang_full.png", alt="doctor wang")
   .fk-doc__name
     .fk-doc__name-text {{ name }}
     .fk-doc__name-listener
@@ -33,10 +34,63 @@ export default {
   flex-direction: column;
   align-items: center;
   min-width: 195px;
+  padding-top: $spacing-8;
+
+  @include rwd-min(sm) {
+    padding-top: $spacing-7;
+  }
+
+  @include rwd-min(md) {
+    padding-top: $spacing-6;
+  }
+
+  &__avator-wrapper {
+    position: relative;
+    width: 136px;
+    height: 136px;
+    margin-bottom: -$spacing-4;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: $color-primary;
+    border-width: 6px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% + 3px);
+      height: calc(100% + 3px);
+      background: linear-gradient(135deg, $white, $gray-3);
+      border-radius: 50%;
+    }
+
+    @include rwd-min(md) {
+      width: 164px;
+      height: 164px;
+      border-width: 8px;
+
+      &::before {
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+      }
+    }
+  }
 
   &__avator {
-    margin-bottom: -1.5rem;
-    margin-left: -20px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 188px;
+    height: 188px;
+    border-radius: 50%;
+    overflow: hidden;
+    transform: translate(-50%, 0);
+
+    @include rwd-min(md) {
+      width: 224px;
+      height: 224px;
+    }
   }
 
   &__name {

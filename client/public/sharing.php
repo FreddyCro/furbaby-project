@@ -34,7 +34,7 @@ function callAPI($method, $url, $data)
   return $result;
 }
 
-$description = "軟萌的幼貓、幼犬惹人憐愛，需要特殊營養為體質打底，隨著牠一天天成長，正確的轉糧與飼主照護觀念更為重要，找朋友一起挑戰你的毛寵達人級數吧！";
+$title = "你有自信成為皇家級飼主嗎？";
 $username = isset($_GET["n"]) ? $_GET["n"] : null;
 $category = isset($_GET["c"]) ? $_GET["c"] : null;
 $level = isset($_GET["lv"]) ? $_GET["lv"] : null;
@@ -47,7 +47,7 @@ $ogUrl = "https://event.udn.com/royalcanin2022/sharing.php?n={$username}&c={$cat
 $url = "https://event.udn.com/royalcanin2022/api/furkid/get-sharing.php?n={$username}&c={$category}&lv={$level}&sc={$score}";
 
 $get_data = callAPI("GET", $url, false);
-$description = json_decode($get_data, true);
+$title = json_decode($get_data, true);
 $errors = $response["response"]["errors"];
 ?>
 
@@ -67,12 +67,12 @@ $errors = $response["response"]["errors"];
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="你有自信成為皇家級飼主嗎？" />
+  <meta property="og:title" content="<?= $title ?>" />
   <meta property="og:url" content="<?= $ogUrl ?>" />
   <meta property="og:image" content="https://event.udn.com/royalcanin2022/assets/img/meta_<?= $category . $level ?>.png" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:description" content="<?= $description ?>" />
+  <meta property="og:description" content="參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！" />
   <meta property="fb:app_id" content="350231215126101" />
   <link rel="icon" href="https://event.udn.com/royalcanin2022/favicon.ico">
   <title>法國皇家寵物健康專家</title>
