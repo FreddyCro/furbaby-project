@@ -81,15 +81,15 @@ export default {
     position: absolute;
     left: 50%;
     bottom: 0;
-    width: 188px;
-    height: 188px;
+    width: 156px;
+    height: 156px;
     border-radius: 50%;
     overflow: hidden;
     transform: translate(-50%, 0);
 
     @include rwd-min(md) {
-      width: 224px;
-      height: 224px;
+      width: 200px;
+      height: 200px;
     }
   }
 

@@ -27,7 +27,8 @@
           type="video/mp4"
           muted
         )
-          source(src="assets/vid/dog5.mp4")
+          source(:src="`${illustration}.webm`")
+          source(:src="`${illustration}.mp4`")
         img(
           v-else
           :src="illustration"

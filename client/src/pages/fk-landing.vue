@@ -66,9 +66,13 @@
               src="assets/img/landing/play.png"
               :alt="str.start.title"
             )
-
+    
+    .fk-l-start__mouse
+      a.fk-l-mouse__scroll-down(href="#" v-scroll-to="'#suggestion'")
+        Mouse
+        
   //- suggestiton section
-  .fk-l-suggest.fk-section
+  #suggestion.fk-l-suggest.fk-section
     .fk-l-suggest__decoration-container
       .fk-l-suggest__decoration.fk-l-suggest__footprint-second
         img(
@@ -253,10 +257,9 @@ export default {
 
 .fk-l-start {
   position: relative;
-  overflow: hidden;
 
   @include rwd-max(xs) {
-    padding-bottom: 136px;
+    padding-bottom: 172px;
   }
 
   &__bg,
@@ -355,15 +358,16 @@ export default {
 
   &__enter-btn-container {
     margin-top: $spacing-6;
-    text-align: center;
+    text-align: left;
 
     @include rwd-min(md) {
-      margin-top: $spacing-8;
+      margin-top: $spacing-7;
     }
 
     button {
       min-width: 240px;
       margin-bottom: $spacing-5;
+      font-weight: 600;
 
       @include rwd-min(md) {
         min-width: 320px;
@@ -414,6 +418,12 @@ export default {
       bottom: 0;
       transform: translate(50%, 50%);
     }
+  }
+
+  &__mouse {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
   }
 }
 

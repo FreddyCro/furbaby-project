@@ -11,9 +11,9 @@
   )
     template(#my-ans)
       //- bowl options
-      .fk-db.fk-db__drag-container
+      .fk-db
         draggable(
-          class="pure-g autopad-2"
+          class="fk-db__drag-container pure-g autopad-2"
           :list="list1"
           :group="{ name: 'dq2', pull: 'clone', put: false }"
           :sort="false"
@@ -190,6 +190,10 @@ export default {
   }
 }
 .fk-db {
+  &__drag-container {
+    justify-content: center;
+  }
+  
   &__drag {
     &--selected {
       background-color: transparent;

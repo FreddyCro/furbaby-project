@@ -71,7 +71,28 @@
 
           .fk-result__banner
             img(@click="toggleDialog(true)" src="assets/img/quiz/share_banner.gif" alt="share and recive reward")
-
+  
+  .fk-credit
+    .fk-credit__content
+      .fk-credit__row
+        .fk-credit__title {{ credit.org }}
+        .fk-credit__name
+      .fk-credit__row
+        .fk-credit__title {{ credit.design }}
+        .fk-credit__name {{ credit.designer }}
+      .fk-credit__row
+        .fk-credit__title {{ credit.source }}
+        .fk-credit__name {{ credit.sourcer }}
+      .fk-credit__row
+        .fk-credit__title {{ credit.mk }}
+        .fk-credit__name {{ credit.mker }}
+      .fk-credit__row
+        .fk-credit__title {{ credit.direct }}
+        .fk-credit__name {{ credit.directer }}
+      .fk-credit__row
+        .fk-credit__title
+        .fk-credit__name {{ credit.release }}
+    
   fk-share-dialog(
     v-if="toggleDialog && shareTitle && shareDescription && sharingUrl && str.hashtags"
     :is-dialog-open="isDialogOpen"
@@ -88,6 +109,7 @@
 import { submitResult, getRankingByScore } from '@/api/quiz';
 import str from '@/assets/json/quiz.json';
 import meta from '@/assets/json/meta.json';
+import credit from '@/assets/json/credit.json';
 import rankingDog from '@/assets/json/ranking-dog.json';
 import rankingCat from '@/assets/json/ranking-cat.json';
 
@@ -105,6 +127,7 @@ export default {
   data: () => ({
     str,
     meta,
+    credit,
     result: {
       level: 0,
       ranking: 1,
@@ -352,6 +375,33 @@ export default {
       max-width: 500px;
       margin: $spacing-7 auto 0 auto;
     }
+  }
+}
+
+.fk-credit {
+  max-width: 880px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 120px;
+  text-align: left;
+  color: $gray-6;
+
+  &__content {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  &__row {
+    display: flex;
+    line-height: 1.5;
+  }
+
+  &__title {
+    min-width: 80px;
+  }
+  
+  &__name {
   }
 }
 </style>

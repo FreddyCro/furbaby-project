@@ -32,7 +32,7 @@
         :cate="cate"
         :useVideo="true"
         :is-my-ans-correct="singleStrategy(data.ans, myAns)"
-        illustration="assets/vid/dog5.mp4"
+        illustration="assets/vid/dog5"
       )
         template(#ans)
           .fk-ans-opt-container.fk-ans-opt-container--correct
