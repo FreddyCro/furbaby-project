@@ -52,7 +52,6 @@
                   :title="meta.title"
                   :url="sharingUrl"
                   :description="shareDescription"
-                  hashtags="營養成就健康基礎"
                 )
                   .fk-result__share-btn {{ str.lineToFriend }}
                     span.fk-result__share-btn-arrow
@@ -122,6 +121,9 @@ export default {
       }&sc=${this.$store.state[this.$store.state.cate].score}&lv=${
         this.result.level
       }`;
+    },
+    sharingLineUrl() {
+      return `${window.location.protocol}//${process.env.VUE_APP_API_ROOT}/sharing-line.html`;
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
