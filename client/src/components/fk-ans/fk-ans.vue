@@ -53,7 +53,6 @@ import str from '@/assets/json/quiz.json';
 
 import FkBg from '@/components/fk-bg.vue';
 import FkWizard from '@/components/fk-wizard.vue';
-import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 import FootprintCat from '@/assets/img/quiz/cat/footprint_cat.svg';
 import FootprintDog from '@/assets/img/quiz/dog/footprint_dog.svg';
 
@@ -89,7 +88,6 @@ export default {
   components: {
     FkBg,
     FkWizard,
-    FkBtnPrimary,
     FootprintCat,
     FootprintDog,
   },

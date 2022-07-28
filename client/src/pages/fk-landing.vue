@@ -139,7 +139,6 @@
 <script>
 // import FkPic from '@/components/fk-pic.vue';
 import FkBg from '@/components/fk-bg.vue';
-import FkBtnPrimary from '@/components/fk-btn/fk-btn-primary.vue';
 import str from '@/assets/json/landing.json';
 import Mouse from '@/assets/img/mouse.svg';
 
@@ -148,7 +147,6 @@ export default {
   components: {
     Mouse,
     FkBg,
-    FkBtnPrimary,
     // FkPic,
   },
   data: () => ({
@@ -358,7 +356,11 @@ export default {
 
   &__enter-btn-container {
     margin-top: $spacing-6;
-    text-align: left;
+    text-align: center;
+
+    @include rwd-min(sm) {
+      text-align: left;
+    }
 
     @include rwd-min(md) {
       margin-top: $spacing-7;

@@ -341,7 +341,7 @@
   text-align: left;
   background-color: transparent;
   border-radius: $border-radius-2;
-  border: dashed 2px $color-primary;
+  border: dashed 2px $gray-160;
   cursor: pointer;
 
   @include rwd-min(sm) {
@@ -366,8 +366,15 @@
   }
 
   &--selected {
+    border: dashed 2px $color-primary;
+
     .fk-ans-opt-large__text {
       background-color: $color-primary;
+    }
+
+    .fk-ans-opt-large__idx-label {
+      border-color: $color-primary;
+      color: $color-primary;
     }
   }
 
