@@ -7,8 +7,8 @@ include_once '../../class/rank.php';
 
 $database = new Database();
 
-$table = isset($_GET['table']) ? $_GET['table'] : die();
-$score = isset($_GET['score']) ? $_GET['score'] : die();
+$table = isset($_GET['c']) ? $_GET['c'] : die();
+$score = isset($_GET['sc']) ? $_GET['sc'] : die();
 if ($table == 'dog') $tableName = $database->dog_rank_table_name;
 if ($table == 'cat') $tableName = $database->cat_rank_table_name;
 

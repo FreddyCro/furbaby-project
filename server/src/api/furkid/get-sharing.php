@@ -9,11 +9,11 @@ try {
   $database = new Database();
   $db = $database->getConnection();
 
-  $username = isset($_GET["n"]) ? $_GET["n"] : null;
   $category = isset($_GET["c"]) ? $_GET["c"] : null;
-  $level = isset($_GET["lv"]) ? $_GET["lv"] : null;
   $score = isset($_GET["sc"]) ? $_GET["sc"] : null;
-  $wrongScore = isset($score) ? max(7 - (int) $score, 0) : null;
+  $username = isset($_GET["n"]) ? $_GET["n"] : null;
+  // $level = isset($_GET["lv"]) ? $_GET["lv"] : null;
+  // $wrongScore = isset($score) ? max(7 - (int) $score, 0) : null;
 
   $title = "你有自信成為皇家級飼主嗎？";
 
@@ -35,9 +35,9 @@ try {
         $participants = 0;
         $acc = 0;
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)['score']) {
-          $participants += $row;
-          array_push($rankArr, $row);
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $participants += $row['score'];
+          array_push($rankArr, $row['score']);
         }
 
         for ($i = 0; $i <= (int) $score; $i++) {
