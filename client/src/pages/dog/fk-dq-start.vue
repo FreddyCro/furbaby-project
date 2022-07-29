@@ -25,32 +25,8 @@ export default {
 
 <style lang="scss" scoped>
 .fk-start {
-  &__title {
-    display: flex;
-    align-items: center;
-
-    h1 {
-      color: $color-primary;
-    }
-
-    img {
-      width: 32px;
-      height: 32px;
-      margin-right: $spacing-3;
-    }
-  }
-
-  &__desc {
-    margin-bottom: $spacing-7;
-  }
-
-  &__input {
-    display: flex;
-    align-items: center;
-  }
-
-  &__input-label {
-    margin-right: $spacing-3;
+  .fk-container {
+    max-width: 600px;
   }
 }
 </style>

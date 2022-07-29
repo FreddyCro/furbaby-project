@@ -15,7 +15,7 @@ try {
   // $level = isset($_GET["lv"]) ? $_GET["lv"] : null;
   // $wrongScore = isset($score) ? max(7 - (int) $score, 0) : null;
 
-  $title = "你有自信成為皇家級飼主嗎？";
+  $title = "你有自信成為皇家級的飼主嗎?";
 
   if (isset($username) && isset($category) && isset($score)) {
     $ranking = null;
