@@ -19,12 +19,13 @@
 
   &__title {
     position: relative;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     color: $color-primary;
     text-align: left;
 
     @include rwd-min(sm) {
+      display: inline-flex;
       align-items: flex-end;
     }
   }
@@ -126,12 +127,12 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: $spacing-7;
+  padding-bottom: $spacing-7;
 
   @include rwd-min(sm) {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: $spacing-7;
+    padding-bottom: $spacing-7;
   }
 
   @include rwd-min(md) {
