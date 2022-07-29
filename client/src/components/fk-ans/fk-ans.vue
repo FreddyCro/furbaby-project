@@ -16,7 +16,7 @@
                 span.fk-ans__title-name-group
                   span.fk-ans__title-name {{ title }} 
                   span.fk-ans__title-label(v-if="getQuizTypeText") {{ getQuizTypeText }}
-                span.fk-ans__title-footsprint
+                span.fk-ans__title-footprint
                   footprint-cat(v-if="cate === 'cat'")
                   footprint-dog(v-if="cate === 'dog'")
 

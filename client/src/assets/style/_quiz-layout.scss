@@ -10,11 +10,19 @@
     }
   }
 
+  &__title-wrapper {
+    @include rwd-min(sm) {
+      text-align: center;
+      margin-bottom: $spacing-5;
+    }
+  }
+
   &__title {
     position: relative;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     color: $color-primary;
+    text-align: left;
 
     @include rwd-min(sm) {
       align-items: flex-end;
@@ -65,7 +73,7 @@
     border: solid 1px $color-primary;
   }
 
-  &__title-footsprint {
+  &__title-footprint {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -82,11 +90,11 @@
     @include rwd-min(sm) {
       width: 50px;
       height: 50px;
-      transform: translate($spacing-5, 70%);
+      transform: translate($spacing-7, 70%);
     }
 
     @include rwd-min(md) {
-      transform: translate($spacing-1, 50%);
+      transform: translate($spacing-7, 50%);
     }
   }
 
