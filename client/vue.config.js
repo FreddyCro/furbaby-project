@@ -14,11 +14,6 @@ module.exports = {
       metaDescription: meta.metaDescription,
       pageUrl: 'https://event.udn.com/royalcanin2022/',
     },
-    sharing: {
-      template: 'public/sharing.php',
-      filename: 'sharing.php',
-      entry: 'src/sharing.js',
-    },
   },
   chainWebpack: (config) => {
     config.module

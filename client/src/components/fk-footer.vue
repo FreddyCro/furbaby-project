@@ -1,6 +1,6 @@
 <template lang="pug">
 .fk-footer
-  .fk-u-container
+  .fk-container
     .fk-footer__logo-container
       .fk-footer__logo-wrapper
         a.fk-footer__logo(:href="str.dotcom.url", target="_blank", rel="noopener noreferrer")
@@ -58,25 +58,36 @@ export default {
     padding: $spacing-1 0;
 
     @media screen and (min-width: 576px) {
-      min-height: 80px;
+      min-height: 72px;
     }
 
     @include rwd-min(sm) {
       max-width: 80%;
       margin: 0 auto;
-      padding: $spacing-4 0;
     }
   }
 
   &__logo-wrapper {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 $spacing-5;
-    border-right: #000 1px solid;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      height: 36px;
+      border-right: #000 1px solid;
+      transform: translate(0, -50%);
+    }
 
     &:last-child {
-      border-right: 0;
+      &::before {
+        border: 0;
+      }
     }
 
     @include rwd-max(xs) {
@@ -84,12 +95,12 @@ export default {
     }
 
     @include rwd-min(sm) {
-      height: 56px;
+      height: 40px;
       padding: 0 $spacing-6;
     }
 
     @include rwd-min(md) {
-      padding: 0 56px;
+      padding: 0 48px;
     }
   }
 

@@ -34,7 +34,7 @@ function callAPI($method, $url, $data)
   return $result;
 }
 
-$title = "你有自信成為皇家級飼主嗎？";
+$title = "你有自信成為皇家級的飼主嗎?";
 $username = isset($_GET["n"]) ? $_GET["n"] : null;
 $category = isset($_GET["c"]) ? $_GET["c"] : null;
 $level = isset($_GET["lv"]) ? $_GET["lv"] : null;
@@ -69,7 +69,7 @@ $errors = $response["response"]["errors"];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="<?= $title ?>" />
   <meta property="og:url" content="<?= $ogUrl ?>" />
-  <meta property="og:image" content="https://event.udn.com/royalcanin2022/assets/img/meta_v2_<?= $category . $level ?>.png" />
+  <meta property="og:image" content="https://event.udn.com/royalcanin2022/assets/img/og_<?= $category . $level ?>.png" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:description" content="參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！" />

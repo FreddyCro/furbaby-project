@@ -36,7 +36,7 @@
               span(v-if="rankingStr") 你是{{ rankingStr.title }}
               
             h3.fk-result__standing-desc(v-if="rankingStr") {{ rankingStr.desc }}
-            p.fk-result__standing-score
+            p.fk-result__standing-score(v-if="$store.state.cate")
               span 答對 {{ $store.state[$store.state.cate].score }} 題 / 答錯 {{ 7 - $store.state[$store.state.cate].score }} 題
               span 你現在排 {{ result.ranking }} 名
 
@@ -137,6 +137,8 @@ export default {
   }),
   computed: {
     sharingUrl() {
+      if (!this.$store.state.cate) return meta.metaUrl;
+
       return `${window.location.protocol}//${
         process.env.VUE_APP_API_ROOT
       }/sharing.php?n=${this.$store.state.user}&c=${
@@ -146,7 +148,9 @@ export default {
       }`;
     },
     sharingLineUrl() {
-      return `${window.location.protocol}//${process.env.VUE_APP_API_ROOT}/sharing-line.html`;
+      return `${window.location.protocol}//${
+        process.env.VUE_APP_API_ROOT
+      }/sharing-line.html?v=${Math.random() * 100 | 0}`;
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
@@ -162,6 +166,9 @@ export default {
       return undefined;
     },
     shareDescription() {
+      if (!this.$store.state.cate)
+        return '參加活動就有機會拿3個月份寵物飼料。你也一起來挑戰看看吧！';
+
       const wording = [
         `${this.$store.state.user} 剛剛測驗了自己的毛寵達人級數`,
         `，答對${this.$store.state[this.$store.state.cate].score}題`,
@@ -409,7 +416,7 @@ export default {
   &__title {
     min-width: 80px;
   }
-  
+
   &__name {
   }
 }
