@@ -161,7 +161,7 @@ export default {
 
   .fk-bg {
     position: absolute;
-    
+
     .fk-bg__floor, .fk-bg__front {
       bottom: 0;
     }
@@ -195,11 +195,6 @@ export default {
     position: relative;
     width: 100%;
     padding-bottom: 65%;
-
-    @include rwd-max(xs) {
-      transform: scale(1.25);
-      transform-origin: center;
-    }
   }
 
   &__pic-wrapper {
@@ -217,7 +212,7 @@ export default {
     z-index: 1;
     left: 50%;
     bottom: 0;
-    width: 100%;
+    width: 120%;
     transform: translateX(-50%);
   }
 
