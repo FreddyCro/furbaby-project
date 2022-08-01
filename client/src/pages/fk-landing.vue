@@ -10,7 +10,7 @@
         .fk-l-intro__hero
           .fk-l-intro__pic-wrapper
             img.fk-l-intro__pic(
-              src="assets/img/landing/title.png"
+              src="assets/img/landing/title.svg"
               :alt="str.intro.title"
             )
 
@@ -155,9 +155,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .fk-l {
   overflow: hidden;
+
+  .fk-bg {
+    .fk-bg__floor, .fk-bg__front {
+      position: absolute;
+      bottom: 0;
+    }
+  }
 }
 
 .fk-l-intro {
@@ -605,23 +612,28 @@ export default {
       transform: none;
     }
 
-    @include rwd-min(xl) {
-      right: 12.5%;
+    @include rwd-min(lg) {
+      width: 420px;
+    }
+
+    @media screen and (min-width: 1800px) {
+      right: 10%;
     }
 
     /* img {
       height: 750px;
     } */
   }
-}
-.btn-arrow {
-  display: inline-block;
-  border-style: solid;
-  border-width: 2px;
-  border-color: $white $white transparent transparent;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-left: $spacing-2;
-  transform: rotate(45deg);
+
+  .btn-arrow {
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $white $white transparent transparent;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: $spacing-2;
+    transform: rotate(45deg);
+  }
 }
 </style>

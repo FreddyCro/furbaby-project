@@ -391,6 +391,7 @@ export default {
 }
 
 .fk-credit {
+  position: relative;
   max-width: 880px;
   display: flex;
   margin: 0 auto;
@@ -415,9 +416,6 @@ export default {
 
   &__title {
     min-width: 80px;
-  }
-
-  &__name {
   }
 }
 </style>

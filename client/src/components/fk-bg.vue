@@ -41,9 +41,14 @@ export default {
     height: 100%;
     pointer-events: none;
     background-repeat: no-repeat;
+
+    @include rwd-min(md) {
+      position: fixed;
+    }
   }
 
   &__front {
+    z-index: 1;
     bottom: 0;
     background-position: center bottom;
     background-size: contain;
@@ -57,6 +62,14 @@ export default {
     }
 
     @include rwd-min(sm) {
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @include rwd-min(md) {
+      bottom: $spacing-8;
+
       &--dog {
         background-image: url('~@/assets/img/common/bg_front_dog.png');
       }
@@ -65,10 +78,14 @@ export default {
         background-image: url('~@/assets/img/common/bg_front_cat.png');
       }
     }
+
+    @include rwd-min(lg) {
+      width: 60%;
+    }
   }
 
   &__floor {
-    top: 0;
+    bottom: 0;
     background-image: url('~@/assets/img/common/bg_small.png');
     background-size: cover;
     background-position: center bottom;
@@ -77,7 +94,12 @@ export default {
       background-image: url('~@/assets/img/common/bg_quiz_small.png');
     }
 
-    @include rwd-min(sm) {
+    @include rwd-min(md) {
+      bottom: $spacing-8;
+    }
+
+    @include rwd-min(lg) {
+      background-size: contain;
       background-image: url('~@/assets/img/common/bg_merge.png');
 
       &--dog {

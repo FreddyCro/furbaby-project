@@ -41,6 +41,7 @@ ol {
 }
 
 .fk-page {
+  position: relative;
   min-height: calc(100vh - #{$header-height + $spacing-5});
 }
 
