@@ -95,7 +95,6 @@
         )
 
     .fk-container
-      .fk-l-halo 
       .fk-l-suggest__principle
         .fk-l-suggest__title-wrapper
           .fk-l-suggest__avator-wrapper
@@ -162,7 +161,8 @@ export default {
   .fk-bg {
     position: absolute;
 
-    .fk-bg__floor, .fk-bg__front {
+    .fk-bg__floor,
+    .fk-bg__front {
       bottom: 0;
     }
   }
@@ -173,7 +173,7 @@ export default {
   min-height: 65vh;
   display: flex;
   align-items: flex-end;
-  padding:  0 0 $spacing-8 0;
+  padding: 0 0 $spacing-8 0;
   box-sizing: border-box;
   background-color: $white;
 
@@ -194,7 +194,7 @@ export default {
   &__hero {
     position: relative;
     width: 100%;
-    padding-bottom: 65%;
+    padding-bottom: 70%;
   }
 
   &__pic-wrapper {
@@ -202,7 +202,7 @@ export default {
     z-index: 2;
     left: 50%;
     top: 0;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     transform: translateX(-50%);
   }
@@ -213,6 +213,7 @@ export default {
     left: 50%;
     bottom: 0;
     width: 120%;
+    text-align: center;
     transform: translateX(-50%);
   }
 
@@ -259,8 +260,10 @@ export default {
 .fk-l-start {
   position: relative;
 
-  @include rwd-max(xs) {
-    padding-bottom: 172px;
+  &.fk-section {
+    @include rwd-max(xs) {
+      padding-bottom: 172px;
+    }
   }
 
   &__bg,
@@ -437,7 +440,6 @@ export default {
   background-color: $white;
   background-image: url('~@/assets/img/landing/bg_brick.png');
   background-repeat: round;
-  padding-bottom: 280px;
   overflow: hidden;
 
   @include rwd-min(sm) {
@@ -447,6 +449,18 @@ export default {
 
   @include rwd-min(md) {
     padding-bottom: 360px;
+  }
+
+  &.fk-section {
+    padding-bottom: 280px;
+
+    @include rwd-min(sm) {
+      padding-bottom: 400px;
+    }
+
+    @include rwd-min(md) {
+      padding-bottom: 360px;
+    }
   }
 
   &__principle {
@@ -615,10 +629,6 @@ export default {
     @media screen and (min-width: 1800px) {
       right: 10%;
     }
-
-    /* img {
-      height: 750px;
-    } */
   }
 
   .btn-arrow {
