@@ -5,12 +5,6 @@
   transition(name="fade")
     router-view
 
-  //- footer decoration
-  img.full-vw(
-    src="assets/img/landing/red_ribbon.png"
-    alt="red decoration"
-  )
-
   fk-footer
 </template>
 

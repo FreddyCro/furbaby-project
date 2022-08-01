@@ -44,8 +44,8 @@ export default {
   }
 
   @include rwd-min(md) {
-    width: 150%;
-    height: 150%;
+    width: 125%;
+    height: 125%;
   }
 }
 </style>

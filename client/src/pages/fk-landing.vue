@@ -10,7 +10,7 @@
         .fk-l-intro__hero
           .fk-l-intro__pic-wrapper
             img.fk-l-intro__pic(
-              src="assets/img/landing/title.png"
+              src="assets/img/landing/title.svg"
               :alt="str.intro.title"
             )
 
@@ -95,7 +95,6 @@
         )
 
     .fk-container
-      .fk-l-halo 
       .fk-l-suggest__principle
         .fk-l-suggest__title-wrapper
           .fk-l-suggest__avator-wrapper
@@ -155,9 +154,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .fk-l {
   overflow: hidden;
+
+  .fk-bg {
+    position: absolute;
+
+    .fk-bg__floor,
+    .fk-bg__front {
+      bottom: 0;
+    }
+  }
 }
 
 .fk-l-intro {
@@ -165,7 +173,7 @@ export default {
   min-height: 65vh;
   display: flex;
   align-items: flex-end;
-  padding:  0 0 $spacing-8 0;
+  padding: 0 0 $spacing-8 0;
   box-sizing: border-box;
   background-color: $white;
 
@@ -186,11 +194,10 @@ export default {
   &__hero {
     position: relative;
     width: 100%;
-    padding-bottom: 65%;
+    padding-bottom: 70%;
 
-    @include rwd-max(xs) {
-      transform: scale(1.25);
-      transform-origin: center;
+    @include rwd-min(sm) {
+      padding-bottom: 62.5%;
     }
   }
 
@@ -199,9 +206,13 @@ export default {
     z-index: 2;
     left: 50%;
     top: 0;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     transform: translateX(-50%);
+
+    @include rwd-min(sm) {
+      width: 80%;
+    }
   }
 
   &__video-wrapper {
@@ -209,14 +220,14 @@ export default {
     z-index: 1;
     left: 50%;
     bottom: 0;
-    width: 100%;
+    width: 120%;
+    text-align: center;
     transform: translateX(-50%);
   }
 
   &__video {
     max-width: 100%;
     border-radius: 60px;
-    box-shadow: 0 0 100px $white;
   }
 
   &__title {
@@ -256,8 +267,10 @@ export default {
 .fk-l-start {
   position: relative;
 
-  @include rwd-max(xs) {
-    padding-bottom: 172px;
+  &.fk-section {
+    @include rwd-max(xs) {
+      padding-bottom: 172px;
+    }
   }
 
   &__bg,
@@ -434,7 +447,6 @@ export default {
   background-color: $white;
   background-image: url('~@/assets/img/landing/bg_brick.png');
   background-repeat: round;
-  padding-bottom: 280px;
   overflow: hidden;
 
   @include rwd-min(sm) {
@@ -444,6 +456,18 @@ export default {
 
   @include rwd-min(md) {
     padding-bottom: 360px;
+  }
+
+  &.fk-section {
+    padding-bottom: 280px;
+
+    @include rwd-min(sm) {
+      padding-bottom: 400px;
+    }
+
+    @include rwd-min(md) {
+      padding-bottom: 360px;
+    }
   }
 
   &__principle {
@@ -605,23 +629,24 @@ export default {
       transform: none;
     }
 
-    @include rwd-min(xl) {
-      right: 12.5%;
+    @include rwd-min(lg) {
+      width: 420px;
     }
 
-    /* img {
-      height: 750px;
-    } */
+    @media screen and (min-width: 1800px) {
+      right: 10%;
+    }
   }
-}
-.btn-arrow {
-  display: inline-block;
-  border-style: solid;
-  border-width: 2px;
-  border-color: $white $white transparent transparent;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-left: $spacing-2;
-  transform: rotate(45deg);
+
+  .btn-arrow {
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $white $white transparent transparent;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: $spacing-2;
+    transform: rotate(45deg);
+  }
 }
 </style>

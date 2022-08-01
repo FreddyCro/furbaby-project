@@ -1,5 +1,11 @@
 <template lang="pug">
 .fk-footer
+  //- footer decoration
+  img.full-vw(
+    src="assets/img/landing/red_ribbon.png"
+    alt="red decoration"
+  )
+
   .fk-container
     .fk-footer__logo-container
       .fk-footer__logo-wrapper
@@ -49,6 +55,8 @@ export default {
 
 <style lang="scss">
 .fk-footer {
+  position: relative;
+  z-index: 10;
   background-color: $white;
 
   &__logo-container {
@@ -79,7 +87,7 @@ export default {
       position: absolute;
       top: 50%;
       right: 0;
-      height: 36px;
+      height: 24px;
       border-right: #000 1px solid;
       transform: translate(0, -50%);
     }
@@ -97,6 +105,10 @@ export default {
     @include rwd-min(sm) {
       height: 40px;
       padding: 0 $spacing-6;
+
+      &::before {
+        height: 36px;
+      }
     }
 
     @include rwd-min(md) {

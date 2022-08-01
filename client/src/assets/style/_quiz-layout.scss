@@ -10,13 +10,22 @@
     }
   }
 
+  &__title-wrapper {
+    @include rwd-min(sm) {
+      text-align: center;
+      margin-bottom: $spacing-5;
+    }
+  }
+
   &__title {
     position: relative;
     display: flex;
     justify-content: center;
     color: $color-primary;
+    text-align: left;
 
     @include rwd-min(sm) {
+      display: inline-flex;
       align-items: flex-end;
     }
   }
@@ -65,7 +74,7 @@
     border: solid 1px $color-primary;
   }
 
-  &__title-footsprint {
+  &__title-footprint {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -82,11 +91,11 @@
     @include rwd-min(sm) {
       width: 50px;
       height: 50px;
-      transform: translate($spacing-5, 70%);
+      transform: translate($spacing-7, 70%);
     }
 
     @include rwd-min(md) {
-      transform: translate($spacing-1, 50%);
+      transform: translate($spacing-7, 50%);
     }
   }
 
@@ -113,27 +122,29 @@
 
 .fk-ans-content {
   position: relative;
+  z-index: 5;
   height: 100%;
-  min-height: calc(100vh - #{$header-height});
+  min-height: calc(100vh - #{$header-height * 2});
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: $spacing-7;
+  padding-bottom: $spacing-7;
+
+  &--has-submitted {
+    @include rwd-max(xs) {
+      background-color: $white;
+    }
+  }
 
   @include rwd-min(sm) {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: $spacing-7;
+    padding-bottom: $spacing-7;
   }
 
   @include rwd-min(md) {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
-
-  @include rwd-min(lg) {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
   }
 }
 

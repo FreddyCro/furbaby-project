@@ -36,7 +36,8 @@ if ($itemCount > 0) {
   
   echo json_encode($participants - $acc + 1);
 } else {
-  echo json_encode(
-    array("message" => "No record found.")
-  );
+  echo json_encode(1);
+  // echo json_encode(
+  //   array("message" => "No record found.")
+  // );
 }

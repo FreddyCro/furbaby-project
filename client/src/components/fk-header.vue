@@ -6,7 +6,7 @@ header.fk-header
         router-link(to="/")
           button.fk-header__logo(@click="reset")
             img(
-              src="assets/img/header/title.png"
+              src="assets/img/header/title.svg"
               alt="Furkid Master"
           )
 </template>
