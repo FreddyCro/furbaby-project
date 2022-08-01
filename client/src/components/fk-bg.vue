@@ -51,7 +51,7 @@ export default {
 
   &__front {
     z-index: 1;
-    top: 25%;
+    top: 30%;
     background-size: contain;
 
     &--dog {
@@ -63,14 +63,19 @@ export default {
     }
 
     @include rwd-min(sm) {
-      top: 35%;
+      background-size: auto;
+      background-position: center bottom;
+      bottom: 0;
+      top: auto;
       width: 80%;
       left: 50%;
       transform: translateX(-50%);
     }
 
     @include rwd-min(md) {
-      top: 25%;
+      background-size: contain;
+      background-position: center center;
+      top: 30%;
 
       &--dog {
         background-image: url('~@/assets/img/common/bg_front_dog.png');
@@ -93,6 +98,18 @@ export default {
 
     &--quiz {
       background-image: url('~@/assets/img/common/bg_quiz_small.png');
+    }
+
+    @include rwd-min(sm) {
+      background-size: auto;
+      background-position: center bottom;
+      bottom: 0;
+      top: auto;
+    }
+
+    @include rwd-min(md) {
+      background-size: contain;
+      background-position: center center;
     }
 
     @include rwd-min(lg) {

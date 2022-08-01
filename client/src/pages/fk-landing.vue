@@ -195,6 +195,10 @@ export default {
     position: relative;
     width: 100%;
     padding-bottom: 70%;
+
+    @include rwd-min(sm) {
+      padding-bottom: 62.5%;
+    }
   }
 
   &__pic-wrapper {
@@ -205,6 +209,10 @@ export default {
     width: 100%;
     margin: 0 auto;
     transform: translateX(-50%);
+
+    @include rwd-min(sm) {
+      width: 80%;
+    }
   }
 
   &__video-wrapper {
@@ -220,7 +228,6 @@ export default {
   &__video {
     max-width: 100%;
     border-radius: 60px;
-    box-shadow: 0 0 100px $white;
   }
 
   &__title {
