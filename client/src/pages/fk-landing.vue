@@ -166,25 +166,32 @@ export default {
       bottom: 0;
     }
   }
+
+  .fk-halo {
+    @include rwd-min(sm) {
+      top: 60%;
+      width: 125%;
+      height: 125%;
+    }
+  }
 }
 
 .fk-l-intro {
   position: relative;
-  min-height: 65vh;
+  min-height: 60vh;
   display: flex;
   align-items: flex-end;
-  padding: 0 0 $spacing-8 0;
+  padding: 0 0 $spacing-4 0;
   box-sizing: border-box;
   background-color: $white;
 
   @include rwd-min(sm) {
-    min-height: 80vh;
-    align-items: center;
+    min-height: 70vh;
     padding: $spacing-6 0;
   }
 
   @include rwd-min(md) {
-    padding: $spacing-8 0;
+    padding: $spacing-7 0;
   }
 
   &__hero-wrapper {
@@ -197,6 +204,10 @@ export default {
     padding-bottom: 70%;
 
     @include rwd-min(sm) {
+      padding-bottom: 75%;
+    }
+
+    @include rwd-min(md) {
       padding-bottom: 62.5%;
     }
   }
@@ -210,7 +221,7 @@ export default {
     margin: 0 auto;
     transform: translateX(-50%);
 
-    @include rwd-min(sm) {
+    @include rwd-min(md) {
       width: 80%;
     }
   }
@@ -220,9 +231,17 @@ export default {
     z-index: 1;
     left: 50%;
     bottom: 0;
-    width: 120%;
+    width: 110%;
     text-align: center;
     transform: translateX(-50%);
+
+    @include rwd-min(sm) {
+      width: 135%;
+    }
+
+    @include rwd-min(md) {
+      width: 110%;
+    }
   }
 
   &__video {

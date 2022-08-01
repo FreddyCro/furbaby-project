@@ -282,6 +282,14 @@ export default {
 
   &__illus {
     text-align: center;
+
+    img {
+      max-height: 324px;
+
+      @include rwd-min(sm) {
+        max-height: 424px;
+      }
+    }
   }
 
   &__standing {

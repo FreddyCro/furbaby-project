@@ -112,8 +112,12 @@ export default {
   }
 
   &__ans-item-img-wrapper {
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: $spacing-5;
     margin-bottom: $spacing-2;
 
