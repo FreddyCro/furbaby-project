@@ -150,7 +150,7 @@ export default {
     sharingLineUrl() {
       return `${window.location.protocol}//${
         process.env.VUE_APP_API_ROOT
-      }/sharing-line.html?v=${Math.random() * 100 | 0}`;
+      }/sharing-line.html?v=${(Math.random() * 100) | 0}`;
     },
     finalImg() {
       if (!this.$store.state.cate) return undefined;
@@ -222,15 +222,23 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.fk-bg {
-  opacity: 0.5;
-}
-.fk-page {
-  margin: 5rem 0;
-}
-
+<style lang="scss">
 .fk-result {
+  &.fk-page {
+    margin: 5rem 0;
+  }
+
+  .fk-bg {
+    opacity: 0.5;
+
+    @include rwd-max(xs) {
+      .fk-bg__floor,
+      .fk-bg__front {
+        background-position: center top;
+      }
+    }
+  }
+
   &__header {
     position: relative;
     width: 80%;

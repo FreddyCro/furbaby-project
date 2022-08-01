@@ -2,7 +2,7 @@
 .fk-ans.fk-page
   fk-bg
 
-  .fk-ans-content
+  .fk-ans-content(:class="{'fk-ans-content--has-submitted': hasSubmitted}")
     .fk-ans-content__main
       .fk-ans__wizard-wrapper(v-if="!hasSubmitted")
         fk-wizard(:idx="idx || 1")

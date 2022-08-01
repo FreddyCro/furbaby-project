@@ -131,6 +131,12 @@
   padding-top: $spacing-7;
   padding-bottom: $spacing-7;
 
+  &--has-submitted {
+    @include rwd-max(xs) {
+      background-color: $white;
+    }
+  }
+
   @include rwd-min(sm) {
     padding-top: $spacing-7;
     padding-bottom: $spacing-7;

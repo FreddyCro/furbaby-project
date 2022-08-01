@@ -160,8 +160,9 @@ export default {
   overflow: hidden;
 
   .fk-bg {
+    position: absolute;
+    
     .fk-bg__floor, .fk-bg__front {
-      position: absolute;
       bottom: 0;
     }
   }
